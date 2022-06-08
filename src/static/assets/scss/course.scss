@@ -1,0 +1,131 @@
+:root {
+  --DarkCyan: #00838f;
+  --TurkishRose: #bc658d;
+  --Gunmetal: #2c333a;
+  --ViridianGreen: #009ba2;
+  --White: #ffffff;
+  --Rhythm: #69779b;
+  --CaribbeanGreen: #00c5a2;
+  --OldLavender: #756c83;
+  --AmericanPurple: #432160;
+  --ChineseBlue: #415b90;
+  --DarkSlateGray: #314a52;
+  --MaximumRedPurple: #a03c78;
+  --DarkLavender: #6f539b;
+  --MetallicBlue: #3c5186;
+  --TiffanyBlue: #0fabbc;
+  --PoliceBlue: #394a6d;
+  --Corn: #fbeb5b;
+  --LimeGreen: #4be133;
+  --OldRose: #394a6d;
+  --Magnolia: #f4f3fe;
+  --ChineseSilver: #cccccc;
+  --LavenderGray: #c5c0db;
+  --DeepGreen-CyanTurquoise: #206d62;
+
+  // FONT STYLE
+  --Nunito: "Nunito", sans-serif;
+  --Montserat: "Montserrat", sans-serif;
+
+  --overlay: rgba(44, 51, 58, 0.2);
+}
+
+.welcome_banner {
+  height: 275px;
+  background-color: var(--Magnolia);
+  margin-top: 75px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  .welcome_txt {
+    width: 100%;
+    // margin: 0;
+    h2 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 39px;
+    }
+    p {
+      max-width: 650px;
+    }
+  }
+}
+
+.basement {
+  .aside_nav {
+    display: none;
+  }
+  .libary {
+    margin-top: 50px;
+  }
+}
+@media (min-width: 1000px) {
+  .card_sack .card_parent .course_cards {
+    width: 32%;
+  }
+}
+@media (min-width: 1024px) {
+  .basement {
+    display: flex;
+    justify-content: space-between;
+    .aside_nav {
+      display: block;
+      height: 1000px;
+      width: 27%;
+      border-right: 1px solid rgba(44, 51, 58, 0.2);
+      background-color: var(--White);
+      position: relative;
+      .aside_navigation {
+        margin-bottom: 20px;
+        border-radius: 5px;
+        min-height: 900px;
+        height: 100vh;
+        position: absolute;
+        overflow: hidden;
+        // max-width: 275px;
+        width: 75%;
+        margin-top: 50px;
+        background: var(--White);
+        border: 1px solid rgba(44, 51, 58, 0.2);
+        box-shadow: 0px 4px 8px rgba(142, 141, 208, 0.16);
+        right: 20px;
+
+        .ff_nav {
+          position: relative;
+          .ff_heading {
+            // position: absolute;
+            // top: 0;
+            h3 {
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 22px;
+              background-color: var(--Magnolia);
+              padding: 20px 10px;
+              margin-bottom: 15px;
+            }
+            .search_parent {
+              // margin: 0 10px;
+            }
+          }
+          .course_basement {
+            overflow-y: scroll;
+            // -ms-overflow-style: none; /* Internet Explorer 10+ */
+            // scrollbar-width: none;
+            height: 850px;
+            .c_snip {
+              padding: 30px 15px;
+              border-bottom: 1px solid rgba(44, 51, 58, 0.2);
+              .under_this {
+                margin-left: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .libary {
+      width: 80%;
+    }
+  }
+}
