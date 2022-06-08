@@ -1899,9 +1899,12 @@ header nav {
   display: flex;
 }
 
-.staff_nav img {
-  width: 170px;
+.staff_nav .link_logo {
+  position: relative;
+  top: 26px;
+  display: inline-block;
   margin-right: auto;
+  width: 170px;
 }
 
 .staff_nav ul {

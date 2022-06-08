@@ -1,6 +1,7 @@
 import React from "react";
-import sterling from "../src/static/assets/images/sterling.jpg";
-import people from "../src/static/assets/images/grid_style.jpg";
+import { Outlet, Link } from "react-router-dom";
+import sterling from "./static/assets/images/sterling.jpg";
+import people from "./static/assets/images/grid_style.jpg";
 import { showVideo } from "./static/assets/js/nav";
 
 function Banner() {
@@ -21,7 +22,8 @@ function Banner() {
 
             <div className="v_btn">
               <button className="important-btn rollin">
-                <a href="../techDiversity/diversityForm.html">Enroll Now </a>
+                {/* <a href="../techDiversity/diversityForm.html">Enroll Now </a> */}
+                <Link to="/signup">Enroll Now</Link>
               </button>
               <button className="default-btn watch_snip" onClick={showVideo}>
                 Watch Video

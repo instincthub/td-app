@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const Video = () => {
   return (
@@ -14,9 +14,9 @@ const Video = () => {
         ></iframe>
       </div>
       <div className="ip_btn">
-        <Link to={"./"}>
+        {/* <Link to={"./"}>
           <button className="important-btn">Enroll Now</button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

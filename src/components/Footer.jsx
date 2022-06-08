@@ -1,6 +1,6 @@
 import React from "react";
-import Whatsapp from "../src/static/assets/svgs/whatsapp.svg";
-import Twitter from "../src/static/assets/svgs/twitter.svg";
+import Whatsapp from "./static/assets/svgs/whatsapp.svg";
+import Twitter from "./static/assets/svgs/twitter.svg";
 
 const Footer = () => {
   return (

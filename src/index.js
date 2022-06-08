@@ -1,7 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import App from "./App";
-import TDN from "./TDN";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import TDN from "./components/TDN";
 
 // ReactDOM.render(<App />, document.getElementById("root"));
-ReactDOM.render(<TDN />, document.getElementById("root"));
+export default function App() {
+    return (
+      <BrowserRouter>
+        <Routes>
+            <Route index element={<Home />} />
+            <Route path="signup" element={<TDN />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
+
+ReactDOM.render(<App />, document.getElementById("root"));

@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet, Link } from "react-router-dom";
 import { hamBurger } from "./static/assets/js/nav";
 // import logo from "https://instincthub.com/static/instincthub-logo-.svg";
 
@@ -12,10 +13,12 @@ const Navbar = () => {
             <div className="line2"></div>
             <div className="line3"></div>
           </div>
+          <Link to="/" className="link_logo">
           <img
             src={require("./static/assets/svgs/instincthub_logo.svg").default}
             alt="instincthub Logo"
           />
+          </Link>
           <ul className="navlinks vet blog_links">
             <li>
               <div className="wrap_course">
@@ -37,9 +40,10 @@ const Navbar = () => {
             <li>
               <a href="">About</a>
             </li>
-            <a href="">
+
+            <Link to="/signup">
               <button className="important-btn">Register</button>
-            </a>
+            </Link>
           </ul>
         </nav>
       </header>

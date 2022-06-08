@@ -1,6 +1,6 @@
 import React from "react";
-import BannerImg from "../src/static/assets/images/diversity_bg.jpg";
-import { autocomplete } from "./static/assets/js/autocomplete";
+import BannerImg from "./static/assets/images/diversity_bg.jpg";
+// import { autocomplete } from "../static/assets/js/autocomplete";
 
 const Form = () => {
   return (
@@ -48,7 +48,7 @@ const Form = () => {
       </div>
 
       {/* This is the Form  */}
-      <form autocomplete={autocomplete} action="">
+      <form  action="">
         <section class="container">
           <div class="diversity_data">
             <h2>Personal Bio</h2>
