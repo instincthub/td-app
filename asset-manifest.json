@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "/td-app/static/css/main.872d4895.css",
+    "main.js": "/td-app/static/js/main.8bec6de7.js",
+    "static/media/grid_style.jpg": "/td-app/static/media/grid_style.05cb2de986c002770468.jpg",
+    "static/media/diversity_bg.jpg": "/td-app/static/media/diversity_bg.98f92fcd233cf8ae14dd.jpg",
+    "static/media/img2.png": "/td-app/static/media/img2.8c8c9c4f50eb4538ff19.png",
+    "static/media/img4.png": "/td-app/static/media/img4.0c86c3f68c9c8b080c75.png",
+    "static/media/img1.png": "/td-app/static/media/img1.cdb64419a43b30447dd2.png",
+    "static/media/img3.png": "/td-app/static/media/img3.9737d6b9eaf330af4a31.png",
+    "static/media/sterling.jpg": "/td-app/static/media/sterling.7a1ae3bb542b473d4045.jpg",
+    "static/media/ig.svg": "/td-app/static/media/ig.f9039f86f77ee348dcb0b1e37f92c5c7.svg",
+    "static/media/money.svg": "/td-app/static/media/money.477531c61484a87bd825d59c73dde9f3.svg",
+    "static/media/pp.svg": "/td-app/static/media/pp.c31fbab30c9f1cf16603ee1ce97ea569.svg",
+    "static/media/instincthub_logo.svg": "/td-app/static/media/instincthub_logo.2c7ea0ca98d6cb2430e71eee23989938.svg",
+    "static/media/slick.svg": "/td-app/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/whatsapp.svg": "/td-app/static/media/whatsapp.deb032b1e387805bfb923d7744abddb7.svg",
+    "static/media/slick.eot": "/td-app/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/td-app/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "index.html": "/td-app/index.html",
+    "static/media/slick.woff": "/td-app/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/camera.svg": "/td-app/static/media/camera.1add8036a01f9bb141a1.svg",
+    "static/media/tv.svg": "/td-app/static/media/tv.7c38cd46f28e7481eeefddb2344cc709.svg",
+    "static/media/phone.svg": "/td-app/static/media/phone.ae0ed1dcf2a845090839.svg",
+    "static/media/linkedin.svg": "/td-app/static/media/linkedin.9ccb15989105634b2b02845724c22e33.svg",
+    "static/media/coding.svg": "/td-app/static/media/coding.068bf1bdee7cb0e93c5ec0c7d20f99b3.svg",
+    "static/media/twitter.svg": "/td-app/static/media/twitter.09e00fe9c664fa527f77688f91992f99.svg",
+    "static/media/gold.svg": "/td-app/static/media/gold.0eb0ff3852d015610fbc.svg",
+    "static/media/mail.svg": "/td-app/static/media/mail.4547d3f550b78c03a8c5.svg",
+    "static/media/location.svg": "/td-app/static/media/location.b56253ead1d3e1f8771e.svg",
+    "static/media/facebook.svg": "/td-app/static/media/facebook.2b167202756463b8176a580529a9fbd7.svg",
+    "static/media/play_btn.svg": "/td-app/static/media/play_btn.c530ff6a15ebbab57239.svg",
+    "static/media/close_icon.svg": "/td-app/static/media/close_icon.5acae7126d955164683f9a763ec9bdf2.svg",
+    "main.872d4895.css.map": "/td-app/static/css/main.872d4895.css.map",
+    "main.8bec6de7.js.map": "/td-app/static/js/main.8bec6de7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.872d4895.css",
+    "static/js/main.8bec6de7.js"
+  ]
+}
