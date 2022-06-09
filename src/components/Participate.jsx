@@ -4,18 +4,16 @@ function Participate() {
   return (
     <div>
       <div className="participate container">
-        <h2>Why should you participate</h2>
+        <h2>Benefits</h2>
         <div className="all_box">
           <div className="p_box">
             <img
               src={require("./static/assets/svgs/coding.svg").default}
               alt=""
             />
-            <h3>Front End Web Development Skills</h3>
+            <h3>Codding Skills</h3>
             <p>
-              This involves the practice of translating data to a graphical
-              interface using HTML, CSS, and JavaScript so that people can view
-              and interact with that data
+            Gain industry experience in building web applications using HTML, CSS and Javascript (Front End Web Development). Build web applications compatible with both mobile and desktop devices.
             </p>
           </div>
 
@@ -24,10 +22,9 @@ function Participate() {
               src={require("./static/assets/svgs/money.svg").default}
               alt=""
             />
-            <h3>Paid Internship by Sterling Bank and InstinctHub</h3>
+            <h3>Branded Portfolio</h3>
             <p>
-              The paid internship is often in the chosen field to all qualified
-              candidates within the duration of the 6 months training period.
+            Want employers to trust you with the job? Then it would help if you had a unique portfolio. The course will help you create a sharable portfolio. 
             </p>
           </div>
         </div>
@@ -35,21 +32,17 @@ function Participate() {
         <div className="all_box">
           <div className="p_box">
             <img src={require("./static/assets/svgs/tv.svg").default} alt="" />
-            <h3>Branded portfolio website for showcasing your new skills.</h3>
+            <h3>Paid Internship</h3>
             <p>
-              Strong personal branding makes you and your work that much more
-              memorable while adding credibility to your craft
+            There is a reward when you meet expectations, and when you exceed expectations, you deserve instant employment. Outstanding students get six months of paid internship.
             </p>
           </div>
 
           <div className="p_box">
             <img src={require("./static/assets/svgs/pp.svg").default} alt="" />
-            <h3>Networking and expossure with industry experts.</h3>
+            <h3>Networking</h3>
             <p>
-              You get exposed to meeting other professionals both in your career
-              field and in other related fields. Networking to foster
-              relationships with others that are mutually beneficial to your
-              careers.
+            Get access to industry experts! In addition, you get exposed to meeting other professionals in your career field and other related areas. 
             </p>
           </div>
         </div>

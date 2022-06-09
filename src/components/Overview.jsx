@@ -7,17 +7,10 @@ function Overview() {
         <div class="purpose">
           <h2>Overview</h2>
           <p>
-            According to Nigeria Bureau of Statistics (NBS), 27.1% of Nigerians
-            are unemployed. Which means, 21.7 million Nigerians are out of job.
-            Every year, Nigeria produces 500,000 graduate coming to compete with
-            the unavailable job.
+          According to the Nigeria Bureau of Statistics (NBS), <strong>33.1%</strong> of Nigerians are unemployed. With over <strong>200 million</strong> population, <strong>66.2 million</strong> Nigerians are out of a job. 
           </p>
           <p>
-            How do we get here? Well, if you google it, you will probably see
-            tons of research work and blog post. Our aim at InstinctHub is not
-            just to analyse these problems alone, our aim is to fix it through
-            Tech Diversity Program. By empowering every single student with
-            employable technology skills before they graduate.
+          Tech Diversity by <a href="https://instincthub.com" target='blank'><strong className="instincthub_link">InstinctHub</strong></a> is structured to train 100,000 individuals each year and place 20% into direct jobs, which will create wealth for families locked out of employment opportunities.
           </p>
         </div>
       </div>

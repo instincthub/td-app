@@ -14,10 +14,7 @@ function Banner() {
               Tech Diversity In Nigeria <span>(2022 edition)</span>
             </h1>
             <p>
-              While most people referred to tech as the new oil, We believed
-              that tech is beyond just the new oil, it is a unique opportunity
-              to position young minds to take their own future in their hands,
-              create value, and ultimately create opportunities for themselves.
+            Position yourself for a unique opportunity and endless possibilities! Join other university students to unlock your coding skills.
             </p>
 
             <div className="v_btn">

@@ -1,6 +1,7 @@
 import React from "react";
+import { DatePick } from "./DatePick";
 import BannerImg from "./static/assets/images/diversity_bg.jpg";
-// import { autocomplete } from "../static/assets/js/autocomplete";
+// import { autocomplete } from "./static/assets/js/autocomplete";
 
 const Form = () => {
   return (
@@ -13,42 +14,35 @@ const Form = () => {
           <h4>Tech Diversity Assessment</h4>
 
           <p>
-            Thank you for your interest in our tech diversity program! This
-            application will take roughly 10 minutes and will help us assess
-            your suitability for the program. Please try and be as descriptive
-            as possible and ensure all links can be accessed by a representative
-            from InstinctHub using an @instincthub.com domain.
+          Thank you for being so interested in our tech diversity program! This application will take roughly 10 minutes and help us assess your suitability for the program. 
           </p>
 
           <p>
-            Kindly follow all the social media handles below. While we encourage
-            you to follow these pages for continuous updates, it is not part of
-            the prerequisite:
+          Please try and be as descriptive as possible and ensure all links can be accessed by a representative from InstinctHub using an @instincthub.com domain.
           </p>
+          <p>Kindly follow all the social media handles below. While we encourage you to follow these pages for continuous updates, it is not part of the prerequisite:</p>
 
-          <ul>
+          <ul className="social_links">
             <li>
-              Facebook - <a href="">https://www.facebook.com/instincthub </a>
+              Facebook - <a href="https://www.facebook.com/instincthub" target="blank">https://www.facebook.com/instincthub </a>
             </li>
             <li>
-              Twitter - <a href="">https://www.facebook.com/instincthub </a>
+              Twitter - <a href="https://www.twitter.com/instincthub" target="blank">https://www.twitter.com/instincthub </a>
             </li>
             <li>
-              LinkedIn - <a href="">https://www.facebook.com/instincthub </a>
+              LinkedIn - <a href="https://www.linkedin.com/company/instincthub" target="blank">https://www.linkedin.com/company/instincthub</a>
             </li>
             <li>
-              Instagram - <a href="">https://www.facebook.com/instincthub </a>
+              Instagram - <a href="https://www.instagram.com/instincthub_" target="blank">https://www.instagram.com/instincthub_ </a>
             </li>
           </ul>
-          <h5>
-            P.S. 2022 application is open to just two schools in Nigeria (Bayero
-            University, Kano and Bowen University, Iwo)
-          </h5>
+          <h5> Duration (12 weeks): 1st Aug - 31st Oct 2022 </h5>
+          <p> P.S. The 3 month training is Free for shortlisted</p>
         </div>
       </div>
 
       {/* This is the Form  */}
-      <form  action="">
+      <form  action="" autoComplete={'autocomplete'}>
         <section class="container">
           <div class="diversity_data">
             <h2>Personal Bio</h2>
@@ -66,10 +60,7 @@ const Form = () => {
                 <input type="text" placeholder="Mobile *" />
                 <label for="Last Name">Mobile *</label>
               </div>
-              <div class="input_parent">
-                <input type="date" placeholder="D O B" />
-                <label for="Last Name"> D O B</label>
-              </div>
+              <DatePick placeholder="Date of Birth*" labelText="Date of Birth*"/>
               <div class="input_parent">
                 <input type="text" placeholder="Address *" />
                 <label for="Last Name">Address *</label>

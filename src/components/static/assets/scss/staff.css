@@ -146,9 +146,23 @@
 .WhiteC {
   color: var(--White);
 }
-
-a {
+p a {
   color: unset;
+}
+p a .instincthub_link {
+  color: var(--ViridianGreen);
+  transition: .3s ease-in;
+}
+p a .instincthub_link:hover {
+  color: var(--Gunmetal);
+}
+
+.social_links a {
+  color: var(--ViridianGreen);
+  transition: .3s ease-in;
+}
+.instsocial_links a:hover {
+  color: var(--Gunmetal);
 }
 
 h1,

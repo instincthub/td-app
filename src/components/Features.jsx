@@ -5,7 +5,7 @@ function Features() {
     <div>
       <div className="container">
         <section className="cyrac">
-          <h2>Who is learning with Instincthub</h2>
+          <h2>2021 Tech Diversity Overview</h2>
 
           <div className="learning_box">
             <div className="numbers">
@@ -13,8 +13,8 @@ function Features() {
               <h3>Universities in Nigeria</h3>
             </div>
             <div className="numbers">
-              <p>240+</p>
-              <h3>University students with InstinctHub account</h3>
+              <p>300+</p>
+              <h3>University students enrolled with InstinctHub</h3>
             </div>
             <div className="numbers">
               <p>10+</p>
