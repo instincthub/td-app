@@ -49,7 +49,7 @@ function Participate() {
 
         <p>Apply now to get notification for the next batch.</p>
         <p>
-          <a href="">Terms</a> and <a href="">Conditions</a> apply
+          <a href="https://instincthub.com/privacy-policy">Terms</a> and <a href="https://instincthub.com/privacy-policy">Conditions</a> apply
         </p>
       </div>
     </div>

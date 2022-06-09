@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import sterling from "./static/assets/images/sterling.jpg";
 import people from "./static/assets/images/grid_style.jpg";
 import { showVideo } from "./static/assets/js/nav";
@@ -29,7 +29,7 @@ function Banner() {
           </div>
 
           <div className="pic_grid">
-            <img src={people} alt="sterling" />
+            <img src={people} alt="sterling"/>
           </div>
 
           <div className="sponsored"></div>
@@ -37,7 +37,7 @@ function Banner() {
 
         <div className="container bysterling">
           <p>Sponsored by:</p>
-          <img src={sterling} alt="" />
+          <img src={sterling} alt="Sterling Bank Logo" />
         </div>
       </section>
     </div>

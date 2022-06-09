@@ -57,7 +57,7 @@ const Testimonial = () => {
             <img src={ava3} alt="" className="lap_3" />
             <img src={ava4} alt="" className="lap_4" />
             <p>
-              <a href="">50+ reviews</a>
+              <a href="https://www.google.com/search?q=instincthub&oq=instincthub&aqs=chrome..69i57j46i175i199i512j69i60l3j69i65j69i60j69i65.3360j0j1&sourceid=chrome&ie=UTF-8">50+ reviews</a>
             </p>
           </div>
         </div>
@@ -66,7 +66,7 @@ const Testimonial = () => {
       <Slider {...settings} className="cell_box carousel_box owl-carousel">
         <div className="review_cards">
           <div className="stars">
-            <img src="../static/assets/images/img1.png" className="card_pic" />
+            <img src="../static/assets/images/img1.png" className="card_pic" alt=""/>
             {/* <!-- Add a className of Gold to whatever svg that you want more gold >>>>>>
                 All stars are gray on default--> */}
             <span className="card_name">
@@ -148,14 +148,14 @@ const Testimonial = () => {
           </p>
 
           <div className="when">
-            <img src="../static/assets/svgs/time.svg" alt="" />
+            <img src="../static/assets/svgs/time.svg" alt="Time illustration" />
             <span>2 days ago</span>
           </div>
         </div>
 
         <div className="review_cards">
           <div className="stars">
-            <img src="../static/assets/images/img2.png" className="card_pic" />
+            <img src="../static/assets/images/img2.png" className="card_pic" alt="user"/>
             {/* <!-- Add a className of Gold to whatever svg that you want more gold >>>>>>
                 All stars are gray on default--> */}
             <span className="card_name">
@@ -244,7 +244,7 @@ const Testimonial = () => {
 
         <div className="review_cards">
           <div className="stars">
-            <img src="../static/assets/images/img3.png" className="card_pic" />
+            <img src="../static/assets/images/img3.png" className="card_pic" alt=""/>
             {/* <!-- Add a className of Gold to whatever svg that you want more gold >>>>>>
                 All stars are gray on default--> */}
             <span className="card_name">
@@ -332,7 +332,7 @@ const Testimonial = () => {
 
         <div className="review_cards">
           <div className="stars">
-            <img src="../static/assets/images/img3.png" className="card_pic" />
+            <img src="../static/assets/images/img3.png" className="card_pic" alt="user" />
             {/* <!-- Add a className of Gold to whatever svg that you want more gold >>>>>>
                 All stars are gray on default--> */}
             <span className="card_name">

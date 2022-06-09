@@ -15,7 +15,7 @@ const Overlay = () => {
           onClick={removeVideo}
         />
         <div className="video_frame container">
-          <iframe src="https://player.vimeo.com/video/668725125?h=5533a272ad" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          <iframe title="Tech Diversity in Niger Overview" src="https://player.vimeo.com/video/668725125?h=5533a272ad" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
       </div>
     </>

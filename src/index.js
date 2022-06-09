@@ -2,11 +2,11 @@ import React from "react";
 import { useEffect } from "react";
 import {createRoot} from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import App from "./pages/Home";
 import TDN from "./components/TDN";
 
 
-function App() {
+function Index() {
     useEffect(() => {
       console.log('rendered');
     });
@@ -14,7 +14,7 @@ function App() {
     return (
         <BrowserRouter>
           <Routes>
-              <Route index element={<Home />} />
+              <Route index element={<App />} />
               <Route path="signup" element={<TDN />} />
           </Routes>
         </BrowserRouter>
@@ -23,4 +23,4 @@ function App() {
   
   const container = document.getElementById('root');
   const root = createRoot(container);
-  root.render(<App />);
+  root.render(<Index />);

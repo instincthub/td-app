@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { hamBurger } from "./static/assets/js/nav";
 // import logo from "https://instincthub.com/static/instincthub-logo-.svg";
 
@@ -22,23 +22,23 @@ const Navbar = () => {
           <ul className="navlinks vet blog_links">
             <li>
               <div className="wrap_course">
-                <a className="dropdown">Courses</a>
+                <a href="https://skills.instioncthub.com" className="dropdown">Courses</a>
                 <div className="mini_menu slide-bottom">
-                  <a href="" className="track">
+                  <a href="https://skills.instioncthub.com" className="track">
                     Courses Library
                   </a>
-                  <a href="">My Courses</a>
+                  {/* <a href="">My Courses</a> */}
                 </div>
               </div>
             </li>
-            <li>
+            {/* <li>
               <a href="">Pricing</a>
+            </li> */}
+            <li>
+              <a href="https://instioncthub.com/blog">Blog</a>
             </li>
             <li>
-              <a href="">Blog</a>
-            </li>
-            <li>
-              <a href="">About</a>
+              <a href="https://instioncthub.com/">About</a>
             </li>
 
             <Link to="/signup">
