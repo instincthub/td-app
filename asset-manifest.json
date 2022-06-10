@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.617abbd6.css",
-    "main.js": "/static/js/main.ec0ffdf1.js",
+    "main.css": "/static/css/main.9a7294e8.css",
+    "main.js": "/static/js/main.e276d036.js",
     "static/media/grid_style.jpg": "/static/media/grid_style.05cb2de986c002770468.jpg",
     "static/media/diversity_bg.jpg": "/static/media/diversity_bg.98f92fcd233cf8ae14dd.jpg",
-    "static/media/img2.png": "/static/media/img2.8c8c9c4f50eb4538ff19.png",
-    "static/media/img4.png": "/static/media/img4.0c86c3f68c9c8b080c75.png",
-    "static/media/img1.png": "/static/media/img1.cdb64419a43b30447dd2.png",
-    "static/media/img3.png": "/static/media/img3.9737d6b9eaf330af4a31.png",
+    "static/media/joseph-chinedu.png": "/static/media/joseph-chinedu.3901c7bc7650d43d3e58.png",
+    "static/media/dalila-mn.png": "/static/media/dalila-mn.28b73fc06670f756d163.png",
+    "static/media/gemma-usiku.png": "/static/media/gemma-usiku.c394a6e4ef9f8c7428db.png",
     "static/media/sterling.jpg": "/static/media/sterling.7a1ae3bb542b473d4045.jpg",
+    "static/media/ally-kimi.png": "/static/media/ally-kimi.dba1f2220c62a999a0dc.png",
     "static/media/ig.svg": "/static/media/ig.f9039f86f77ee348dcb0b1e37f92c5c7.svg",
+    "index.html": "/index.html",
     "static/media/money.svg": "/static/media/money.477531c61484a87bd825d59c73dde9f3.svg",
     "static/media/pp.svg": "/static/media/pp.c31fbab30c9f1cf16603ee1ce97ea569.svg",
     "static/media/instincthub_logo.svg": "/static/media/instincthub_logo.2c7ea0ca98d6cb2430e71eee23989938.svg",
@@ -19,7 +20,6 @@
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/camera.svg": "/static/media/camera.1add8036a01f9bb141a1.svg",
-    "index.html": "/index.html",
     "static/media/tv.svg": "/static/media/tv.7c38cd46f28e7481eeefddb2344cc709.svg",
     "static/media/phone.svg": "/static/media/phone.ae0ed1dcf2a845090839.svg",
     "static/media/linkedin.svg": "/static/media/linkedin.9ccb15989105634b2b02845724c22e33.svg",
@@ -32,11 +32,11 @@
     "static/media/time.svg": "/static/media/time.e67a17bcff58534b992e547a817f8494.svg",
     "static/media/play_btn.svg": "/static/media/play_btn.c530ff6a15ebbab57239.svg",
     "static/media/close_icon_white.svg": "/static/media/close_icon_white.2165ffdf390382cef12cfec59fa053bf.svg",
-    "main.617abbd6.css.map": "/static/css/main.617abbd6.css.map",
-    "main.ec0ffdf1.js.map": "/static/js/main.ec0ffdf1.js.map"
+    "main.9a7294e8.css.map": "/static/css/main.9a7294e8.css.map",
+    "main.e276d036.js.map": "/static/js/main.e276d036.js.map"
   },
   "entrypoints": [
-    "static/css/main.617abbd6.css",
-    "static/js/main.ec0ffdf1.js"
+    "static/css/main.9a7294e8.css",
+    "static/js/main.e276d036.js"
   ]
 }
