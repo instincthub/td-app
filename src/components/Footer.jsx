@@ -121,7 +121,7 @@ const Footer = () => {
           </ul> */}
         </div>
         <div class="copyright">
-          <h5>© 2022 InstinctHub Techsavvy</h5>
+          <h5>© {new Date().getFullYear()} InstinctHub Techsavvy</h5>
         </div>
       </footer>
     </>

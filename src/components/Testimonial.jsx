@@ -27,12 +27,12 @@ class Testimonial extends React.Component {
   componentDidMount() {
 
     // Check if running on local
-    let testimony_api = "https://instincthub/tech-diversity/api/testimonies/"
+    let testimony_api_url = "https://instincthub.com/tech-diversity/api/testimonies/"
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "") {
-      testimony_api = "http://127.0.0.1:8000/tech-diversity/api/testimonies/"
+      testimony_api_url = "http://127.0.0.1:8000/tech-diversity/api/testimonies/"
     }
 
-    fetch("http://127.0.0.1:8000/tech-diversity/api/testimonies/")
+    fetch(testimony_api_url)
       .then(res => res.json())
       .then(
         (result) => {
