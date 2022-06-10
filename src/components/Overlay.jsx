@@ -7,7 +7,9 @@ const Overlay = () => {
       <div className="play_video container" id="video_holder"
       onClick={()=>{
         document.querySelector(".play_video").style.display = "none";
-        }}>
+        }}
+        
+        itemScope itemType="https://ft.intsincthub.com/enrol">
         <img
           src={require("./static/assets/svgs/close_icon_white.svg").default}
           alt=""
@@ -15,7 +17,7 @@ const Overlay = () => {
           onClick={removeVideo}
         />
         <div className="video_frame container">
-          <iframe title="Tech Diversity in Niger Overview" src="https://player.vimeo.com/video/668725125?h=5533a272ad" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+          <iframe itemProp="Video" title="Tech Diversity in Niger Overview" src="https://player.vimeo.com/video/668725125?h=5533a272ad" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
         </div>
       </div>
     </>

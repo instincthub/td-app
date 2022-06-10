@@ -8,21 +8,21 @@ function Banner() {
   return (
     <div>
       <section>
-        <div className="container diversity_banner">
+        <div className="container diversity_banner" itemScope itemType="https://ft.intsincthub.com/enrol">
           <div className="frace">
-            <h1>
+            <h1 itemProp="Tittle">
               Tech Diversity In Nigeria <span>(2022 edition)</span>
             </h1>
-            <p>
+            <p itemProp="description">
             Position yourself for a unique opportunity and endless possibilities! Join other university students to unlock your coding skills.
             </p>
 
             <div className="v_btn">
               <button className="important-btn rollin">
                 {/* <a href="../techDiversity/diversityForm.html">Enroll Now </a> */}
-                <Link to="/signup">Enroll Now</Link>
+                <Link itemProp="url" to="/signup">Enroll Now</Link>
               </button>
-              <button className="default-btn watch_snip" onClick={showVideo}>
+              <button itemProp="video" className="default-btn watch_snip" onClick={showVideo}>
                 Watch Video
               </button>
             </div>
@@ -35,9 +35,9 @@ function Banner() {
           <div className="sponsored"></div>
         </div>
 
-        <div className="container bysterling">
-          <p>Sponsored by:</p>
-          <img src={sterling} alt="Sterling Bank Logo" />
+        <div className="container bysterling" itemScope itemType="https://ft.intsincthub.com/">
+          <p itemProp="description">Sponsored by:</p>
+          <img itemProp="Sterling Bank Logo" src={sterling} alt="Sterling Bank Logo" />
         </div>
       </section>
     </div>

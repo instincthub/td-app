@@ -5,10 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Settings } from "./static/assets/js/testimonial";
 import { StarSVG } from "./StarSVG";
-import ava1 from "./static/assets/images/img1.png";
-import ava2 from "./static/assets/images/img2.png";
-import ava3 from "./static/assets/images/img3.png";
-import ava4 from "./static/assets/images/img4.png";
+import ava1 from "./static/assets/review-thumbnails/ally-kimi.png";
+import ava2 from "./static/assets/review-thumbnails/gemma-usiku.png";
+import ava3 from "./static/assets/review-thumbnails/joseph-chinedu.png";
+import ava4 from "./static/assets/review-thumbnails/dalila-mn.png";
 // import "./carousel";
 
 import './static/assets/scss/testimonial.css'
@@ -65,21 +65,19 @@ class Testimonial extends React.Component {
   } else {
     return (
       
-      <div className="testimonial_box container">
-      {console.log('items: ', items)}
-      
+      <div className="testimonial_box container" itemScope itemType="https://g.page/r/CR0XN_PyghOiEAE">
         <div className="p_reviews">
-          <h2>Don’t just take our words, hear from our students.</h2>
+          <h2 itemProp="tittle">Reviews from our students.</h2>
         </div>
         <div className="t_avatars">
           <div className="avatars__item">
-            <div className="avatars__image">
-              <img src={ava1} alt="" className="lap_1" />
-              <img src={ava2} alt="" className="lap_2" />
-              <img src={ava3} alt="" className="lap_3" />
-              <img src={ava4} alt="" className="lap_4" />
+            <div className="avatars__image" itemProp="thumbnails">
+              <img src={ava1} alt="ally kimi" className="lap_1" />
+              <img src={ava2} alt="gemma usiku" className="lap_2" />
+              <img src={ava3} alt="joseph chinedu" className="lap_3" />
+              <img src={ava4} alt="dalila mn" className="lap_4" />
               <p>
-                <a href="https://www.google.com/search?q=instincthub&oq=instincthub&aqs=chrome..69i57j46i175i199i512j69i60l3j69i65j69i60j69i65.3360j0j1&sourceid=chrome&ie=UTF-8">50+ reviews</a>
+                <a href="https://www.google.com/search?q=instincthub&oq=instincthub&aqs=chrome..69i57j46i175i199i512j69i60l3j69i65j69i60j69i65.3360j0j1&sourceid=chrome&ie=UTF-8">60+ reviews</a>
               </p>
             </div>
           </div>
@@ -88,24 +86,26 @@ class Testimonial extends React.Component {
         <Slider {...Settings} className="cell_box carousel_box owl-carousel">
           {items.map(item => {
             return(
-              <div className="review_cards item">
+              <div className="review_cards item" itemProp="customer review">
                 <div className="stars">
                   <img src={item.img} className="card_pic" alt={item.full_name}/>
                   <span className="card_name">
-                    <h3>{item.full_name}</h3>
-                    <h4>{item.position}</h4>
-                    <StarSVG  rated={true}/>
-                    <StarSVG  rated={true}/>
-                    <StarSVG  rated={true}/>
-                    <StarSVG  rated={true}/>
-                    <StarSVG  rated={true}/>
+                    <h3 itemProp="name">{item.full_name}</h3>
+                    <h4 itemProp="position">{item.position}</h4>
+                    <div itemProp="rating">
+                      <StarSVG  rated={true}/>
+                      <StarSVG  rated={true}/>
+                      <StarSVG  rated={true}/>
+                      <StarSVG  rated={true}/>
+                      <StarSVG  rated={true}/>
+                    </div>
                   </span>
                 </div>
-                <p>{item.content}</p>
+                <p itemProp="description">{item.content}</p>
 
-                <div className="when">
-                  <img src={require("./static/assets/svgs/time.svg").default} alt="Time icon" />
-                  <span><ReactTimeAgo date={item.date} locale="en-US"/></span>
+                <div className="when" itemProp="date">
+                  <img itemProp="icon" src={require("./static/assets/svgs/time.svg").default} alt="Time icon" />
+                  <span><ReactTimeAgo dateTime={item.date} date={item.date} locale="en-US"/></span>
                 </div>
               </div>
             )

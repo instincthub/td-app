@@ -4,7 +4,7 @@ import Banner from "../components/Banner";
 import Features from "../components/Features";
 import Overview from "../components/Overview";
 import Testimonial from "../components/Testimonial";
-import Participate from "../components/Participate";
+import Participate from "../components/Benefits";
 import Video from "../components/Video";
 import Overlay from "../components/Overlay";
 import Footer from "../components/Footer";

@@ -4,25 +4,25 @@ function Features() {
   return (
     <div>
       <div className="container">
-        <section className="cyrac">
-          <h2>2021 Tech Diversity Overview</h2>
+        <section className="cyrac"  itemScope itemType="https://ft.intsincthub.com/enrol">
+          <h2 itemProp="tittle">2021 Tech Diversity Overview</h2>
 
-          <div className="learning_box">
+          <div className="learning_box" itemProp="description">
             <div className="numbers">
               <p>2</p>
-              <h3>Universities in Nigeria</h3>
+              <h3 itemProp="benefit tittle">Universities in Nigeria</h3>
             </div>
-            <div className="numbers">
+            <div className="numbers" itemProp="description">
               <p>300+</p>
-              <h3>University students enrolled with InstinctHub</h3>
+              <h3 itemProp="benefit tittle">University students enrolled with InstinctHub</h3>
             </div>
-            <div className="numbers">
+            <div className="numbers" itemProp="description">
               <p>10+</p>
-              <h3>Available and Dedicated instructors</h3>
+              <h3 itemProp="benefit tittle">Available and Dedicated instructors</h3>
             </div>
-            <div className="numbers">
+            <div className="numbers" itemProp="description">
               <p>7</p>
-              <h3>Direct job placement for top best students</h3>
+              <h3 itemProp="benefit tittle">Direct job placement for top best students</h3>
             </div>
           </div>
         </section>
