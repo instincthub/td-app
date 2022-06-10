@@ -1,16 +1,3 @@
-:root {
-  --DarkCyan: #00838f;
-  --TurkishRose: #bc658d;
-  --Gunmetal: #2c333a;
-  --ViridianGreen: #009ba2;
-  --Magnolia: #f4f3fe;
-  --White: #ffffff;
-  --Gray: #f4f4f4;
-  --Nunito: "Nunito", sans-serif;
-  --Montserat: "Montserrat", sans-serif;
-  --overlay: rgba(44, 51, 58, 0.2);
-  --shadow: 0px -2px 8px rgba(0, 0, 0, 0.05), 0px 2px 8px rgba(0, 0, 0, 0.05);
-}
 h2{
   text-transform: uppercase;
 }
@@ -33,6 +20,7 @@ h2{
 .diversity_banner .frace .watch_snip {
   background-color: transparent;
   margin-top: 15px;
+  color: var(--Gunmetal);
 }
 
 .diversity_banner .frace .watch_snip::before {
@@ -239,7 +227,9 @@ h2{
 
 .carousel_box .review_cards .when img {
   margin-right: 10px;
+  width: 24px
 }
+
 
 .carousel_box span {
   margin: 0;
@@ -295,10 +285,34 @@ h2{
   height: 24px;
   margin-bottom: 15px;
 }
+.slick-dots{
+  bottom: -58px;
+}
 
 .testimonial_box {
   position: relative;
   overflow: hidden;
+}
+.slick-dots li button:before {
+  font-family: 'slick';
+  font-size: 6px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  content: '' !important;
+  text-align: center;
+  opacity: .25;
+  color: #8b8b8d;
+  border-radius: 40px;
+  background-color: #8b8b8d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before {
+  color: #2c333a;
 }
 
 .testimonial_box .p_reviews h2 {
@@ -333,6 +347,7 @@ h2{
   margin: 10px auto;
   max-width: 900px;
   width: 100%;
+  margin-top: -220px;
 }
 
 .video_frame iframe {
@@ -363,7 +378,7 @@ h2{
 .play_video {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--overlay);
   position: fixed;
   display: none;
   top: 70px;
@@ -543,6 +558,15 @@ h2{
   .all_box .p_box {
     width: 45%;
   }
+  .slick-dots{
+    bottom: -20px;
+  }
+  .video_frame{
+    margin-top: -70px;
+  }
+  .slick-track{
+    height: 450px;
+  }
 }
 
 @media (min-width: 480px) {
@@ -551,7 +575,24 @@ h2{
     margin-right: 10px;
   }
 }
-
+@media (max-width: 480px){
+  .video_frame iframe {
+    min-height: 300px;
+    height: 100% !important;
+  }
+  .video_frame {
+    margin: -40px auto;
+    margin-top: -80px;
+    max-width: 900px;
+    width: 100%;
+  }
+  .slick-dots{
+    bottom: -20px;
+  }
+  .slick-track{
+    height: 414px;
+  }
+}
 @media (min-width: 990px) {
   .testimonial_box {
     padding-bottom: 215px;
@@ -564,6 +605,10 @@ h2{
     position: absolute !important;
     left: 40%;
   }
+  .slick-slide{
+    width: 24% !important;
+  }
+  
 }
 
 @media (max-width: 850px) {
@@ -586,6 +631,14 @@ h2{
   }
   .diversity_banner .pic_grid {
     width: 45%;
+  }
+}
+@media(min-width: 1024px){
+  .video_frame{
+    margin-top: -270px;
+  }
+  .testimonial_box .t_avatars {
+    margin-bottom: 30px;
   }
 }
 /*# sourceMappingURL=diversity.css.map */

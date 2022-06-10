@@ -9,7 +9,7 @@ const Overlay = () => {
         document.querySelector(".play_video").style.display = "none";
         }}>
         <img
-          src={require("./static/assets/svgs/close_icon.svg").default}
+          src={require("./static/assets/svgs/close_icon_white.svg").default}
           alt=""
           className="close_svg"
           onClick={removeVideo}
