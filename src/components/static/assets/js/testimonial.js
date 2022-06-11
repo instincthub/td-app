@@ -40,6 +40,14 @@ export const Settings = {
         },
       },
       {
+        breakpoint: 1112,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
         breakpoint: 1280,
         settings: {
           slidesToShow: 4,

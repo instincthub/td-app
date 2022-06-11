@@ -9,15 +9,19 @@ export const faqTag = (e) =>{
 
     // Toggle targeted element to show with the forEach loop
     
-   if (e.target.className === 'faq') {
+   if (e.target.classList.contains('faq')) {
         hideTag()
         e.target.classList.toggle('open')
-        e.target.innerHTML = '&#8722;'
+        e.target.querySelector('.btn').innerHTML = '&#8722;'
    }
     else if (e.target.className === 'btn') {
         hideTag()
         e.target.parentElement.classList.toggle('open')
         e.target.innerHTML = '&#8722;'
     }
+    else if (e.target.tagName === 'H3') {
+        hideTag()
+        e.target.parentElement.parentElement.classList.toggle('open')
+        e.target.querySelector('.btn').innerHTML = '&#8722;'
+    }
 }
-

@@ -383,6 +383,8 @@ h2{
   position: fixed;
   display: none;
   top: 70px;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 .play_video .close_svg {

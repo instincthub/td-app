@@ -32,6 +32,16 @@
         min-height: 400px;
     }
 }
+@media(min-width: 1112px){
+    .review_cards{
+        min-height: 418px !important;
+    }
+    .slick-slide .when {
+        bottom: 44px;
+    }
+    
+
+}
 @media(min-width: 1280px){
     .slick-slide:nth-child(2),
     .slick-slide:nth-child(3),

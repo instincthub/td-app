@@ -14,6 +14,12 @@
     font-weight: 400;
     color: #5e5d5d;
     margin-bottom: 10px;
+    cursor: pointer;
+}
+.faq_main .p_reviews h2{
+    text-align: center;
+    font-size: 32px !important;
+    margin-bottom: 0px;
 }
 .faq{
     padding: 20px 30px;
@@ -24,6 +30,7 @@
     line-height: 1.5em;
     margin-top: 15px;
     background-color: var(--White);
+    cursor: pointer;
 }
 
 .faq .faq_text{
@@ -39,12 +46,10 @@
     font-size: 1.4em;
     cursor: pointer;
 }
-.p_reviews {
-    max-width: 600px;
-}
 /* Hide p tags */
 .faq.open h3{
     color: var(--ViridianGreen);
+    font-weight: 600;
 }
 
 .faq p{
@@ -55,7 +60,7 @@
 .faq.open p{
     display: block;
     animation-name: growBoxHeight;
-    animation-duration: .3s;
+    animation-duration: .2s;
     height: auto;
     overflow: hidden;
 }
@@ -66,7 +71,11 @@
     box-shadow: var(--shadow);
     border-color: transparent;
 }
-
+@media(max-width: 414px){
+    .faq_wrap{
+        padding: 0px;
+    }
+}
 
 @keyframes growBoxHeight {
     from {
