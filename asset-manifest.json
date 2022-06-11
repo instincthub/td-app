@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.36165682.css",
-    "main.js": "/static/js/main.0e715e9e.js",
+    "main.js": "/static/js/main.0c7dc151.js",
     "static/media/diversity_bg.jpg": "/static/media/diversity_bg.98f92fcd233cf8ae14dd.jpg",
     "static/media/grid_style.jpg": "/static/media/grid_style.a7ae494007c368987963.jpg",
     "static/media/joseph-chinedu.png": "/static/media/joseph-chinedu.3901c7bc7650d43d3e58.png",
@@ -33,10 +33,10 @@
     "static/media/play_btn.svg": "/static/media/play_btn.c530ff6a15ebbab57239.svg",
     "static/media/close_icon_white.svg": "/static/media/close_icon_white.2165ffdf390382cef12cfec59fa053bf.svg",
     "main.36165682.css.map": "/static/css/main.36165682.css.map",
-    "main.0e715e9e.js.map": "/static/js/main.0e715e9e.js.map"
+    "main.0c7dc151.js.map": "/static/js/main.0c7dc151.js.map"
   },
   "entrypoints": [
     "static/css/main.36165682.css",
-    "static/js/main.0e715e9e.js"
+    "static/js/main.0c7dc151.js"
   ]
 }
