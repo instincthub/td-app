@@ -1,0 +1,80 @@
+.faq_main{
+    background-color: var(--Magnolia);
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+}
+.faq_wrap{
+    max-width: 800px;
+    margin: 5vh auto;
+    padding: 20px;
+}
+
+.faq h3{
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #5e5d5d;
+    margin-bottom: 10px;
+}
+.faq{
+    padding: 20px 30px;
+    /* border: 1px solid rgba(0 0 0 / .1); */
+    border-radius: 5px;
+    color: #979797;
+    position: relative;
+    line-height: 1.5em;
+    margin-top: 15px;
+    background-color: var(--White);
+}
+
+.faq .faq_text{
+    width: 90%;
+}
+
+.btn{
+    color: #5e5d5d;
+    position: absolute;
+    right: 25px;
+    top: 10px;
+    font-weight: 400;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+.p_reviews {
+    max-width: 600px;
+}
+/* Hide p tags */
+.faq.open h3{
+    color: var(--ViridianGreen);
+}
+
+.faq p{
+    display: none;
+    font-weight: 300;
+}
+
+.faq.open p{
+    display: block;
+    animation-name: growBoxHeight;
+    animation-duration: .3s;
+    height: auto;
+    overflow: hidden;
+}
+.faq.open .btn{
+    color: var(--ViridianGreen);
+}
+.faq.open{
+    box-shadow: var(--shadow);
+    border-color: transparent;
+}
+
+
+@keyframes growBoxHeight {
+    from {
+        height: 10px;
+        overflow: hidden;
+    }
+    to {
+        height: 100px;
+        /* overflow: auto; */
+    }
+  }

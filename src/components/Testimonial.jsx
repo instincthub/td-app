@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Settings } from "./static/assets/js/testimonial";
 import { StarSVG } from "./StarSVG";
+import TestimonialJSON from "./static/json/testimonies.json";
 import ava1 from "./static/assets/review-thumbnails/ally-kimi.png";
 import ava2 from "./static/assets/review-thumbnails/gemma-usiku.png";
 import ava3 from "./static/assets/review-thumbnails/joseph-chinedu.png";

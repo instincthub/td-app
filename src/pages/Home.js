@@ -5,6 +5,7 @@ import Features from "../components/Features";
 import Overview from "../components/Overview";
 import Testimonial from "../components/Testimonial";
 import Participate from "../components/Benefits";
+import FAQ from "../components/FAQ";
 import Video from "../components/Video";
 import Overlay from "../components/Overlay";
 import Footer from "../components/Footer";
@@ -22,6 +23,7 @@ function App() {
       <Participate />
       <Testimonial />
       <Video />
+      <FAQ />
       <Overlay />
       <Footer />
     </div>

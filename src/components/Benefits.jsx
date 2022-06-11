@@ -2,7 +2,7 @@ import React from "react";
 
 function Participate() {
   return (
-    <div>
+    <div id="benefits">
       <div className="participate container" itemScope itemType="https://ft.intsincthub.com/">
         <h2 itemProp="title">Benefits</h2>
         <div className="all_box">

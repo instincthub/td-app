@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "question": "How can I pay for essential or premium plan?",
+        "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        
+    },
+    {
+        "id": 2,
+        "question": "Can I cancel my Essentials or Premium plan subscription at any time?",
+        "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        
+    },
+    {
+        "id": 3,
+        "question": "We need to add new users to our team. How will that be billed?",
+        "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        
+    },
+    {
+        "id": 4,
+        "question": "My team wants to cancel its subscription. How do we do that? Can we get a refund?",
+        "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        
+    },
+    {
+        "id": 5,
+        "question": "Do you offer discounts for non-profit organisations or educational institutions?",
+        "answer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        
+    }
+]

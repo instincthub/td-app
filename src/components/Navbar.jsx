@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { navSlide } from "./static/assets/js/nav";
 // import logo from "https://instincthub.com/static/instincthub-logo-.svg";
 
+
 const Navbar = () => {
+
   return (
     <>
       <header>
@@ -35,7 +37,13 @@ const Navbar = () => {
               <a href="">Pricing</a>
             </li> */}
             <li>
-              <a href="https://instioncthub.com/" target="blank">Course Details</a>
+              <a href="https://skills.instincthub.com/course/tracks/units/1/" target="blank" itemProp="url">Course Details</a>
+            </li>
+            <li>
+              <a href="#benefits">Benefits</a>
+            </li>
+            <li>
+              <a href="#faq">FAQs</a>
             </li>
             {/* <li>
               <a href="https://instioncthub.com/blog" target="blank">Blog</a>

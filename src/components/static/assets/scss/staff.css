@@ -6,6 +6,7 @@
   text-decoration: none;
   list-style-type: none;
   -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -2383,7 +2384,7 @@ header nav {
 @media (min-width: 786px) {
   .staff_nav ul {
     margin-top: 18px;
-    width: 286px;
+    width: 450px;
   }
 }
 
