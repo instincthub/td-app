@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './static/assets/scss/date-pick.css'
 
-export const DatePick = ({placeholder, labelText, ...props}) =>{
+export const DatePick = ({placeholder, labelText, id, name, required, ...props}) =>{
     const [startDate, setStartDate] = useState(null);
 
     // Append label to date input
@@ -26,7 +26,16 @@ export const DatePick = ({placeholder, labelText, ...props}) =>{
     <DatePicker 
     dateFormat= {"yyyy-mm-dd"}
     selected={startDate}
-    placeholderText={placeholder} 
+    placeholderText={placeholder}
+    peekNextMonth
+    showMonthDropdown
+    showYearDropdown
+    dropdownMode="select"
+    DisablePrevMonthButton
+    DisableNextMonthButton
+    id={id} 
+    name={name} 
+    required={required}
     onChange={(date) =>setStartDate(date)}
       {...props}
       />

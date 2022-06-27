@@ -7,7 +7,7 @@ const Form = () => {
   return (
     <>
       <div class="img_4_banner container">
-        <img src={BannerImg} alt="" />
+        <img src={BannerImg} alt="tech diversity banner" />
       </div>
       <div class="container">
         <div class="diversity_assessment">

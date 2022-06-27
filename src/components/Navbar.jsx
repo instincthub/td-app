@@ -49,7 +49,7 @@ const Navbar = () => {
               <a href="https://instioncthub.com/blog" target="blank">Blog</a>
             </li> */}
 
-            <Link to="/signup">
+            <Link to="/register">
               <button className="important-btn">Register</button>
             </Link>
           </ul>

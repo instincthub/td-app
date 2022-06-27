@@ -21,7 +21,7 @@ class FAQ extends React.Component {
     }
   
     componentDidMount(){ // Fetch faqs API in production
-        if (checkEnv === "production") {
+        if (checkEnv() === "production") {
           fetAPI(this, "https://instincthub.com/tech-diversity/api/faqs/")
         }
         else if(checkEnv() === "local"){ // Fetch static json in local

@@ -1,16 +1,26 @@
 
-export const fetAPI = (session, api) =>{
-    fetch(api)
-    .then(res => res.json())
+export const fetAPI = (session, api, reqOptions) =>{
+    let status = null
+    fetch(api, reqOptions)
+    .then(res => {
+        status=res.status; 
+        return res.json()
+    })
     .then(
         (result) => {
             session.setState({
-                items: result
+                items: result,
+                status: status
             })
+            console.log(result)
+            console.log(status)
         },
         (error) => {
-            console.log(error.message)
-            return error
+            console.log(error.status)
+            session.setState({
+                error: error
+            })
+            return error.message
         }
     )
 }
@@ -22,4 +32,10 @@ export const checkEnv = ()=> {
     else{
         return "production"
     }
+}
+
+export const spinBtn = (form, display, status) =>{
+    form.querySelector('button').disabled = status; // this disable the button
+    form.disabled = status; // This disables the whole form via the fieldset
+    form.querySelector('button .bt-spinner').style.display = display;
 }

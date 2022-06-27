@@ -21,14 +21,15 @@ class Testimonial extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      error: null
     };
     // Binding this keyword 
     // this.updateState = this.componentDidMount.bind(this)
   }
   componentDidMount(){ // Fetch testimonial API in production
-    if (checkEnv === "production") {
-      fetAPI(this, "https://instincthub.com/tech-diversity/api/testimonies/")
+    if (checkEnv() === "production") {
+      fetAPI(this, "https://instincthub.com/tech-diversity/api/testimonies/", null)
     }
     else if(checkEnv() === "local"){ // Fetch static json in local
       this.setState({
@@ -40,7 +41,10 @@ class Testimonial extends React.Component {
 
 
   render(){
-    const {items} = this.state
+    const {items, error} = this.state
+    if (error) {
+      console.log('fetch_err', error.message)
+    }
     // console.log('render.....> ', items)
     
     if(items.length > 0){ // Check if items is greater than one
@@ -52,12 +56,12 @@ class Testimonial extends React.Component {
           <div className="t_avatars">
             <div className="avatars__item">
               <div className="avatars__image" itemProp="thumbnails">
-                <img src={ava1} alt="ally kimi" className="lap_1" />
-                <img src={ava2} alt="gemma usiku" className="lap_2" />
-                <img src={ava3} alt="joseph chinedu" className="lap_3" />
-                <img src={ava4} alt="dalila mn" className="lap_4" />
+                <img src={ava1} itemProp="user" alt="ally kimi" className="lap_1" />
+                <img src={ava2} itemProp="user" alt="gemma usiku" className="lap_2" />
+                <img src={ava3} itemProp="user" alt="joseph chinedu" className="lap_3" />
+                <img src={ava4} itemProp="user" alt="dalila mn" className="lap_4" />
                 <p>
-                  <a href="https://www.google.com/search?q=instincthub&oq=instincthub&aqs=chrome..69i57j46i175i199i512j69i60l3j69i65j69i60j69i65.3360j0j1&sourceid=chrome&ie=UTF-8">60+ reviews</a>
+                  <a href="https://www.google.com/search?q=instincthub&oq=instincthub&aqs=chrome..69i57j46i175i199i512j69i60l3j69i65j69i60j69i65.3360j0j1&sourceid=chrome&ie=UTF-8" target="blank" itemProp="url">60+ reviews</a>
                 </p>
               </div>
             </div>
@@ -67,16 +71,16 @@ class Testimonial extends React.Component {
               return(
                 <div className="review_cards item" itemProp="customer review">
                   <div className="stars">
-                    <img src={item.img} className="card_pic" alt={item.full_name}/>
+                    <img src={item.img} className="card_pic" alt={item.full_name} itemProp="user"/>
                     <span className="card_name">
                       <h3 itemProp="name">{item.full_name}</h3>
                       <h4 itemProp="position">{item.position}</h4>
                       <div itemProp="rating">
-                        <StarSVG  rated={true}/>
-                        <StarSVG  rated={true}/>
-                        <StarSVG  rated={true}/>
-                        <StarSVG  rated={true}/>
-                        <StarSVG  rated={true}/>
+                        <StarSVG  rated={true} itemProp="rating"/>
+                        <StarSVG  rated={true} itemProp="rating"/>
+                        <StarSVG  rated={true} itemProp="rating"/>
+                        <StarSVG  rated={true} itemProp="rating"/>
+                        <StarSVG  rated={true} itemProp="rating"/>
                       </div>
                     </span>
                   </div>

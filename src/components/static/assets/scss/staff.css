@@ -229,6 +229,19 @@ h5 {
 .max_700 {
   max-width: 700px;
 }
+.bt-spinner{
+  width: 16px;
+  margin-right: 10px;
+  fill: var(--White);
+  position: relative;
+  top: 2px;
+  animation: rotateSpinner 2s infinite linear;
+  display: none;
+}
+@keyframes rotateSpinner {
+0% {transform: rotate(0deg);}
+100% {transform: rotate(360deg);}
+}
 
 hr {
   border: 0.5px solid rgba(44, 51, 58, 0.5);
@@ -327,6 +340,16 @@ img {
 
 .bold {
   font-weight: 600;
+}
+
+.d-inline-block{
+  display: inline-block !important; 
+  width: auto !important;
+}
+
+.d-inline{
+  display: inline !important;
+  width: auto !important;
 }
 
 .b_location::before {
@@ -569,7 +592,6 @@ img {
 button {
   width: 100%;
   margin: 28px 0 10px 0;
-  height: 45px;
   border-radius: 5px;
   border: 0;
   background-color: unset;
@@ -578,13 +600,14 @@ button {
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
+  padding: 13px;
 }
 
 button:disabled {
   opacity: 0.5;
-  background-color: unset;
+  background-color: var(--Gunmetal);
   color: var(--ChineseSilver);
-  border: 1px solid rgba(204, 204, 204, 0.4);
+  border: 1px solid rgba(204, 204, 204, 0.2);
 }
 
 .icon {
@@ -626,7 +649,6 @@ button:disabled {
 .outlined-btn {
   width: 100%;
   margin: 28px 0 10px 0;
-  height: 45px;
   border-radius: 5px;
   border: 0;
   background-color: unset;
@@ -638,6 +660,7 @@ button:disabled {
   background-color: var(--White);
   color: var(--DarkCyan);
   border: 2px solid var(--DarkCyan);
+  padding: 13px;
 }
 
 .primary-btn {
@@ -1198,7 +1221,7 @@ input {
   height: 50px;
   font-size: 15px;
   outline: 0;
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .radio {
