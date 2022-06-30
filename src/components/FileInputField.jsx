@@ -2,7 +2,7 @@ import React from "react";
 import "./static/assets/scss/file-input-field.css";
 
 export const FileInputField = ({name, label, ...props}) =>{
-    const fileLabel = label ? label : "File browser example"
+    const fileLabel = label ? label : "Browse File"
   return (
     <label class="file">
         <input 
@@ -11,8 +11,8 @@ export const FileInputField = ({name, label, ...props}) =>{
           
           
            />
-        <div class="fileUpload btn btn--browse">
-            <span>Browse</span>
+        <div class="fileUpload btn--browse">
+            <span>{fileLabel}</span>
             <input 
               className="upload" 
               type="file" 

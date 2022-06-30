@@ -1,12 +1,21 @@
-import React from "react";
+import {React, useEffect} from "react";
 // import { DatePick } from "./DatePick";
 import BannerImg from "./static/assets/images/diversity_bg.jpg";
-// import { autocomplete } from "./static/assets/js/autocomplete";
+import { autocomplete } from "./static/assets/js/autocomplete";
+import { customData } from "./static/assets/js/help_func";
 import { MediaLinks } from "./MediaLinks";
 import { SubmitButton } from "./SubmitButton";
 import { FileInputField } from "./FileInputField";
 
 const Form = ({formEvent, ...props}) => {
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => { // auto complete
+    autocomplete(document.getElementById('id_school'), customData['universities'])
+    autocomplete(document.getElementById('id_course'), customData['courses'])
+    autocomplete(document.getElementById('id_faculty'), customData['faculties'])
+  });
+
   return (
     <>
       <div className="img_4_banner container">
@@ -26,7 +35,7 @@ const Form = ({formEvent, ...props}) => {
           <p>Kindly follow all the social media handles below. While we encourage you to follow these pages for continuous updates, it is not part of the prerequisite:</p>
 
           <MediaLinks addClass="ml-0"/>
-          <h5> Duration (12 weeks): 1st Aug - 31st Oct 2022 </h5>
+          <h5 id="Duration"> Duration (12 weeks): 1st Aug - 31st Oct 2022 </h5>
           <p> P.S. The 3 month training is Free for shortlisted individuals.</p>
         </div>
       </div>
@@ -34,7 +43,6 @@ const Form = ({formEvent, ...props}) => {
       <form 
         enctype="multipart/form-data"
         action="" 
-        autoComplete={'autocomplete'}
         id='regForm'
         onSubmit={(e)=>{
             e.preventDefault();
@@ -42,6 +50,15 @@ const Form = ({formEvent, ...props}) => {
           }
         }
             >
+        {/* Server Error State */}
+        <div class="container server_err">
+          <h3>Can't connect to the server!</h3>
+          <a href="https://wa.me/message/5IA2QYCI53SUM1" target="_blank" rel="noreferrer">
+            <button class="d-inline-block important-btn">
+              <span>Report Issue</span>
+            </button>
+          </a>
+        </div>
         <section className="container">
           <div className="diversity_data educational_bg">
             <h2>Educational background</h2>

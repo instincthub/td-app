@@ -8,6 +8,7 @@ import RegDetails from "./pages/RegDetails";
 import Register from './pages/Register'
 import CheckMail from "./pages/CheckMail"
 import InvalidToken from "./pages/InvalidToken"
+import QuizInstruction from "./pages/QuizIntruction";
 
 // Time since
 import TimeAgo from 'javascript-time-ago'
@@ -31,6 +32,7 @@ function Index() {
               <Route path="register/verify" element={<CheckMail />} />
               <Route path="register/details" element={<RegDetails />} />
               <Route path="register/invalid-token" element={<InvalidToken />} />
+              <Route path="quiz" element={<QuizInstruction />} />
           </Routes>
         </BrowserRouter>
       );

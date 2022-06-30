@@ -12,7 +12,27 @@ h2{
   line-height: 50px;
   margin-bottom: 20px;
 }
-
+.server_err{
+  margin: 20px;
+  background-color: var(--TurkishRose);
+  padding: 20px 15px;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  display: none;
+}
+.server_err h3{
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  color: var(--White);
+}
+.server_err .important-btn{
+  background-color: var(--White);
+  color: var(--Gunmetal);
+}
+.server_err .important-btn span{
+  color: var(--Gunmetal);
+}
 .diversity_banner .frace .rollin {
   margin-bottom: 5px;
 }
@@ -496,27 +516,6 @@ h2{
   margin-bottom: 50px;
   max-width: 275px;
 }
-
-/* .upload_img {
-  border: 2px solid var(--DarkCyan);
-  max-width: 270px;
-  height: 45px;
-  text-align: center;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
-} */
-
-/* .upload_img label {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--DarkCyan);
-} */
-
-/* .upload_img input {
-  display: none;
-} */
 
 @media (max-width: 480px) {
   .diversity_banner .frace h1 {

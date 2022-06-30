@@ -100,11 +100,11 @@ class RegDetails extends React.Component {
         }
         else if (inputField !== null){
           // console.log(inputField.parentElement)
-          if (inputField.getAttribute('type') == "radio") {
+          if (inputField.getAttribute('type') === "radio") {
             // console.log(key)
             inputField.parentElement.parentElement.parentElement.append(span_tag)
           }
-          else if (inputField.getAttribute('type') == "file") {
+          else if (inputField.getAttribute('type') === "file") {
             // console.log(key)
             inputField.parentElement.parentElement.append(span_tag)
           }
@@ -119,69 +119,65 @@ class RegDetails extends React.Component {
       }
       
     }
-
+    // Handle error 400, null and else
     if (status === 400){
       spinBtn(registerForm, 'none', false) // spin button: parameter >> form, display and status
-      document.querySelector('button').disabled = false;
       Object.entries(items).forEach((item, index)=> {
         const [key, value] = item;
-        // console.log(key, value)
         printErr(key, value, index)
       });
+      document.querySelector('.server_err').style.display="none";
+    }
+    else if (status === 200 || status === 201 || status === 202){
+      window.location.href = '/quiz'
     }
     else{
-      window.location.href = '/register/verify'
+      document.querySelector('.server_err').style.display="block";
+      spinBtn(registerForm, 'none', false)
+      window.location.href = "#Duration" 
     }
   }
 
+  // get formData and post data with fetch api
   postData(form){
     spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
 
-    const formData2  = new FormData(form);
-    const new_obj = {}
-
-    for (const [key, value] of formData2) {
-      console.log(`${key}: ${value}\n`);
-      new_obj[key] = value
-    }
-    console.log('....formData2: ', new_obj)
+    const formData  = new FormData(form);
+    // const new_obj = {}
 
     // Grab form data 
-    let formData = {}; 
     form.querySelectorAll("input").forEach((node)=> {
       if (node.getAttribute('type') === 'radio') {
         if (node.checked  === true) { // if input is checked
           if (Number(node.dataset.value)) { // if number
-            formData[node.name] = Number(node.dataset.value)
+            formData.append(node.name, Number(node.dataset.value))
           }
           else if (node.dataset.value === "true") {
-            formData[node.name] = true
+            formData.append(node.name, true)
           }
           else if (node.dataset.value === 'false') {
-            formData[node.name] = false
+            formData.append(node.name, false)
           }
           else{
-            formData[node.name] = node.dataset.value
+            formData.append(node.name, node.dataset.value)
           }
         }
-      }
-      else{
-        formData[node.name] = node.value;
       }
       
       
     });
-    formData['user'] = localStorage.getItem('u_id')
+    formData.append("user",localStorage.getItem('u_id'))
 
     // formData['redirect_url'] = window.location.origin+'/register/details';
     // formData['invalid_token_url'] = window.location.origin+'/register/invalid-token';
 
-
-    console.log(formData2)
+    // for (const [key, value] of formData) {
+    //   console.log(`${key}: ${value}\n`);
+    // }
 
     const requestOptions = {
       method: 'POST',
-      body: formData2
+      body: formData
     };
 
 

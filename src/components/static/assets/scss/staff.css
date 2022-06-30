@@ -642,7 +642,8 @@ button {
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
-  padding: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 button:disabled {
