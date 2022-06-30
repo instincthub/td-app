@@ -372,7 +372,7 @@ h2{
 
 .vimeo_v .ip_btn {
   text-align: center;
-  max-width: 165px;
+  max-width: 250px;
   margin: 20px auto 40px auto !important;
 }
 
@@ -488,7 +488,7 @@ h2{
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 22px;
+  /* line-height: 22px; */
 }
 
 .submit_bt {
@@ -497,7 +497,7 @@ h2{
   max-width: 275px;
 }
 
-.upload_img {
+/* .upload_img {
   border: 2px solid var(--DarkCyan);
   max-width: 270px;
   height: 45px;
@@ -505,18 +505,18 @@ h2{
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
-}
+} */
 
-.upload_img label {
+/* .upload_img label {
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
   color: var(--DarkCyan);
-}
+} */
 
-.upload_img input {
+/* .upload_img input {
   display: none;
-}
+} */
 
 @media (max-width: 480px) {
   .diversity_banner .frace h1 {

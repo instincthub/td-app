@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './static/assets/scss/date-pick.css'
 
-export const DatePick = ({placeholder, labelText, id, name, required, ...props}) =>{
+export const DatePick = ({placeholder, labelText, id, name, required, addClass, ...props}) =>{
     const [startDate, setStartDate] = useState(null);
 
     // Append label to date input
@@ -17,7 +17,7 @@ export const DatePick = ({placeholder, labelText, id, name, required, ...props})
     }
 
   return (
-    <div class="input_parent" 
+    <div className={"input_parent " + addClass }
     onClick={(e)=>{ // Listen to input focus
       if (e.target.classList.contains('react-datepicker-ignore-onclickoutside')){
         labelTag();

@@ -1,16 +1,17 @@
-.diversity_data {
-    margin: 120px auto 300px auto;
+.diversity_data.register {
+    margin: 120px auto 50px auto;
 }
 @media(min-width: 1024px){
-    .personal_data{
+    .personal_data.register{
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
     }
 
-    .personal_data .input_parent{
+    .personal_data.register .input_parent{
         width: 47%;
     }
+    
 }
 
 .has-error .checkbox, .has-error .checkbox-inline, .has-error .control-label, .has-error .help-block, .has-error .radio, .has-error .radio-inline, .has-error.checkbox label, .has-error.checkbox-inline label, .has-error.radio label, .has-error.radio-inline label {

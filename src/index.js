@@ -4,9 +4,10 @@ import {createRoot} from 'react-dom/client';
 // import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./pages/Home";
-import TDN from "./components/TDN";
+import RegDetails from "./pages/RegDetails";
 import Register from './pages/Register'
 import CheckMail from "./pages/CheckMail"
+import InvalidToken from "./pages/InvalidToken"
 
 // Time since
 import TimeAgo from 'javascript-time-ago'
@@ -26,9 +27,10 @@ function Index() {
         <BrowserRouter>
           <Routes>
               <Route index element={<App />} />
-              <Route path="details" element={<TDN />} />
               <Route path="register" element={<Register />} />
-              <Route path="register/check-email" element={<CheckMail />} />
+              <Route path="register/verify" element={<CheckMail />} />
+              <Route path="register/details" element={<RegDetails />} />
+              <Route path="register/invalid-token" element={<InvalidToken />} />
           </Routes>
         </BrowserRouter>
       );

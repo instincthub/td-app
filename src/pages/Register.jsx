@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
 import { fetAPI, spinBtn } from "../components/static/assets/js/help_func";
+import {SubmitButton} from '../components/SubmitButton'
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -65,7 +66,7 @@ class Register extends React.Component {
       });
     }
     else{
-      window.location.href = '/register/check-email'
+      window.location.href = '/register/verify'
     }
   }
 
@@ -79,7 +80,8 @@ class Register extends React.Component {
       console.log(node.value)
     });
 
-    formData['redirect_url'] = window.location.host;
+    formData['redirect_url'] = window.location.origin+'/register/details';
+    formData['invalid_token_url'] = window.location.origin+'/register/invalid-token';
 
 
     console.log(formData)
@@ -100,8 +102,7 @@ class Register extends React.Component {
       // this.setState({
       //   items: TestimonialJSON
       // })
-      const data = fetAPI(this, "http://127.0.0.1:8000/auth/register/", requestOptions)
-      console.log('>>>>>>', data)
+      fetAPI(this, "http://127.0.0.1:8000/auth/register/", requestOptions)
     }
     
   }
@@ -117,51 +118,48 @@ class Register extends React.Component {
             this.postData(e.target)
             }}>
           <section class="container">
-            <div class="diversity_data">
+            <div class="diversity_data register">
               <h2>Signup for Tech Diversity</h2>
 
-              <div class="personal_data">
-                <div class="input_parent">
+              <div class="personal_data d-flex d-wrap d-between">
+                <div class="input_parent width-48">
                   <input type="text" placeholder="Username *" name="username" id="id_username" autoFocus required/>
-                  <label for="id_username">Username *</label>
+                  <label htmlFor="id_username">Username *</label>
                 </div>
-                <div class="input_parent">
-                  <input type="text" placeholder="Full Name *" name="first_name" id="id_first_name" required value="noaholatoye101@gmail.com"/>
-                  <label for="id_first_name">First Name *</label>
-                </div>
-                <div class="input_parent">
-                  <input type="text" placeholder="Last Name *" name="last_name" id="id_last_name" required value="noaholatoye101@gmail.com"/>
-                  <label for="id_last_name">Last Name *</label>
-                </div>
-                <div class="input_parent">
+                <div class="input_parent width-48">
                   <input type="email" placeholder="Email *" id="id_email" maxlength="254" name="email" required/>
-                  <label for="id_email"> Email *</label>
+                  <label htmlFor="id_email"> Email *</label>
                 </div>
-                <div class="input_parent">
-                  <input type="password" placeholder="Password *" name="password" id="id_password"  />
-                  <label for="id_password">Password *</label>
+                <div class="input_parent width-48">
+                  <input type="text" placeholder="Full Name *" name="first_name" id="id_first_name" required/>
+                  <label htmlFor="id_first_name">First Name *</label>
                 </div>
-                <div class="input_parent">
-                  <input type="password" placeholder="Confirm Password *" name="password2" id="id_password2"  />
-                  <label for="id_password2">Confirm Password *</label>
+                <div class="input_parent width-48">
+                  <input type="text" placeholder="Last Name *" name="last_name" id="id_last_name" required/>
+                  <label htmlFor="id_last_name">Last Name *</label>
                 </div>
-                <div class="input_parent">
-                  <input type="tel" placeholder="WhatsApp Number *" name="phone" id="id_phone" required value="07064"/>
-                  <label for="id_phone">WhatsApp Number *</label>
+                <div class="input_parent width-48">
+                  <input type="password" placeholder="Password *" name="password" id="id_password" required/>
+                  <label htmlFor="id_password">Password *</label>
+                </div>
+                <div class="input_parent width-48">
+                  <input type="password" placeholder="Confirm Password *" name="password2" id="id_password2" required />
+                  <label htmlFor="id_password2">Confirm Password *</label>
+                </div>
+                <div class="input_parent width-48">
+                  <input type="tel" placeholder="WhatsApp Number *" name="phone" id="id_phone" required/>
+                  <label htmlFor="id_phone">WhatsApp Number *</label>
                 </div>
                 <DatePick 
                   placeholder="Date of Birth*" 
                   labelText="Date of Birth*" 
+                  addClass="width-48"
                   id='id_date_of_birth' 
                   name='id_date_of_birth' 
                   required={true}
-                  value="2022-01-01"
                 />
               </div>
-              <button type="submit" class="important-btn submit_bt">
-              <svg class="bt-spinner" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"/></svg>
-              Submit Form
-            </button>
+              <SubmitButton/>
             </div>
             
           </section>

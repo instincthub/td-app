@@ -49,9 +49,9 @@ const Navbar = () => {
               <a href="https://instioncthub.com/blog" target="blank">Blog</a>
             </li> */}
 
-            <Link to="/register">
+            {/* <Link to="/register">
               <button className="important-btn">Register</button>
-            </Link>
+            </Link> */}
           </ul>
         </nav>
       </header>
