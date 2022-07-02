@@ -1,5 +1,5 @@
 
-export const fetAPI = (session, api, reqOptions) =>{
+export const fetAPI = (session, api, reqOptions, func=false) =>{
     let status = null
     fetch(api, reqOptions)
     .then(res => {
@@ -8,18 +8,28 @@ export const fetAPI = (session, api, reqOptions) =>{
     })
     .then(
         (result) => {
-            session.setState({
-                items: result,
-                status: status
-            })
-            console.log(result)
+            if (func === false) { // if class component
+                session.setState({
+                    items: result,
+                    status: status
+                })
+            }else{// if function component
+                session(result)
+            }
+            
+            // console.log(result)
             // console.log(status)
         },
         (error) => {
             console.log(error.status)
-            session.setState({
-                error: error
-            })
+            if (func === false) {
+                session.setState({
+                    error: error
+                })
+            }
+            else{
+                session(error)
+            }
             return error.message
         }
     )

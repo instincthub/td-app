@@ -631,6 +631,32 @@ img {
   
 }
 
+/* ===================
+From brand signature
+====================== */
+.from {
+  text-align: center !important;
+  margin-top: 40px;
+  position: absolute;
+  width: 100px;
+  left: 0;
+  right: 0;
+  margin: auto
+}
+.from h3 {
+  color: #2c333a;
+  font-size: 12px;
+  margin: 0px !important;
+}
+.from img {
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+/* ===================
+End From brand signature
+====================== */
+
 button {
   width: 100%;
   margin: 28px 0 10px 0;
