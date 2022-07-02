@@ -1,10 +1,4 @@
 import {React, useEffect, useState} from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { Outlet, Link } from "react-router-dom";
-// import { Navbar, Banner, Features } from "./";
-import {clickRadio, clickNextButton, startTimer} from "../components/static/assets/js/quiz-test";
-import {SubmitButton} from "../components/SubmitButton"
 import { fetAPI } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import Records from "../components/quiz-pagination/Record";
@@ -34,6 +28,10 @@ function QuizTest() {
         };
         fetAPI(setData, "http://127.0.0.1:8000/assessment/quiztest/1", requestOptions, true)
     }, [])
+
+    if (localStorage.getItem('current_page') !== null && localStorage.getItem('current_page') > currentPage) {
+        setCurrentPage(Number(localStorage.getItem('current_page')))
+    }
     
     const assessment = data['a_assessment']
     const indexOfLastRecord = currentPage * recordsPerPage;
@@ -41,22 +39,41 @@ function QuizTest() {
 
     let current_records =[]
     let nPages = null
+    let user_id, assessment_id;
+
     if (assessment) { // get pagination if data object
         current_records = assessment.slice(indexOfFirstRecord, indexOfLastRecord); // single object
-
+        console.log(currentPage)
+       
         nPages = Math.ceil(assessment.length / recordsPerPage)
         duration = data['duration']
 
-        // Get user id and tech diversity
-        answerData['user'] = Number(localStorage.getItem('u_id'))
-        answerData['tech_diversity'] = data['a_tech_diversity'][0]['pk']
-        answerData['assessment'] = current_records[0]['assessment']
-        answerData['question'] = current_records[0]['pk']
+        if (localStorage.getItem('quiz_duration_min') === null && localStorage.getItem('quiz_duration_sec') === null) {
+            localStorage.setItem('quiz_duration_min', data['duration'])
+            localStorage.setItem('quiz_duration_sec', 0)
+        }
         
+
+        // Get user id and tech diversity
+        user_id = Number(localStorage.getItem('u_id'))
+        assessment_id = current_records[0]['assessment']
+
+        answerData['user'] = user_id
+        answerData['assessment'] = assessment_id
+        answerData['tech_diversity'] = data['a_tech_diversity'][0]['pk']
+        answerData['question'] = current_records[0]['pk']
+    }
+
+    // Change button label if last item
+    if (currentPage === nPages) { // Change button text
+        const quizBtn = document.getElementById('btn_label')
+        quizBtn.textContent = 'See Results'
+        quizBtn.parentElement.style.backgroundColor = "var(--CaribbeanGreen)"
     }
 
     // Send response to db
     const submitAnswerToDB = (e) =>{
+
         // if target is btn and span
         if (e.target.getAttribute('type') === "button" || e.target.id === "btn_label") {
             const optionInputs = document.querySelectorAll('input[name="quiz"]')
@@ -67,7 +84,16 @@ function QuizTest() {
                 }
             }) 
 
-            console.log('================>>>>', answerData)
+            
+            if (currentPage === nPages) { // redirect to results
+                localStorage.removeItem('quiz_duration_min')
+                localStorage.removeItem('quiz_duration_sec')
+                localStorage.removeItem('current_page')
+
+                window.location.href = `/quiz/quiztest/results/?user_id=${user_id}&assessment_id=${assessment_id}`
+            }
+
+
             const requestOptions = {
                 method: 'post',
                 headers: { 
@@ -83,7 +109,7 @@ function QuizTest() {
 
     // End quiz when finish and timeout 
     const endQuiz = ()=>{
-        window.location.href = "/quiz/quiztest/result"
+        
     };
     
   return (
@@ -109,6 +135,8 @@ function QuizTest() {
                 setCurrentPage={setCurrentPage}
                 duration={duration}
                 responseData = {answerData}
+                user_id={user_id}
+                assessment_id={assessment_id}
             />
     
         </div>

@@ -5,6 +5,7 @@ import { Outlet, Link } from "react-router-dom";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
+import "../components/static/assets/scss/modal.css";
 
 function QuizInstruction() {
   return (
@@ -12,16 +13,16 @@ function QuizInstruction() {
       <Navbar />
 		<div className="container">
 			<div className="m-b-50 mb-7">
-				<div class="mt-10">
-					<div class="quiz_header">
+				<div className="mt-10">
+					<div className="quiz_header">
 						<h1>Tech Diversity Quiz</h1>
 						<p>
 							We want to know if you are fit for the challenge. The test is just a nice way to see how much you know how think and communicate. 
 						</p>
 					</div>
-					<div class="signup__list">
-						<h4 class="sub_header">Quiz Instruction</h4>
-						<ol type="1" class="numbered-list">
+					<div className="signup__list">
+						<h4 className="sub_header">Quiz Instruction</h4>
+						<ol type="1" className="numbered-list">
 							<li>
                                 The test contains 20 questions and there is <strong>35 minutes</strong> time limit.
 							</li>
@@ -31,10 +32,38 @@ function QuizInstruction() {
 						</ol>
                         <h3 className="mt-3">Good luck!</h3>
 						<div className="mt-4">
-                            <Link to="/quiz/quiztest"><button className="outlined-btn d-inline-block">Start Quiz</button></Link>
+                            <button 
+                                className="outlined-btn d-inline-block"
+                                onClick={e=>{
+                                    document.getElementById("myModal").style.display = "block";
+                                }}
+                                >Start Quiz
+                            </button>
 						</div>
 					</div>
 				</div>
+
+                <div 
+                    id="myModal" 
+                    className="modal"
+                    onClick={()=>{
+                        document.getElementById("myModal").style.display = 'none'
+                    }}
+                    >
+                    <div class="modal-content">
+                        <span 
+                            className="close"
+                            onClick={()=>{
+                                document.getElementById("myModal").style.display = 'none'
+                            }}
+                        >&times;</span>
+                        <p>The time will start reading once you start. Ready? Hit the continue button!</p>
+
+                        <div className="mt-4">
+                            <Link to="/quiz/quiztest"><button className="outlined-btn d-inline-block mt-1">Continue...</button></Link>
+						</div>
+                    </div>
+                </div>
 			</div>
 		</div>
       <Footer />

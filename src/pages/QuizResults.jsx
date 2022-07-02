@@ -31,20 +31,19 @@ function QuizResults() {
       <Navbar />
 		<div className="container">
 			<div className="m-b-50 mb-7 pt-4">
-				<div class="mt-10">
-					<div class="quiz_header">
+				<div className="mt-10">
+					<div className="quiz_header">
 						<h1>Quiz Result: {data.title}</h1>
-						<p>
-							Scored: {data.score}
-						</p>
-					</div>
-					<div class="signup__list">
-						<h4 class="sub_header">Got {data.points} points</h4>
 						
-                        <h3 className="mt-3">{data.met_expectation ? "Congratucation, you qualified!" : "You didn't have enough point. Try again next year. "}</h3>
-						<div className="mt-4">
+					</div>
+					<div className="signup__list">
+						<p>Scored: {data.score}</p>
+						<h2 className="sub_header">Got {data.points} points</h2>
+						
+                        <p className="mt-3">{data.met_expectation ? "Congratulation, you qualified!" : "You didn't have enough point. Try again next year. "} <strong> We've emailed you.</strong></p>
+						{/* <div className="mt-4">
                             <Link to="/quiz/quiztest"><button className="outlined-btn d-inline-block">Start Quiz</button></Link>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
