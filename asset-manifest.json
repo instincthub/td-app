@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e2b0f406.css",
-    "main.js": "/static/js/main.a2373176.js",
+    "main.css": "/static/css/main.9e953c25.css",
+    "main.js": "/static/js/main.9957b4df.js",
     "static/media/diversity_bg.jpg": "/static/media/diversity_bg.98f92fcd233cf8ae14dd.jpg",
     "static/media/grid_style.jpg": "/static/media/grid_style.a7ae494007c368987963.jpg",
     "static/media/joseph-chinedu.png": "/static/media/joseph-chinedu.3901c7bc7650d43d3e58.png",
@@ -21,6 +21,7 @@
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "static/media/camera.svg": "/static/media/camera.1add8036a01f9bb141a1.svg",
     "static/media/tv.svg": "/static/media/tv.7c38cd46f28e7481eeefddb2344cc709.svg",
+    "static/media/youtube.svg": "/static/media/youtube.e9bd209bded8037e2669e3b9c1780bb0.svg",
     "static/media/phone.svg": "/static/media/phone.ae0ed1dcf2a845090839.svg",
     "static/media/linkedin.svg": "/static/media/linkedin.9ccb15989105634b2b02845724c22e33.svg",
     "static/media/coding.svg": "/static/media/coding.068bf1bdee7cb0e93c5ec0c7d20f99b3.svg",
@@ -32,11 +33,11 @@
     "static/media/time.svg": "/static/media/time.e67a17bcff58534b992e547a817f8494.svg",
     "static/media/play_btn.svg": "/static/media/play_btn.c530ff6a15ebbab57239.svg",
     "static/media/close_icon_white.svg": "/static/media/close_icon_white.2165ffdf390382cef12cfec59fa053bf.svg",
-    "main.e2b0f406.css.map": "/static/css/main.e2b0f406.css.map",
-    "main.a2373176.js.map": "/static/js/main.a2373176.js.map"
+    "main.9e953c25.css.map": "/static/css/main.9e953c25.css.map",
+    "main.9957b4df.js.map": "/static/js/main.9957b4df.js.map"
   },
   "entrypoints": [
-    "static/css/main.e2b0f406.css",
-    "static/js/main.a2373176.js"
+    "static/css/main.9e953c25.css",
+    "static/js/main.9957b4df.js"
   ]
 }
