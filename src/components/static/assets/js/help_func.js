@@ -1,5 +1,105 @@
+export const getCookie = (name) => {
+    if (!document.cookie) {
+      return null;
+    }
+  
+    const xsrfCookies = document.cookie.split(';')
+      .map(c => c.trim())
+      .filter(c => c.startsWith(name + '='));
+  
+    if (xsrfCookies.length === 0) {
+      return null;
+    }
+    return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+}
+
+export const printErr = (key, value, index) =>{
+    let inputField = document.querySelector('#regForm').querySelector(`[name="${key}"]`)
+    // console.log(key, value)
+
+    let error_tag = null
+
+    // Make input border red and check for the parent tag
+    if (inputField !== null) {
+      inputField.style.borderColor = 'var(--TurkishRose)';
+
+      if (inputField.getAttribute('type') === 'radio'){
+          error_tag = inputField.parentElement.parentElement.parentElement.querySelector('.error');
+      }
+      else if (inputField.getAttribute('type') === 'file'){
+        error_tag = inputField.parentElement.parentElement.querySelector('.error'); 
+      }
+      else{
+        error_tag = inputField.parentElement.querySelector('.error');
+      }
+    }
+
+    if (error_tag) {
+      error_tag.textContent = value
+    }
+    else{
+      let span_tag = document.createElement('SPAN')
+      span_tag.classList.add('error')
+      span_tag.textContent = value
+      span_tag.style.color = 'var(--TurkishRose)'
+      span_tag.style.display = 'inline-block'
+      
+      if (key === "user") {
+        
+      }
+      else if (inputField !== null){
+        // console.log(inputField.parentElement)
+        if (inputField.getAttribute('type') === "radio") {
+          // console.log(key)
+          inputField.parentElement.parentElement.parentElement.append(span_tag)
+        }
+        else if (inputField.getAttribute('type') === "file") {
+          // console.log(key)
+          inputField.parentElement.parentElement.append(span_tag)
+        }
+        else{
+          inputField.parentElement.append(span_tag)
+        }
+      }
+      
+    }
+    if (index === 0 && inputField !== null) {
+      inputField.focused = true
+    }
+    
+}
+
+
+export const handleError = (status, items, registerForm, r_path) =>{
+    if (status === 400){
+      spinBtn(registerForm, 'none', false) // spin button: parameter >> form, display and status
+      Object.entries(items).forEach((item, index)=> {
+        const [key, value] = item;
+        printErr(key, value, index)
+      });
+      document.querySelector('.server_err').style.display="none";
+    }
+    else if (status === 200 || status === 201 || status === 202){
+      window.location.href = r_path
+    }
+    else{
+        const serverTag = document.querySelector('.server_err')
+        if (status !== 0 && status !== 401) {
+            serverTag.style.display="block";
+        }
+        else if(status === 401){
+            serverTag.style.display="block";
+            serverTag.querySelector('a').innerHTML = ''
+            serverTag.querySelector('h3').textContent = items.detail
+        }
+        spinBtn(registerForm, 'none', false)
+        window.location.href = "#Duration" 
+    }
+}
+
 
 export const fetAPI = (session, api, reqOptions, func=false) =>{
+
     let status = null
     fetch(api, reqOptions)
     .then(res => {
@@ -14,14 +114,19 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                     status: status
                 })
             }else{// if function component
-                session(result)
+                if (status === 401) {
+                    session(status)
+                }
+                else{
+                    session(result)
+                }
             }
             
-            // console.log(result)
+            console.log(result.message)
             // console.log(status)
         },
         (error) => {
-            console.log(error.status)
+            console.log(error)
             if (func === false) {
                 session.setState({
                     error: error
@@ -42,6 +147,13 @@ export const checkEnv = ()=> {
     else{
         return "production"
     }
+}
+
+export const loginRequired = (status) =>{
+    if(status === 401) { // Login Required
+        console.log(window.location.href )
+        window.location.href = `/login/?login_redirect=${window.location.pathname}`
+      }
 }
 
 export const spinBtn = (form, display, status) =>{

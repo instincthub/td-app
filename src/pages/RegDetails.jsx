@@ -2,10 +2,9 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Form from "../components/DiversityForm";
-// import { Navbar, Banner, Features } from "./";
+
 import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
-import { fetAPI, spinBtn } from "../components/static/assets/js/help_func";
-// import { Navbar, Banner, Features } from "./";
+import { fetAPI, spinBtn, handleError, getCookie } from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
@@ -18,7 +17,8 @@ class RegDetails extends React.Component {
     this.state = {
       items: [],
       status: null,
-      error: null
+      error: null,
+      token: localStorage.getItem('access')
     };
     // Binding this keyword 
     // this.updateState = this.componentDidMount.bind(this)
@@ -26,16 +26,17 @@ class RegDetails extends React.Component {
   }
 
   componentDidMount(){
+
     // get access token
     let params = (new URL(document.location)).searchParams;
     let token = params.get('access'); // is the string "token".
     let u_id = params.get('u_id'); 
     // let age = parseInt(params.get('age')); // is the number 18
-    if (token && u_id) {
+    if (u_id && token) {
         localStorage.setItem('access', token);
         localStorage.setItem('u_id', u_id);
     }
-    else{ // if not token, direct user to register
+    else if (this.state.token === null) { // if not token, direct user to register
       document.querySelector('.form_content').innerHTML = `
       <div class="container mt-10 mb-10">
         <span>To input details, you need to either login of create an account.</span>
@@ -63,79 +64,8 @@ class RegDetails extends React.Component {
       })
     }
     
-
-    const printErr = (key, value, index) =>{
-      let inputField = registerForm.querySelector(`[name="${key}"]`)
-      // console.log(key, value)
-
-      let error_tag = null
-
-      // Make input border red and check for the parent tag
-      if (inputField !== null) {
-        inputField.style.borderColor = 'var(--TurkishRose)';
-
-        if (inputField.getAttribute('type') === 'radio'){
-            error_tag = inputField.parentElement.parentElement.parentElement.querySelector('.error');
-        }
-        else if (inputField.getAttribute('type') === 'file'){
-          error_tag = inputField.parentElement.parentElement.querySelector('.error'); 
-        }
-        else{
-          error_tag = inputField.parentElement.querySelector('.error');
-        }
-      }
-
-      if (error_tag) {
-        error_tag.textContent = value
-      }
-      else{
-        let span_tag = document.createElement('SPAN')
-        span_tag.classList.add('error')
-        span_tag.textContent = value
-        span_tag.style.color = 'var(--TurkishRose)'
-        span_tag.style.display = 'inline-block'
-        
-        if (key === "user") {
-          
-        }
-        else if (inputField !== null){
-          // console.log(inputField.parentElement)
-          if (inputField.getAttribute('type') === "radio") {
-            // console.log(key)
-            inputField.parentElement.parentElement.parentElement.append(span_tag)
-          }
-          else if (inputField.getAttribute('type') === "file") {
-            // console.log(key)
-            inputField.parentElement.parentElement.append(span_tag)
-          }
-          else{
-            inputField.parentElement.append(span_tag)
-          }
-        }
-        
-      }
-      if (index === 0 && inputField !== null) {
-        inputField.focused = true
-      }
-      
-    }
-    // Handle error 400, null and else
-    if (status === 400){
-      spinBtn(registerForm, 'none', false) // spin button: parameter >> form, display and status
-      Object.entries(items).forEach((item, index)=> {
-        const [key, value] = item;
-        printErr(key, value, index)
-      });
-      document.querySelector('.server_err').style.display="none";
-    }
-    else if (status === 200 || status === 201 || status === 202){
-      window.location.href = '/quiz'
-    }
-    else{
-      document.querySelector('.server_err').style.display="block";
-      spinBtn(registerForm, 'none', false)
-      window.location.href = "#Duration" 
-    }
+    // Handle error 400, null and else redirect to /quiz if success 
+    handleError(status, items, registerForm, '/quiz')
   }
 
   // get formData and post data with fetch api
@@ -168,15 +98,15 @@ class RegDetails extends React.Component {
     });
     formData.append("user",localStorage.getItem('u_id'))
 
-    // formData['redirect_url'] = window.location.origin+'/register/details';
-    // formData['invalid_token_url'] = window.location.origin+'/register/invalid-token';
-
-    // for (const [key, value] of formData) {
-    //   console.log(`${key}: ${value}\n`);
-    // }
-
+    console.log(localStorage.getItem('u_id'))
+    console.log(localStorage.getItem('access'))
+    
     const requestOptions = {
       method: 'POST',
+      'X-CSRFToken': getCookie('CSRF-TOKEN'),
+      'headers': {
+        "Authorization": "Token " + localStorage.getItem('access')
+      },
       body: formData
     };
 
@@ -189,6 +119,7 @@ class RegDetails extends React.Component {
     }
     
   }
+  
   
   render(){ 
     return (

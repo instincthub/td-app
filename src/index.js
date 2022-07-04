@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import {createRoot} from 'react-dom/client';
 // import * as ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import App from "./pages/Home";
 import RegDetails from "./pages/RegDetails";
 import Register from './pages/Register'
@@ -11,6 +11,7 @@ import InvalidToken from "./pages/InvalidToken"
 import QuizInstruction from "./pages/QuizIntruction";
 import QuizTest from "./pages/QuizTest";
 import QuizResults from "./pages/QuizResults";
+import Login from "./pages/Login";
 
 // Time since
 import TimeAgo from 'javascript-time-ago'
@@ -37,6 +38,7 @@ function Index() {
               <Route path="quiz" element={<QuizInstruction />} />
               <Route path="quiz/quiztest" element={<QuizTest />} />
               <Route path="quiz/quiztest/results" element={<QuizResults />} />
+              <Route path="login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       );

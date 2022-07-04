@@ -1,7 +1,8 @@
 import {React, useEffect, useState} from "react";
-import { fetAPI } from "../components/static/assets/js/help_func";
+import { fetAPI, loginRequired } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import Records from "../components/quiz-pagination/Record";
+import { getCookie } from "../components/static/assets/js/help_func";
 
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -20,18 +21,27 @@ function QuizTest() {
     const answerData = {}
 
 
+
     useEffect(() => {
 
         // get assessment from db
         const requestOptions = {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              "Authorization": "Token " + localStorage.getItem('access'),
+              'X-CSRFToken': getCookie('CSRF-TOKEN'),
+            }
         };
+
         fetAPI(setData, "http://127.0.0.1:8000/assessment/quiztest/1", requestOptions, true)
     }, [])
 
     if (localStorage.getItem('current_page') !== null && localStorage.getItem('current_page') > currentPage) {
         setCurrentPage(Number(localStorage.getItem('current_page')))
     }
+
+    loginRequired(data[0]) // if data status is 401 
     
     const assessment = data['a_assessment']
     const indexOfLastRecord = currentPage * recordsPerPage;

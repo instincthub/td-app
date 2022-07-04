@@ -6,14 +6,18 @@ import { customData } from "./static/assets/js/help_func";
 import { MediaLinks } from "./MediaLinks";
 import { SubmitButton } from "./SubmitButton";
 import { FileInputField } from "./FileInputField";
+import { ServerErr } from "./ServerErr";
 
 const Form = ({formEvent, ...props}) => {
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => { // auto complete
-    autocomplete(document.getElementById('id_school'), customData['universities'])
-    autocomplete(document.getElementById('id_course'), customData['courses'])
-    autocomplete(document.getElementById('id_faculty'), customData['faculties'])
+    if (document.getElementById('id_school')) {
+      autocomplete(document.getElementById('id_school'), customData['universities'])
+      autocomplete(document.getElementById('id_course'), customData['courses'])
+      autocomplete(document.getElementById('id_faculty'), customData['faculties'])
+    }
+    
   });
 
   return (
@@ -41,7 +45,7 @@ const Form = ({formEvent, ...props}) => {
       </div>
 
       <form 
-        enctype="multipart/form-data"
+        encType="multipart/form-data"
         action="" 
         id='regForm'
         onSubmit={(e)=>{
@@ -50,15 +54,12 @@ const Form = ({formEvent, ...props}) => {
           }
         }
             >
+
         {/* Server Error State */}
-        <div class="container server_err">
-          <h3>Can't connect to the server!</h3>
-          <a href="https://wa.me/message/5IA2QYCI53SUM1" target="_blank" rel="noreferrer">
-            <button class="d-inline-block important-btn">
-              <span>Report Issue</span>
-            </button>
-          </a>
+        <div className=''>
+            <ServerErr/>
         </div>
+        
         <section className="container">
           <div className="diversity_data educational_bg">
             <h2>Educational background</h2>

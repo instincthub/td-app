@@ -2,9 +2,11 @@ import React from 'react';
 import { DatePick } from "../components/DatePick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
-import { fetAPI, spinBtn } from "../components/static/assets/js/help_func";
+import { checkEnv, getCookie } from "../components/static/assets/js/help_func"; // check environment
+import { fetAPI, spinBtn, handleError } from "../components/static/assets/js/help_func";
 import {SubmitButton} from '../components/SubmitButton'
+import { ServerErr } from '../components/ServerErr';
+import { Link } from 'react-router-dom';
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -57,17 +59,8 @@ class Register extends React.Component {
       
     }
 
-    if (status === 400){
-      spinBtn(registerForm, 'none', false) // spin button: parameter >> form, display and status
-      document.querySelector('button').disabled = false;
-      Object.entries(items).forEach((item, index)=> {
-        const [key, value] = item;
-        printErr(key, value, index)
-      });
-    }
-    else{
-      window.location.href = '/register/verify'
-    }
+    // Handle error 400, null and else redirect to /quiz if success 
+    handleError(status, items, registerForm, '/register/verify')
   }
 
   postData(form){
@@ -84,25 +77,26 @@ class Register extends React.Component {
     formData['invalid_token_url'] = window.location.origin+'/register/invalid-token';
 
 
-    console.log(formData)
 
     const requestOptions = {
       method: 'POST',
-      headers: { 
-          'Content-Type': 'application/json',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Token " + localStorage.getItem('access'),
+        'X-CSRFToken': getCookie('CSRF-TOKEN'),
       },
       body: JSON.stringify(formData)
     };
 
 
     if (checkEnv() === "production") {
-      fetAPI(this, "https://api.instincthub.com/auth/register/", requestOptions)
+      fetAPI(this, "https://api.instincthub.com/auth/register/", requestOptions, false)
     }
     else if(checkEnv() === "local"){ // Fetch static json in local
       // this.setState({
       //   items: TestimonialJSON
       // })
-      fetAPI(this, "http://127.0.0.1:8000/auth/register/", requestOptions)
+      fetAPI(this, "http://127.0.0.1:8000/auth/register/", requestOptions, false)
     }
     
   }
@@ -117,36 +111,42 @@ class Register extends React.Component {
             e.preventDefault();
             this.postData(e.target)
             }}>
-          <section class="container">
-            <div class="diversity_data register">
+
+            {/* Server Error State */}
+            <div className='mt-10'>
+              <ServerErr/>
+            </div>
+          
+          <section className="container">
+            <div className="diversity_data register">
               <h2>Signup for Tech Diversity</h2>
 
-              <div class="personal_data d-flex d-wrap d-between">
-                <div class="input_parent width-48">
+              <div className="personal_data d-flex d-wrap d-between">
+                <div className="input_parent width-48">
                   <input type="text" placeholder="Username *" name="username" id="id_username" autoFocus required/>
                   <label htmlFor="id_username">Username *</label>
                 </div>
-                <div class="input_parent width-48">
-                  <input type="email" placeholder="Email *" id="id_email" maxlength="254" name="email" required/>
+                <div className="input_parent width-48">
+                  <input type="email" placeholder="Email *" id="id_email" maxLength="254" name="email" required/>
                   <label htmlFor="id_email"> Email *</label>
                 </div>
-                <div class="input_parent width-48">
+                <div className="input_parent width-48">
                   <input type="text" placeholder="Full Name *" name="first_name" id="id_first_name" required/>
                   <label htmlFor="id_first_name">First Name *</label>
                 </div>
-                <div class="input_parent width-48">
+                <div className="input_parent width-48">
                   <input type="text" placeholder="Last Name *" name="last_name" id="id_last_name" required/>
                   <label htmlFor="id_last_name">Last Name *</label>
                 </div>
-                <div class="input_parent width-48">
+                <div className="input_parent width-48">
                   <input type="password" placeholder="Password *" name="password" id="id_password" required/>
                   <label htmlFor="id_password">Password *</label>
                 </div>
-                <div class="input_parent width-48">
+                <div className="input_parent width-48">
                   <input type="password" placeholder="Confirm Password *" name="password2" id="id_password2" required />
                   <label htmlFor="id_password2">Confirm Password *</label>
                 </div>
-                <div class="input_parent width-48">
+                <div className="input_parent width-48">
                   <input type="tel" placeholder="WhatsApp Number *" name="phone" id="id_phone" required/>
                   <label htmlFor="id_phone">WhatsApp Number *</label>
                 </div>
@@ -160,6 +160,8 @@ class Register extends React.Component {
                 />
               </div>
               <SubmitButton/>
+              <br></br>
+              <Link to="/login/">Login an existing account</Link>
             </div>
             
           </section>

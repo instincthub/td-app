@@ -2,12 +2,16 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Outlet, Link } from "react-router-dom";
+import { loginRequired } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/modal.css";
 
 function QuizInstruction() {
+
+loginRequired()
+
   return (
     <div>
       <Navbar />
@@ -57,7 +61,7 @@ function QuizInstruction() {
                                 document.getElementById("myModal").style.display = 'none'
                             }}
                         >&times;</span>
-                        <p>The time will start reading once you start. Ready? Hit the continue button!</p>
+                        <p>The countdown will begin reading once you start. Ready? Hit the continue button!</p>
 
                         <div className="mt-4">
                             <Link to="/quiz/quiztest"><button className="outlined-btn d-inline-block mt-1">Continue...</button></Link>
