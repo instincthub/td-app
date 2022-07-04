@@ -84,6 +84,7 @@ class Register extends React.Component {
         'Content-Type': 'application/json',
         "Authorization": "Token " + localStorage.getItem('access'),
         'X-CSRFToken': getCookie('CSRF-TOKEN'),
+        'Origin': window.location.origin
       },
       body: JSON.stringify(formData)
     };
