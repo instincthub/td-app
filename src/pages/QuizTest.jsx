@@ -21,16 +21,16 @@ function QuizTest() {
 
     useEffect(() => {
 
-        // let myHeaders = new Headers();
-        // myHeaders.append("Authorization", `Bearer ${localStorage.getItem('access')}`);
-        // myHeaders.append("Cookie", "csrftoken=sc7yRd0bAa2bDbuAjwt1RcomJue224aJKwnvzRQgBqkfmYSxJ0ZO8JLGaxqikXjG");
+        var formdata = new FormData();
 
         // get assessment from db
         const requestOptions = {
             method: 'GET',
             headers: {
               "Authorization": `Bearer ${localStorage.getItem('access')}`,
-            }
+            },
+            body: formdata,
+            redirect: 'follow'
         };
         console.log(requestOptions)
 
@@ -120,7 +120,14 @@ function QuizTest() {
                 body: JSON.stringify(answerData)
             };
 
-            fetAPI(setSubmitAnswer, "http://127.0.0.1:8000/assessment/answer/", requestOptions, true)
+            // fetAPI(setSubmitAnswer, "http://127.0.0.1:8000/assessment/answer/", requestOptions, true)
+
+            if (checkEnv() === "production") {
+                fetAPI(setSubmitAnswer, "https://api.instincthub.com/assessment/answer/", requestOptions, true)
+            }
+            else if(checkEnv() === "local"){ // Fetch static json in local
+                fetAPI(setSubmitAnswer, "http://127.0.0.1:8000/assessment/answer/", requestOptions, true)
+            }
         }
         
     }

@@ -21,7 +21,7 @@ loginRequired()
 					<div className="quiz_header">
 						<h1>Tech Diversity Quiz</h1>
 						<p>
-							We want to know if you are fit for the challenge. The test is just a nice way to see how much you know how think and communicate. 
+							We want to know if you are fit for the challenge. The test is just a nice way to see how much you know how to think and communicate. 
 						</p>
 					</div>
 					<div className="signup__list">
@@ -32,6 +32,9 @@ loginRequired()
 							</li>
 							<li>
                                 You will get 5 points for each correct answer. At the end of the Quiz, your total score will be displayed. Maximum score is 100 points.
+							</li>
+                            <li>
+                                You need the minimum of 50 points to stand a chance to be part.
 							</li>
 						</ol>
                         <h3 className="mt-3">Good luck!</h3>

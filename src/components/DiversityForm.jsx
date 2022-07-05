@@ -39,6 +39,7 @@ const Form = ({formEvent, ...props}) => {
           <p>Kindly follow all the social media handles below. While we encourage you to follow these pages for continuous updates, it is not part of the prerequisite:</p>
 
           <MediaLinks addClass="ml-0"/>
+          
           <h5 id="Duration"> Duration (12 weeks): 1st Aug - 31st Oct 2022 </h5>
           <p> P.S. The 3 month training is Free for shortlisted individuals.</p>
         </div>
