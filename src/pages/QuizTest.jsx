@@ -21,15 +21,12 @@ function QuizTest() {
 
     useEffect(() => {
 
-        var formdata = new FormData();
-
         // get assessment from db
         const requestOptions = {
             method: 'GET',
             headers: {
               "Authorization": `Bearer ${localStorage.getItem('access')}`,
             },
-            body: formdata,
             redirect: 'follow'
         };
         console.log(requestOptions)
