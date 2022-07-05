@@ -29,7 +29,7 @@ function QuizResults() {
 		console.log(requestOptions)
 
 		if (checkEnv() === "production") {
-			fetAPI(setData, `https://api.instincthub.com/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions)
+			fetAPI(setData, `https://api.instincthub.com/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
 		  }
 		  else if(checkEnv() === "local"){ // Fetch quiz result
 			fetAPI(setData, `http://127.0.0.1:8000/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
