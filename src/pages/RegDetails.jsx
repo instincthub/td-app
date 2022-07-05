@@ -35,7 +35,7 @@ class RegDetails extends React.Component {
         setCookie('u_id', params.get('u_id'), 365)
         setCookie('username', params.get('username'), 365)
     }
-    else { // if not token, direct user to register
+    if(getCookie('access') === null || '') { // if not token, direct user to register
       document.querySelector('.form_content').innerHTML = `
       <div class="container mt-10 mb-10">
         <span>To input details, you need to either login of create an account.</span>

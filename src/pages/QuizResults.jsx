@@ -52,9 +52,9 @@ function QuizResults() {
 						<h2 className="sub_header">Got {data.points} points</h2>
 						
                         <p className="mt-3">{data.met_expectation ? "Congratulation, you qualified!" : "You didn't have enough point. You can still learn a lot! "} <strong> We've emailed you.</strong></p>
-						{/* <div className="mt-4">
-                            <Link to="/quiz/quiztest"><button className="outlined-btn d-inline-block">Start Quiz</button></Link>
-						</div> */}
+						<div className="mt-4">
+                            <a href="https://skills.instincthub.com" target="_blank"><button className="outlined-btn d-inline-block">View course library</button></a>
+						</div>
 					</div>
 				</div>
 			</div>
