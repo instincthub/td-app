@@ -102,7 +102,7 @@ class RegDetails extends React.Component {
 
     const requestOptions = {
       method: 'POST',
-      'X-CSRFToken': getCookie('CSRF-TOKEN'),
+      'X-CSRFToken': getCookie('csrftoken'),
       'headers': {
         "Authorization": "Token " + getCookie('access')
       },
