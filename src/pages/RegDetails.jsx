@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Form from "../components/DiversityForm";
 
 import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
-import { fetAPI, spinBtn, handleError, getCookie } from "../components/static/assets/js/help_func";
+import { fetAPI, spinBtn, handleError, setCookie, getCookie } from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
@@ -18,7 +18,7 @@ class RegDetails extends React.Component {
       items: [],
       status: null,
       error: null,
-      token: localStorage.getItem('access')
+      token: getCookie('access')
     };
     // Binding this keyword 
     // this.updateState = this.componentDidMount.bind(this)
@@ -26,17 +26,16 @@ class RegDetails extends React.Component {
   }
 
   componentDidMount(){
-
     // get access token
     let params = (new URL(document.location)).searchParams;
-    let token = params.get('access'); // is the string "token".
-    let u_id = params.get('u_id'); 
-    // let age = parseInt(params.get('age')); // is the number 18
-    if (u_id && token) {
-        localStorage.setItem('access', token);
-        localStorage.setItem('u_id', u_id);
+
+    if (params.get('access')) {
+        setCookie('refresh',  params.get('refresh'), 365)
+        setCookie('access',  params.get('access'), 365)
+        setCookie('u_id', params.get('u_id'), 365)
+        setCookie('username', params.get('username'), 365)
     }
-    else if (this.state.token === null) { // if not token, direct user to register
+    else { // if not token, direct user to register
       document.querySelector('.form_content').innerHTML = `
       <div class="container mt-10 mb-10">
         <span>To input details, you need to either login of create an account.</span>
@@ -96,16 +95,16 @@ class RegDetails extends React.Component {
       
       
     });
-    formData.append("user",localStorage.getItem('u_id'))
+    formData.append("user", getCookie('u_id'))
 
-    console.log(localStorage.getItem('u_id'))
-    console.log(localStorage.getItem('access'))
-    
+    console.log(getCookie('u_id'))
+    console.log(getCookie('access'))
+
     const requestOptions = {
       method: 'POST',
       'X-CSRFToken': getCookie('CSRF-TOKEN'),
       'headers': {
-        "Authorization": "Token " + localStorage.getItem('access')
+        "Authorization": "Token " + getCookie('access')
       },
       body: formData
     };

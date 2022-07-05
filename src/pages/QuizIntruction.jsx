@@ -2,15 +2,14 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Outlet, Link } from "react-router-dom";
-import { loginRequired } from "../components/static/assets/js/help_func";
+import { loginRequired, getCookie } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/modal.css";
 
 function QuizInstruction() {
-
-loginRequired()
+    loginRequired(getCookie('access') !== null ? 200 : 401)
 
   return (
     <div>

@@ -2,8 +2,7 @@ import React from 'react';
 import { DatePick } from "../components/DatePick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { checkEnv, getCookie } from "../components/static/assets/js/help_func"; // check environment
-import { fetAPI, spinBtn, handleError } from "../components/static/assets/js/help_func";
+import { checkEnv, fetAPI, spinBtn, handleError, getCookie } from "../components/static/assets/js/help_func";
 import {SubmitButton} from '../components/SubmitButton'
 import { ServerErr } from '../components/ServerErr';
 import { Link } from 'react-router-dom';
@@ -82,7 +81,7 @@ class Register extends React.Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "Authorization": "Token " + localStorage.getItem('access'),
+        "Authorization": "Token " + getCookie('access'),
         'X-CSRFToken': getCookie('CSRF-TOKEN'),
         'Origin': window.location.origin
       },

@@ -2,7 +2,7 @@ import {React, useEffect, useState} from "react";
 import { fetAPI, loginRequired } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import Records from "../components/quiz-pagination/Record";
-import { getCookie, checkEnv} from "../components/static/assets/js/help_func";
+import {checkEnv, getCookie} from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
@@ -20,18 +20,21 @@ function QuizTest() {
     const answerData = {}
 
     useEffect(() => {
+        
 
         // get assessment from db
+        var myHeaders = new Headers();
+        let u_access = "Bearer " + getCookie('access')
+        myHeaders.append("Authorization", u_access)
+
+        console.log(myHeaders)
         const requestOptions = {
             method: 'GET',
-            headers: {
-              "Authorization": `Bearer ${localStorage.getItem('access')}`,
-            },
+            headers: myHeaders,
             redirect: 'follow'
         };
         console.log(requestOptions)
-
-        // fetAPI(setData, "http://127.0.0.1:8000/assessment/quiztest/1", requestOptions, true)
+        
 
         if (checkEnv() === "production") {
             fetAPI(setData, "https://api.instincthub.com/assessment/quiztest/1", requestOptions, true)
@@ -45,7 +48,7 @@ function QuizTest() {
         setCurrentPage(Number(localStorage.getItem('current_page')))
     }
 
-    loginRequired(data[0]) // if data status is 401 
+    loginRequired(getCookie('access') !== null ? 200 : 401)// if data status is 401 
     
     const assessment = data['a_assessment']
     const indexOfLastRecord = currentPage * recordsPerPage;
@@ -69,7 +72,7 @@ function QuizTest() {
         
 
         // Get user id and tech diversity
-        user_id = Number(localStorage.getItem('u_id'))
+        user_id = Number(getCookie('u_id'))
         assessment_id = current_records[0]['assessment']
 
         answerData['user'] = user_id
@@ -112,7 +115,7 @@ function QuizTest() {
                 method: 'post',
                 headers: { 
                     'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${localStorage.getItem('access')}`,
+                    "Authorization": `Bearer ${getCookie('access')}`,
                   },
                 body: JSON.stringify(answerData)
             };
@@ -128,7 +131,7 @@ function QuizTest() {
         }
         
     }
-    
+
   return (
     <div>
       {/* <Navbar /> */}
@@ -142,9 +145,7 @@ function QuizTest() {
 
             <h3>Question {currentPage} of {nPages}:</h3>
             
-            <Records 
-                data={current_records} 
-            />
+            <Records data={current_records}/>
             
             <PaginationQuiz
                 nPages={nPages}

@@ -5,7 +5,7 @@ import Form from "../components/DiversityForm";
 // import { Navbar, Banner, Features } from "./";
 import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
 import { SubmitButton } from "../components/SubmitButton";
-import { fetAPI, spinBtn, handleError } from "../components/static/assets/js/help_func";
+import { fetAPI, spinBtn, handleError, setCookie } from "../components/static/assets/js/help_func";
 import { printErr } from "../components/static/assets/js/help_func";
 import { ServerErr } from "../components/ServerErr";
 // import { Navbar, Banner, Features } from "./";
@@ -55,10 +55,14 @@ class Login extends React.Component {
     
     // Handle error codes
     if (this.state.items.access) {
-        localStorage.setItem('access', this.state.items.access)
-        localStorage.setItem('refresh', this.state.items.refresh)
-        localStorage.setItem('u_id', this.state.items.u_id)
-        localStorage.setItem('username', this.state.items.username)
+        setCookie('access', this.state.items.access)
+        setCookie('refresh', this.state.items.refresh)
+        setCookie('u_id', this.state.items.u_id)
+        setCookie('username', this.state.items.username)
+        // localStorage.setItem('access', this.state.items.access)
+        // localStorage.setItem('refresh', this.state.items.refresh)
+        // localStorage.setItem('u_id', this.state.items.u_id)
+        // localStorage.setItem('username', this.state.items.username)
     }
     
     handleError(this.state.status, items, registerForm, '/register/details')

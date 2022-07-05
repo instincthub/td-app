@@ -1,19 +1,3 @@
-export const getCookie = (name) => {
-  if (!document.cookie) {
-    return null;
-  }
-
-  const xsrfCookies = document.cookie.split(';')
-    .map(c => c.trim())
-    .filter(c => c.startsWith(name + '='));
-
-  if (xsrfCookies.length === 0) {
-    return null;
-  }
-  return decodeURIComponent(xsrfCookies[0].split('=')[1]);
-}
-console.log(getCookie('CSRF-TOKEN'))
-
 export const printErr = (key, value, index) =>{
     let inputField = document.querySelector('#regForm').querySelector(`[name="${key}"]`)
     // console.log(key, value)
@@ -162,6 +146,51 @@ export const spinBtn = (form, display, status) =>{
     form.disabled = status; // This disables the whole form via the fieldset
     form.querySelector('button .bt-spinner').style.display = display;
 }
+
+export const setCookie = (cname, cvalue, exdays) => {
+  // check if cookie with same value exist
+  let add_cookie = true
+  if (getCookie(cname) === cvalue || 
+      getCookie(cname) === null ||
+      cvalue === ''
+      ) {add_cookie = false}
+  else{removeCookie(cname, -10)}
+  
+  if (add_cookie) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    console.log(`${cname}=${cvalue}; cookies was created`)
+  }
+  else{
+    console.log(`${cname}=${cvalue}; exist in cookies`)
+  }
+}
+
+export const removeCookie = (cname, exdays) => {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=;" + expires;
+}
+
+export const getCookie = (cname) => {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
 
 export const customData = {
     universities: [
