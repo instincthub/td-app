@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 const Timer = (props) => {
-
     // store duration so when user refreshes, time resumes
     let min = localStorage.getItem('quiz_duration_min') 
     let sec = localStorage.getItem('quiz_duration_sec') 

@@ -2,8 +2,7 @@ import {React, useEffect, useState} from "react";
 import { fetAPI, loginRequired } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import Records from "../components/quiz-pagination/Record";
-import { getCookie } from "../components/static/assets/js/help_func";
-
+import { getCookie, checkEnv} from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
@@ -20,23 +19,31 @@ function QuizTest() {
 
     const answerData = {}
 
-
-
     useEffect(() => {
+
+        // let myHeaders = new Headers();
+        // myHeaders.append("Authorization", `Bearer ${localStorage.getItem('access')}`);
+        // myHeaders.append("Cookie", "csrftoken=sc7yRd0bAa2bDbuAjwt1RcomJue224aJKwnvzRQgBqkfmYSxJ0ZO8JLGaxqikXjG");
 
         // get assessment from db
         const requestOptions = {
             method: 'GET',
             headers: {
-              'Content-Type': 'application/json',
-              "Authorization": "Token " + localStorage.getItem('access'),
-              'X-CSRFToken': getCookie('CSRF-TOKEN'),
+              "Authorization": `Bearer ${localStorage.getItem('access')}`,
             }
         };
+        console.log(requestOptions)
 
-        fetAPI(setData, "http://127.0.0.1:8000/assessment/quiztest/1", requestOptions, true)
+        // fetAPI(setData, "http://127.0.0.1:8000/assessment/quiztest/1", requestOptions, true)
+
+        if (checkEnv() === "production") {
+            fetAPI(setData, "https://api.instincthub.com/assessment/quiztest/1", requestOptions, true)
+        }
+        else if(checkEnv() === "local"){ // Fetch static json in local
+            fetAPI(setData, "http://127.0.0.1:8000/assessment/quiztest/1", requestOptions, true)
+        }
+
     }, [])
-
     if (localStorage.getItem('current_page') !== null && localStorage.getItem('current_page') > currentPage) {
         setCurrentPage(Number(localStorage.getItem('current_page')))
     }
@@ -108,7 +115,8 @@ function QuizTest() {
                 method: 'post',
                 headers: { 
                     'Content-Type': 'application/json',
-                },
+                    "Authorization": `Bearer ${localStorage.getItem('access')}`,
+                  },
                 body: JSON.stringify(answerData)
             };
 
@@ -116,11 +124,6 @@ function QuizTest() {
         }
         
     }
-
-    // End quiz when finish and timeout 
-    const endQuiz = ()=>{
-        
-    };
     
   return (
     <div>

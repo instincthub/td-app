@@ -13,20 +13,30 @@ function QuizResults() {
     const [data, setData] = useState([])
 
 	useEffect(() => {
+		// get access token
+		let params = (new URL(document.location)).searchParams;
+		let assessment_id = params.get('assessment_id'); // is the string "token".
+		let u_id = params.get('user_id'); 
 
 		loginRequired()
-		
+
 		// get assessment from db
         const requestOptions = {
-            method: 'GET'
+            method: 'GET',
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem('access')}`,
+			}
         };
+		console.log(`https://api.instincthub.com/assessment/answer/results/${u_id}/${assessment_id}/`)
+		console.log(requestOptions)
 
 		if (checkEnv() === "production") {
-			fetAPI(setData, "https://api.instincthub.com/assessment/answer/results/94/1/", requestOptions)
+			fetAPI(setData, `https://api.instincthub.com/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions)
 		  }
 		  else if(checkEnv() === "local"){ // Fetch quiz result
-			fetAPI(setData, "http://127.0.0.1:8000/assessment/answer/results/94/1/", requestOptions, true)
+			fetAPI(setData, `http://127.0.0.1:8000/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
 		  }
+		  
     }, [])
 
   return (
@@ -43,7 +53,7 @@ function QuizResults() {
 						<p>Scored: {data.score}</p>
 						<h2 className="sub_header">Got {data.points} points</h2>
 						
-                        <p className="mt-3">{data.met_expectation ? "Congratulation, you qualified!" : "You didn't have enough point. Try again next year. "} <strong> We've emailed you.</strong></p>
+                        <p className="mt-3">{data.met_expectation ? "Congratulation, you qualified!" : "You didn't have enough point. You can still learn a lot! "} <strong> We've emailed you.</strong></p>
 						{/* <div className="mt-4">
                             <Link to="/quiz/quiztest"><button className="outlined-btn d-inline-block">Start Quiz</button></Link>
 						</div> */}

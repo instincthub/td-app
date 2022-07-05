@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import sterling from "./static/assets/images/sterling.jpg";
 import people from "./static/assets/images/grid_style.jpg";
 import { showVideo } from "./static/assets/js/nav";
@@ -18,9 +18,9 @@ function Banner() {
             </p>
 
             <div className="v_btn">
-              {/* <button className="important-btn rollin">
-                <Link itemProp="url" to="/register">Enroll Now</Link>
-              </button> */}
+              <button className="important-btn rollin">
+                <Link itemProp="url" to="/register"><span>Enroll Now</span></Link>
+              </button>
               <button itemProp="video" className="default-btn watch_snip" onClick={showVideo}>
                 Watch Video
               </button>

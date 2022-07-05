@@ -9,8 +9,13 @@ function InvalidToken() {
   return (
     <div>
       <Navbar />
-      <div className="container">
-        <h4>'Activation link is invalid!'</h4>
+      <div className="container mt-5 pt-10 pb-4">
+        <h4>Activation link is invalid!</h4>
+        <a href="/login">
+          <button class="d-inline-block important-btn">
+            <span>Try Login</span>
+          </button>
+        </a>
       </div>
       <Footer />
     </div>

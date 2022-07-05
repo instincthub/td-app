@@ -70,14 +70,12 @@ class Login extends React.Component {
 
     const formData  = new FormData(form);
 
+    console.log(formData)
+
 
     // get assessment from db
     const requestOptions = {
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json",
-            
-        },
         body: formData
     };
 

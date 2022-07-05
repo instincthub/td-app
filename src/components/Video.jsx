@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Video = () => {
   return (
@@ -15,9 +15,9 @@ const Video = () => {
         <iframe itemProp="video" loading="lazy" title="Tech Diversity in Niger Overview" src="https://player.vimeo.com/video/668725125?h=5533a272ad" width="640" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
       </div>
       <div className="ip_btn">
-        {/* <Link to={"register"} itemProp="url">
-          <button className="important-btn">Take Assessment</button>
-        </Link> */}
+        <Link to={"register"} itemProp="url">
+          <button className="important-btn"><span>Take Assessment</span></button>
+        </Link>
       </div>
     </div>
   );

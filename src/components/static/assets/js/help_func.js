@@ -1,17 +1,18 @@
 export const getCookie = (name) => {
-    if (!document.cookie) {
-      return null;
-    }
-  
-    const xsrfCookies = document.cookie.split(';')
-      .map(c => c.trim())
-      .filter(c => c.startsWith(name + '='));
-  
-    if (xsrfCookies.length === 0) {
-      return null;
-    }
-    return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+  if (!document.cookie) {
+    return null;
+  }
+
+  const xsrfCookies = document.cookie.split(';')
+    .map(c => c.trim())
+    .filter(c => c.startsWith(name + '='));
+
+  if (xsrfCookies.length === 0) {
+    return null;
+  }
+  return decodeURIComponent(xsrfCookies[0].split('=')[1]);
 }
+console.log(getCookie('CSRF-TOKEN'))
 
 export const printErr = (key, value, index) =>{
     let inputField = document.querySelector('#regForm').querySelector(`[name="${key}"]`)
@@ -122,7 +123,7 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                 }
             }
             
-            console.log(result.message)
+            console.log(result)
             // console.log(status)
         },
         (error) => {
@@ -150,7 +151,7 @@ export const checkEnv = ()=> {
 }
 
 export const loginRequired = (status) =>{
-    if(status === 401) { // Login Required
+    if(status === 401 || status === null) { // Login Required
         console.log(window.location.href )
         window.location.href = `/login/?login_redirect=${window.location.pathname}`
       }
