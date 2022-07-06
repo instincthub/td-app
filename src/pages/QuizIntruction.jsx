@@ -27,7 +27,7 @@ function QuizInstruction() {
 						<h4 className="sub_header">Quiz Instruction</h4>
 						<ol type="1" className="numbered-list">
 							<li>
-                                The test contains 20 questions and there is <strong>35 minutes</strong> time limit.
+                                The test contains 20 questions and there is <strong>20 minutes</strong> time limit.
 							</li>
 							<li>
                                 You will get 5 points for each correct answer. At the end of the Quiz, your total score will be displayed. Maximum score is 100 points.

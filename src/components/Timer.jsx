@@ -5,7 +5,7 @@ const Timer = (props) => {
     // store duration so when user refreshes, time resumes
     let min = localStorage.getItem('quiz_duration_min') 
     let sec = localStorage.getItem('quiz_duration_sec') 
-    const [ minutes, setMinutes ] = useState(min ? min: 35);
+    const [ minutes, setMinutes ] = useState(min ? min: 20);
     const [seconds, setSeconds ] =  useState(sec ? sec: 0);
 
     useEffect(()=>{
