@@ -11,7 +11,7 @@ function Participate() {
               src={require("./static/assets/svgs/coding.svg").default}
               alt="Code Icon"
             />
-            <h3 itemProp="title">Codding Skills</h3>
+            <h3 itemProp="title">Coding Skills</h3>
             <p itemProp="description">
             Gain industry experience in building web applications using HTML, CSS and Javascript (Front End Web Development). Build web applications compatible with both mobile and desktop devices.
             </p>
