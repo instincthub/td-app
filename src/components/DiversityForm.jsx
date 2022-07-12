@@ -199,7 +199,7 @@ const Form = ({formEvent, ...props}) => {
                     type="radio" 
                     name="commitment_hours" 
                     id="id_commitment_hours_5"
-                    data-value="<8" />
+                    data-value="7" />
                   <span>Less than 8 hours</span>
                 </label>
               </div>
@@ -209,7 +209,7 @@ const Form = ({formEvent, ...props}) => {
                     type="radio" 
                     name="commitment_hours" 
                     id="id_commitment_hours_6"
-                    data-value="<12" />
+                    data-value="13" />
                   <span>More than 12 hours</span>
                 </label>
               </div>
