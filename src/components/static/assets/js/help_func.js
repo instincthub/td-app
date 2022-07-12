@@ -1,3 +1,12 @@
+export const HOST_URL = ()=> {
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "192.168.0.174" || window.location.hostname === "") {
+      return "http://127.0.0.1:8000"
+  }
+  else{
+      return "https://api.instincthub.com"
+  }
+}
+
 export const cookiesEnabled = () =>{
   var i, j, cookies, found;
   if (navigator.cookieEnabled===false) return 0;
@@ -160,32 +169,39 @@ export const getCookie = (cname) => {
 
 export const removeCookie = (cname) => {
   const d = new Date('12-02-2011'); // backdate
-  document.cookie = cname + "=;" + d;
+  document.cookie = cname + "=;" + HOST_URL + d;
 }
 
 export const setCookie = (cname, cvalue, exdays) => {
   // check if cookie with same value exist
   let add_cookie = true
-  console.log(getCookie(cname))
-  if (getCookie(cname) === cvalue && getCookie(cname) !== null && getCookie(cname) !== 'null'
-      ) {add_cookie = false}
-  else{removeCookie(cname)}
+  // console.log(getCookie(cname))
+  if (getCookie(cname) === cvalue && 
+      getCookie(cname) !== null && 
+      getCookie(cname) !== 'null' && 
+      getCookie(cname) !== ''
+      ) {
+        add_cookie = false
+      }
+  else{
+    removeCookie(cname)
+  }
   
   if (add_cookie === true) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    console.log(`${cname}=${cvalue}; cookies was created`)
+    // console.log(`${cname}=${cvalue}; cookies was created`)
   }
   else{
-    console.log(`${cname}=${cvalue}; exist in cookies`)
+    // console.log(`${cname}=${cvalue}; exist in cookies`)
   }
 }
 // setCookie('test3', 'stest', 29)
 // console.log(getCookie('test3'))
 // removeCookie('test3', -10)
-// console.log(getCookie('test3'))
+// console.log(getCookie('u_id'))
 
 
 
@@ -271,15 +287,6 @@ export const handleError = (status, items, registerForm, r_path) =>{
         spinBtn(registerForm, 'none', false)
         window.location.href = "#Duration" 
     }
-}
-
-export const HOST_URL = ()=> {
-  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "192.168.0.174" || window.location.hostname === "") {
-      return "http://127.0.0.1:8000"
-  }
-  else{
-      return "https://api.instincthub.com"
-  }
 }
 
 // Set type to null if not required. 

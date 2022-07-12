@@ -18,7 +18,8 @@ class RegDetails extends React.Component {
       items: [],
       status: null,
       error: null,
-      token: getCookie('access')
+      token: getCookie('access'),
+      user_id: getCookie('u_id')
     };
     // Binding this keyword 
     // this.updateState = this.componentDidMount.bind(this)
@@ -31,11 +32,17 @@ class RegDetails extends React.Component {
     // get access token
     let params = (new URL(document.location)).searchParams;
 
-    if (params.get('access')) {
+    if (params.get('access') !== null || params.get('access') !== '') {
         setCookie('refresh',  params.get('refresh'), 365)
         setCookie('access',  params.get('access'), 365)
         setCookie('u_id', params.get('u_id'), 365)
         setCookie('username', params.get('username'), 365)
+        // console.log(params.get('u_id'))
+
+        this.setState({
+          token: params.get('access'),
+          user_id: params.get('u_id')
+      })
     }
     if(getCookie('access') === null || '') { // if not token, direct user to register
       document.querySelector('.form_content').innerHTML = `
@@ -49,9 +56,11 @@ class RegDetails extends React.Component {
       </div>`
     }
 
-
+    // console.log(getCookie('access'))
+    
   }
   componentDidUpdate(){
+    // console.log(this.state.token)
     const {items, status} = this.state
     const registerForm = document.querySelector('#regForm')
 
@@ -97,10 +106,10 @@ class RegDetails extends React.Component {
       
       
     });
-    formData.append("user", getCookie('u_id'))
+    formData.append("user", this.state.user_id)
 
-    console.log(getCookie('u_id'))
-    console.log(getCookie('access'))
+    console.log(this.state.token)
+    console.log(this.state.user_id)
 
     const requestOptions = {
       method: 'POST',
