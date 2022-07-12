@@ -52,12 +52,16 @@
     font-weight: 600;
 }
 
-.faq p{
+.faq p,
+.faq ul,
+.faq ol{
     display: none;
     font-weight: 300;
 }
 
-.faq.open p{
+.faq.open p,
+.faq.open ul,
+.faq.open ol{
     display: block;
     animation-name: growBoxHeight;
     animation-duration: .2s;

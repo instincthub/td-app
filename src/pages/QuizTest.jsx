@@ -1,14 +1,18 @@
 import {React, useEffect, useState} from "react";
-import { fetAPI, loginRequired } from "../components/static/assets/js/help_func";
+import { fetAPI, loginRequired, cookiesRequired, checkEnv, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import Records from "../components/quiz-pagination/Record";
-import {checkEnv, getCookie} from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
 import "../components/static/assets/js/quiz-test.js";
 
 function QuizTest() {
+
+    // Required 
+    cookiesRequired()
+    loginRequired(getCookie('access') !== null ? 200 : 401)// if data status is 401
+
     // To hold the actual data
     const [data, setData] = useState([])
     const [submitAnswer, setSubmitAnswer] = useState([])
@@ -47,8 +51,6 @@ function QuizTest() {
     if (localStorage.getItem('current_page') !== null && localStorage.getItem('current_page') > currentPage) {
         setCurrentPage(Number(localStorage.getItem('current_page')))
     }
-
-    loginRequired(getCookie('access') !== null ? 200 : 401)// if data status is 401 
     
     const assessment = data['a_assessment']
     const indexOfLastRecord = currentPage * recordsPerPage;

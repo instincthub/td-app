@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import Form from "../components/DiversityForm";
 
 import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
-import { fetAPI, spinBtn, handleError, setCookie, getCookie } from "../components/static/assets/js/help_func";
+import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired} from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
@@ -26,6 +26,8 @@ class RegDetails extends React.Component {
   }
 
   componentDidMount(){
+    
+    cookiesRequired()
     // get access token
     let params = (new URL(document.location)).searchParams;
 

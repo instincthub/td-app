@@ -12,6 +12,8 @@ import QuizInstruction from "./pages/QuizIntruction";
 import QuizTest from "./pages/QuizTest";
 import QuizResults from "./pages/QuizResults";
 import Login from "./pages/Login";
+import RegTracker from "./pages/RegTracker";
+import { BasicTable } from "./pages/BasicTable";
 
 // Time since
 import TimeAgo from 'javascript-time-ago'
@@ -39,6 +41,8 @@ function Index() {
               <Route path="quiz/quiztest" element={<QuizTest />} />
               <Route path="quiz/quiztest/results" element={<QuizResults />} />
               <Route path="login" element={<Login />} />
+              {/* <Route path="reg_tracker" element={<RegTracker />} /> */}
+              <Route path="reg_tracker" element={<BasicTable />} />
           </Routes>
         </BrowserRouter>
       );

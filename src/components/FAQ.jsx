@@ -2,8 +2,7 @@ import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import faqJSON from "./static/json/faqs.json";
-import { checkEnv } from "./static/assets/js/help_func"; // check environment
-import { faqTag } from "./static/assets/js/faq";
+import { checkEnv, faqTag } from "./static/assets/js/help_func"; // check environment
 import { fetAPI } from "./static/assets/js/help_func";
 
 // import "./carousel";

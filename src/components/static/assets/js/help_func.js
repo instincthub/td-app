@@ -1,3 +1,194 @@
+export const cookiesEnabled = () =>{
+  var i, j, cookies, found;
+  if (navigator.cookieEnabled===false) return 0;
+  document.cookie = 'testcookiesenabled=1';
+  for (i=0; i<2; i++) {
+      found = false;
+      cookies = document.cookie.split(';');
+      j = cookies.length;
+      while(j--) {
+          while (cookies[j].charAt(0)==' ') {// trim spaces
+              cookies[j] = cookies[j].substring(1);
+          }
+          if (cookies[j].indexOf('testcookiesenabled=')==0) {
+              found = true;
+              break;
+          }
+      }
+      if (!found) {
+          return i;
+      }
+      // Delete test cookie.
+      document.cookie = 'testcookiesenabled=; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+  }
+  // Results inconclusive.
+}
+
+export const faqTag = (e) =>{
+  // Hide other elements and change the icon button.
+  const hideTag = () =>{
+      document.querySelectorAll('.faq').forEach(item =>{
+          item.classList.remove('open')
+          item.children[1].innerHTML = '&#43;';
+      })
+  }
+
+  // Toggle targeted element to show with the forEach loop
+  
+ if (e.target.classList.contains('faq')) {
+      hideTag()
+      e.target.classList.toggle('open')
+      e.target.querySelector('.btn').innerHTML = '&#8722;'
+ }
+  else if (e.target.className === 'btn') {
+      hideTag()
+      e.target.parentElement.classList.toggle('open')
+      e.target.innerHTML = '&#8722;'
+  }
+  else if (e.target.tagName === 'H3') {
+      hideTag()
+      e.target.parentElement.parentElement.classList.toggle('open')
+      e.target.querySelector('.btn').innerHTML = '&#8722;'
+  }
+}
+
+export const cookiesRequired = (tag) =>{
+  if (cookiesEnabled() === 0) {
+    document.getElementById('root').innerHTML = `
+    <div 
+        id="faq"
+        class="faq_main container" 
+        itemScope itemType="https://helpcenter.trendmicro.com/en-us/article/tmka-18108">
+        <div class="faq_wrap">
+          <div  class="p_reviews">
+              <h2 itemProp="title" class='t-left'>We use cookies</h2>
+          </div>
+          <p>Cookies help us deliver the best experience on our website. By using our website, you agree to the use of cookies.</p>
+          <p>Use the descriptions below to enable your cookies. <strong>Refresh this page when you are done!</strong> It should load the right content.</p>
+
+            
+          <div class="faq">
+            <div class="faq_text">
+              <h3>Enable website cookies and JavaScript in <strong>Google Chrome</strong></h3>
+              <ol>
+                <li>Open <strong>Google Chrome.</strong></li>
+                <li>On the upper right corner, click the <strong>Menu button ⋮</strong>, then choose Settings.</li>
+                <li>Under <strong>Privacy and security</strong>, click <strong>Site Settings</strong>.</li>
+                <p>- Scroll down until you see the <strong>Content</strong> section.</p>
+                <p>- Select <strong>Cookies and other site data</strong>, then choose <strong>Allow all cookies.</strong></p>
+                <p>- Select <strong>JavaScript</strong>, then choose <strong>Sites can use Javascript.</strong></p>
+              </ol>
+            </div>
+            <span class="btn">&#43;</span>
+          </div>
+
+          <div class="faq">
+            <div class="faq_text">
+              <h3>Enable website cookies and JavaScript in <strong>Microsoft Edge</strong></h3>
+              <ol>
+                <li>Open <strong>Microsoft Edge</strong>.</li>
+                <li>At the top right corner, click <strong>Settings and more</strong> , then choose <strong>Settings</strong>.</li>
+                <li>Select <strong>Cookies and site permissions</strong>.</li>
+                <p>- Click <strong>Manage and delete cookies and site data</strong>, then turn ON <strong>Allow sites to save and read cookie data (recommended)</strong>.</p>
+                <p>- Select Cookies and other site data, then choose Allow all cookies.</p>
+                <p>- Select <strong>JavaScript</strong> under <strong>Site permissions</strong>, then turn ON  <strong>Allowed (recommended)</strong>.</p>
+              </ol>
+            </div>
+            <span class="btn">&#43;</span>
+          </div>
+
+          <div class="faq">
+            <div class="faq_text">
+              <h3>Enable website cookies and JavaScript in <strong>Mozilla Firefox</strong></h3>
+              <ol>
+              <strong>Note:</strong> By default, Javascript is automatically enabled in Firefox.
+                <li>Open <strong>Mozilla Firefox</strong>.</li>
+                <li>At the upper right, click the <strong>Menu button ☰</strong>, then select <strong>Settings</strong>.</li>
+                <li>Select <strong>Privacy & Security</strong>, then choose <strong>Standard</strong> under <strong>Browser Privacy</strong>.</li>
+              </ol>
+            </div>
+            <span class="btn">&#43;</span>
+          </div>
+
+          <div class="faq">
+            <div class="faq_text">
+              <h3>Enable website cookies and JavaScript in Apple <strong>Safari</strong></h3>
+              <ol>
+                <li>Open <strong>Safari</strong>.</li>
+                <li>At the upper left, click the <strong>Safari</strong> menu, then select <strong>Preferences</strong>.</li>
+                <p>- Select the Privacy tab, then choose <strong>Never</strong> under <strong>Block cookies</strong>.</p>
+                <p>- Select the <strong>Security</strong> tab, then check <strong>Enable JavaScript</strong> under <strong>Web content</strong>.</p>
+              </ol>
+            </div>
+            <span class="btn">&#43;</span>
+          </div>
+
+          <p class='mt-3'>Need additional help? chat with us via</p>
+          <a href="https://wa.me/message/5IA2QYCI53SUM1" target="_blank" rel="noreferrer">
+            <button class="d-inline-block important-btn">
+              <span>WhatsApp</span>
+            </button>
+          </a>
+        </div>
+    </div>
+    `
+    const faq = document.getElementById('faq')
+    if (faq) {
+      faq.addEventListener('click', (e)=>{
+        faqTag(e)
+      })
+    }
+  }
+  
+  
+}
+
+export const getCookie = (cname) => {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return null;
+}
+
+export const removeCookie = (cname) => {
+  const d = new Date('12-02-2011'); // backdate
+  document.cookie = cname + "=;" + d;
+}
+
+export const setCookie = (cname, cvalue, exdays) => {
+  // check if cookie with same value exist
+  let add_cookie = true
+  console.log(getCookie(cname))
+  if (getCookie(cname) === cvalue && getCookie(cname) !== null && getCookie(cname) !== 'null'
+      ) {add_cookie = false}
+  else{removeCookie(cname)}
+  
+  if (add_cookie === true) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    console.log(`${cname}=${cvalue}; cookies was created`)
+  }
+  else{
+    console.log(`${cname}=${cvalue}; exist in cookies`)
+  }
+}
+// setCookie('test3', 'stest', 29)
+// console.log(getCookie('test3'))
+// removeCookie('test3', -10)
+// console.log(getCookie('test3'))
+
+
+
 export const printErr = (key, value, index) =>{
     let inputField = document.querySelector('#regForm').querySelector(`[name="${key}"]`)
     // console.log(key, value)
@@ -82,6 +273,35 @@ export const handleError = (status, items, registerForm, r_path) =>{
     }
 }
 
+export const HOST_URL = ()=> {
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "192.168.0.174" || window.location.hostname === "") {
+      return "http://127.0.0.1:8000"
+  }
+  else{
+      return "https://api.instincthub.com"
+  }
+}
+
+// Set type to null if not required. 
+export const reqOptions = (method, data=null, type="application/json") =>{
+  let myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer "+getCookie('access'));
+  
+  myHeaders.append("Cookie", "csrftoken="+getCookie('csrftoken'));
+
+  if (type !== null) {
+    myHeaders.append("Content-Type", type);
+  }
+  
+  var request = {
+    method: method,
+    headers: myHeaders,
+    body: data,
+    redirect: 'follow'
+  };
+
+  return request
+}
 
 export const fetAPI = (session, api, reqOptions, func=false) =>{
 
@@ -98,7 +318,7 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                     items: result,
                     status: status
                 })
-            }else{// if function component
+            }else if (func === true){// if function component
                 if (status === 401) {
                     session(status)
                 }
@@ -109,9 +329,9 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
             
             console.log(result)
             // console.log(status)
+            return result
         },
         (error) => {
-            console.log(error)
             if (func === false) {
                 session.setState({
                     error: error
@@ -120,6 +340,7 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
             else{
                 session(error)
             }
+            console.log(error.message)
             return error.message
         }
     )
@@ -146,51 +367,6 @@ export const spinBtn = (form, display, status) =>{
     form.disabled = status; // This disables the whole form via the fieldset
     form.querySelector('button .bt-spinner').style.display = display;
 }
-
-export const setCookie = (cname, cvalue, exdays) => {
-  // check if cookie with same value exist
-  let add_cookie = true
-  if (getCookie(cname) === cvalue || 
-      getCookie(cname) === null ||
-      cvalue === ''
-      ) {add_cookie = false}
-  else{removeCookie(cname, -10)}
-  
-  if (add_cookie) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    let expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    console.log(`${cname}=${cvalue}; cookies was created`)
-  }
-  else{
-    console.log(`${cname}=${cvalue}; exist in cookies`)
-  }
-}
-
-export const removeCookie = (cname, exdays) => {
-  const d = new Date();
-  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-  let expires = "expires="+d.toUTCString();
-  document.cookie = cname + "=;" + expires;
-}
-
-export const getCookie = (cname) => {
-  let name = cname + "=";
-  let ca = document.cookie.split(';');
-  for(let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-
 
 export const customData = {
     universities: [

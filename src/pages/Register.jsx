@@ -2,7 +2,7 @@ import React from 'react';
 import { DatePick } from "../components/DatePick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { checkEnv, fetAPI, spinBtn, handleError, getCookie } from "../components/static/assets/js/help_func";
+import { checkEnv, fetAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired } from "../components/static/assets/js/help_func";
 import {SubmitButton} from '../components/SubmitButton'
 import { ServerErr } from '../components/ServerErr';
 import { Link } from 'react-router-dom';
@@ -19,11 +19,16 @@ class Register extends React.Component {
     this.state = {
       items: [],
       status: null,
-      error: null
+      error: null,
+      b_cookies: cookiesEnabled()
     };
     // Binding this keyword 
     // this.updateState = this.componentDidMount.bind(this)
     this.handleSubmit = this.postData.bind(this)
+  }
+  componentDidMount(){
+    // Check cookies
+    cookiesRequired()
   }
   componentDidUpdate(){
     const {items, status} = this.state
@@ -38,29 +43,10 @@ class Register extends React.Component {
       }
     })
 
-    const printErr = (key, value, index) =>{
-      let inputField = registerForm.querySelector(`[name="${key}"]`)
-      inputField.style.borderColor = 'var(--TurkishRose)'
-      let error_tag = inputField.parentElement.querySelector('.error')
-      if (error_tag) {
-        error_tag.textContent = value
-      }
-      else{
-        let span_tag = document.createElement('SPAN')
-        span_tag.classList.add('error')
-        span_tag.textContent = value
-        span_tag.style.color = 'var(--TurkishRose)'
-        inputField.parentElement.append(span_tag)
-      }
-      if (index === 0) {
-        inputField.focused = true
-      }
-      
-    }
-
     // Handle error 400, null and else redirect to /quiz if success 
     handleError(status, items, registerForm, '/register/verify')
   }
+  
 
   postData(form){
     spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
@@ -101,74 +87,75 @@ class Register extends React.Component {
     
   }
   
+  
   render(){ 
-    return (
-      <div>
-        <Navbar />
-        <form 
-          id='regForm'
-          onSubmit={(e)=>{
-            e.preventDefault();
-            this.postData(e.target)
-            }}>
+      return (
+        <div>
+          <Navbar />
+          <form 
+            id='regForm'
+            onSubmit={(e)=>{
+              e.preventDefault();
+              this.postData(e.target)
+              }}>
 
-            {/* Server Error State */}
-            <div className='mt-10'>
-              <ServerErr/>
-            </div>
-          
-          <section className="container">
-            <div className="diversity_data register">
-              <h2>Signup for Tech Diversity</h2>
-
-              <div className="personal_data d-flex d-wrap d-between">
-                <div className="input_parent width-48">
-                  <input type="text" placeholder="Username *" name="username" id="id_username" autoFocus required/>
-                  <label htmlFor="id_username">Username *</label>
-                </div>
-                <div className="input_parent width-48">
-                  <input type="email" placeholder="Email *" id="id_email" maxLength="254" name="email" required/>
-                  <label htmlFor="id_email"> Email *</label>
-                </div>
-                <div className="input_parent width-48">
-                  <input type="text" placeholder="Full Name *" name="first_name" id="id_first_name" required/>
-                  <label htmlFor="id_first_name">First Name *</label>
-                </div>
-                <div className="input_parent width-48">
-                  <input type="text" placeholder="Last Name *" name="last_name" id="id_last_name" required/>
-                  <label htmlFor="id_last_name">Last Name *</label>
-                </div>
-                <div className="input_parent width-48">
-                  <input type="password" placeholder="Password *" name="password" id="id_password" required/>
-                  <label htmlFor="id_password">Password *</label>
-                </div>
-                <div className="input_parent width-48">
-                  <input type="password" placeholder="Confirm Password *" name="password2" id="id_password2" required />
-                  <label htmlFor="id_password2">Confirm Password *</label>
-                </div>
-                <div className="input_parent width-48">
-                  <input type="tel" placeholder="WhatsApp Number *" name="phone" id="id_phone" required/>
-                  <label htmlFor="id_phone">WhatsApp Number *</label>
-                </div>
-                <DatePick 
-                  placeholder="Date of Birth*" 
-                  labelText="Date of Birth*" 
-                  addClass="width-48"
-                  id='id_date_of_birth' 
-                  name='id_date_of_birth' 
-                  required={true}
-                />
+              {/* Server Error State */}
+              <div className='mt-10'>
+                <ServerErr/>
               </div>
-              <SubmitButton/>
-              <br></br>
-              <Link to="/login/">Login an existing account</Link>
-            </div>
             
-          </section>
-          </form>
-        <Footer />
-      </div>
-    );
+            <section className="container">
+              <div className="diversity_data register">
+                <h2>Signup for Tech Diversity</h2>
+
+                <div className="personal_data d-flex d-wrap d-between">
+                  <div className="input_parent width-48">
+                    <input type="text" placeholder="Username *" name="username" id="id_username" autoFocus required/>
+                    <label htmlFor="id_username">Username *</label>
+                  </div>
+                  <div className="input_parent width-48">
+                    <input type="email" placeholder="Email *" id="id_email" maxLength="254" name="email" required/>
+                    <label htmlFor="id_email"> Email *</label>
+                  </div>
+                  <div className="input_parent width-48">
+                    <input type="text" placeholder="Full Name *" name="first_name" id="id_first_name" required/>
+                    <label htmlFor="id_first_name">First Name *</label>
+                  </div>
+                  <div className="input_parent width-48">
+                    <input type="text" placeholder="Last Name *" name="last_name" id="id_last_name" required/>
+                    <label htmlFor="id_last_name">Last Name *</label>
+                  </div>
+                  <div className="input_parent width-48">
+                    <input type="password" placeholder="Password *" name="password" id="id_password" required/>
+                    <label htmlFor="id_password">Password *</label>
+                  </div>
+                  <div className="input_parent width-48">
+                    <input type="password" placeholder="Confirm Password *" name="password2" id="id_password2" required />
+                    <label htmlFor="id_password2">Confirm Password *</label>
+                  </div>
+                  <div className="input_parent width-48">
+                    <input type="tel" placeholder="WhatsApp Number *" name="phone" id="id_phone" required/>
+                    <label htmlFor="id_phone">WhatsApp Number *</label>
+                  </div>
+                  <DatePick 
+                    placeholder="Date of Birth*" 
+                    labelText="Date of Birth*" 
+                    addClass="width-48"
+                    id='id_date_of_birth' 
+                    name='id_date_of_birth' 
+                    required={true}
+                  />
+                </div>
+                <SubmitButton/>
+                <br></br>
+                <Link to="/login/">Login an existing account</Link>
+              </div>
+              
+            </section>
+            </form>
+          <Footer />
+        </div>
+      );
   }
 }
 

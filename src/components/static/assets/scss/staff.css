@@ -221,6 +221,9 @@ h5 {
 .op-5 {
   opacity: 50%;
 }
+.t-left{
+  text-align: left !important;
+}
 
 .max_605 {
   max-width: 605px;
@@ -248,6 +251,7 @@ hr {
   margin: 40px 0;
 }
 
+ul, ol,
 ul li {
   font-family: var(--Nunito);
   font-size: 16px;
@@ -629,6 +633,22 @@ img {
     width: 100% !important;
   }
   
+}
+
+/* ===================
+Loading
+====================== */
+.loading {
+  text-align: center !important;
+  margin-top: 40px;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto
 }
 
 /* ===================

@@ -59,10 +59,6 @@ class Login extends React.Component {
         setCookie('refresh', this.state.items.refresh)
         setCookie('u_id', this.state.items.u_id)
         setCookie('username', this.state.items.username)
-        // localStorage.setItem('access', this.state.items.access)
-        // localStorage.setItem('refresh', this.state.items.refresh)
-        // localStorage.setItem('u_id', this.state.items.u_id)
-        // localStorage.setItem('username', this.state.items.username)
     }
     
     handleError(this.state.status, items, registerForm, '/register/details')
