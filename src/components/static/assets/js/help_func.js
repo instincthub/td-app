@@ -173,30 +173,12 @@ export const removeCookie = (cname) => {
 }
 
 export const setCookie = (cname, cvalue, exdays) => {
-  // check if cookie with same value exist
-  let add_cookie = true
-  // console.log(getCookie(cname))
-  if (getCookie(cname) === cvalue && 
-      getCookie(cname) !== null && 
-      getCookie(cname) !== 'null' && 
-      getCookie(cname) !== ''
-      ) {
-        add_cookie = false
-      }
-  else{
-    removeCookie(cname)
-  }
-  
-  if (add_cookie === true) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     let expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     // console.log(`${cname}=${cvalue}; cookies was created`)
-  }
-  else{
-    // console.log(`${cname}=${cvalue}; exist in cookies`)
-  }
+
 }
 // setCookie('test3', 'stest', 29)
 // console.log(getCookie('test3'))
@@ -263,7 +245,20 @@ export const printErr = (key, value, index) =>{
 
 
 export const handleError = (status, items, registerForm, r_path) =>{
-    if (status === 400){
+  const serverTag = document.querySelector('.server_err')
+
+  if (status === 400){
+    if (items.user[0] === "This field must be unique."){
+      serverTag.style.display="block";
+      serverTag.style.backgroundColor = "var(--DarkCyan)"
+      serverTag.querySelector('a button span').innerHTML = 'Take Assessment'
+      serverTag.querySelector('a').href = '/quiz/'
+      serverTag.querySelector('h3').textContent = "We already have your details!"
+
+      spinBtn(registerForm, 'none', false)
+      window.location.href = "#Duration"
+    }
+    else{
       spinBtn(registerForm, 'none', false) // spin button: parameter >> form, display and status
       Object.entries(items).forEach((item, index)=> {
         const [key, value] = item;
@@ -271,22 +266,20 @@ export const handleError = (status, items, registerForm, r_path) =>{
       });
       document.querySelector('.server_err').style.display="none";
     }
-    else if (status === 200 || status === 201 || status === 202){
-      window.location.href = r_path
-    }
-    else{
-        const serverTag = document.querySelector('.server_err')
-        if (status !== 0 && status !== 401) {
-            serverTag.style.display="block";
-        }
-        else if(status === 401){
-            serverTag.style.display="block";
-            serverTag.querySelector('a').innerHTML = ''
-            serverTag.querySelector('h3').textContent = items.detail
-        }
+  }
+  else if (status === 200 || status === 201 || status === 202){
+    window.location.href = r_path
+  }
+  else{
+    if(status === 401){
+        serverTag.style.display="block";
+        serverTag.querySelector('a').innerHTML = ''
+        serverTag.querySelector('h3').textContent = items.detail
         spinBtn(registerForm, 'none', false)
         window.location.href = "#Duration" 
     }
+      
+  }
 }
 
 // Set type to null if not required. 
