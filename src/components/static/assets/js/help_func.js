@@ -16,10 +16,10 @@ export const cookiesEnabled = () =>{
       cookies = document.cookie.split(';');
       j = cookies.length;
       while(j--) {
-          while (cookies[j].charAt(0)==' ') {// trim spaces
+          while (cookies[j].charAt(0)===' ') {// trim spaces
               cookies[j] = cookies[j].substring(1);
           }
-          if (cookies[j].indexOf('testcookiesenabled=')==0) {
+          if (cookies[j].indexOf('testcookiesenabled=')===0) {
               found = true;
               break;
           }
@@ -157,10 +157,10 @@ export const getCookie = (cname) => {
   let ca = document.cookie.split(';');
   for(let i = 0; i < ca.length; i++) {
     let c = ca[i];
-    while (c.charAt(0) == ' ') {
+    while (c.charAt(0) === ' ') {
       c = c.substring(1);
     }
-    if (c.indexOf(name) == 0) {
+    if (c.indexOf(name) === 0) {
       return c.substring(name.length, c.length);
     }
   }
@@ -356,6 +356,7 @@ export const checkEnv = ()=> {
 }
 
 export const loginRequired = (status) =>{
+  console.log(status)
     if(status === 401 || status === null) { // Login Required
         console.log(window.location.href )
         window.location.href = `/login/?login_redirect=${window.location.pathname}`

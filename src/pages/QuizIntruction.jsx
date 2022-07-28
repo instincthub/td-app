@@ -9,7 +9,7 @@ import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/modal.css";
 
 function QuizInstruction() {
-    loginRequired(getCookie('access') !== null ? 200 : 401)
+    loginRequired(getCookie('access') !== 'null' ? 200 : 401)
 
   return (
     <div>

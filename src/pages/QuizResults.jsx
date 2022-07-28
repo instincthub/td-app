@@ -11,7 +11,7 @@ import "../components/static/assets/scss/quiz-test.css";
 
 function QuizResults() {
     const [data, setData] = useState([])
-	loginRequired(getCookie('access') !== null ? 200 : 401)
+	loginRequired(getCookie('access') !== 'null' ? 200 : 401)
 	useEffect(() => {
 		// get access token
 		let params = (new URL(document.location)).searchParams;
