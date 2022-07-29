@@ -3,8 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Form from "../components/DiversityForm";
 
-import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
-import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired} from "../components/static/assets/js/help_func";
+import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL} from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
@@ -34,11 +33,11 @@ class RegDetails extends React.Component {
     // get access token
     let params = (new URL(document.location)).searchParams;
 
-    if (params.get('access') !== null || params.get('access') !== '') {
-        setCookie('refresh',  params.get('refresh'), 365)
-        setCookie('access',  params.get('access'), 365)
-        setCookie('u_id', params.get('u_id'), 365)
-        setCookie('username', params.get('username'), 365)
+    if (params.get('access') !== null && params.get('access') !== '') {
+        setCookie('refresh',  params.get('refresh'), 30)
+        setCookie('access',  params.get('access'), 30)
+        setCookie('u_id', params.get('u_id'), 30)
+        setCookie('username', params.get('username'), 30)
         // console.log(params.get('u_id'))
 
         this.setState({
@@ -122,13 +121,7 @@ class RegDetails extends React.Component {
       body: formData
     };
 
-
-    if (checkEnv() === "production") {
-      fetAPI(this, "https://api.instincthub.com/auth/register/tech-diversity/detail/", requestOptions)
-    }
-    else if(checkEnv() === "local"){ // Fetch static json in local
-      fetAPI(this, "http://127.0.0.1:8000/auth/register/tech-diversity/detail/", requestOptions)
-    }
+    fetAPI(this, HOST_URL()+"/auth/register/tech-diversity/detail/", requestOptions)
     
   }
   

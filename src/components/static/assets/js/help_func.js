@@ -160,7 +160,7 @@ export const getCookie = (cname) => {
     while (c.charAt(0) === ' ') {
       c = c.substring(1);
     }
-    if (c.indexOf(name) === 0) {
+    if (Number(c.indexOf(name)) === 0) {
       return c.substring(name.length, c.length);
     }
   }
@@ -309,6 +309,9 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
     fetch(api, reqOptions)
     .then(res => {
         status=res.status; 
+        if (status === 401) { // Login required
+          loginRequired(status)
+        }
         return res.json()
     })
     .then(
@@ -327,7 +330,7 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                 }
             }
             
-            console.log(result)
+            // console.log(result)
             // console.log(status)
             return result
         },
@@ -356,10 +359,10 @@ export const checkEnv = ()=> {
 }
 
 export const loginRequired = (status) =>{
-  console.log(status)
-    if(status === 401 || status === null) { // Login Required
+  // console.log(status)
+    if(status === 401 || status === 'null') { // Login Required
         console.log(window.location.href )
-        window.location.href = `/login/?login_redirect=${window.location.pathname}`
+        window.location.href = `/login/?next=${window.location.pathname}`
       }
 }
 

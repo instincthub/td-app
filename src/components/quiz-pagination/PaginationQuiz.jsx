@@ -4,6 +4,7 @@ import Timer from '../Timer'
 
 const PaginationQuiz = ({ nPages, currentPage, setCurrentPage, duration, user_id, assessment_id }) => {
 
+    // eslint-disable-next-line 
     const pageNumbers = [...Array(nPages + 1).keys()].slice(1)
 
     
@@ -15,6 +16,7 @@ const PaginationQuiz = ({ nPages, currentPage, setCurrentPage, duration, user_id
             }
             
     }
+    // eslint-disable-next-line 
     const prevPage = () => {
         if(currentPage !== 1) {
             setCurrentPage(currentPage - 1)

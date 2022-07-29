@@ -1,14 +1,9 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Form from "../components/DiversityForm";
-// import { Navbar, Banner, Features } from "./";
-import { checkEnv } from "../components/static/assets/js/help_func"; // check environment
 import { SubmitButton } from "../components/SubmitButton";
-import { fetAPI, spinBtn, handleError, setCookie } from "../components/static/assets/js/help_func";
-import { printErr } from "../components/static/assets/js/help_func";
+import { fetAPI, spinBtn, handleError, setCookie, HOST_URL } from "../components/static/assets/js/help_func";
 import { ServerErr } from "../components/ServerErr";
-// import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
@@ -23,7 +18,9 @@ class Login extends React.Component {
       items: [],
       status: 0,
       error: null,
-      login_redirect: null
+      login_redirect: null,
+      next:(new URL(document.location)).searchParams.get('next')
+    
     };
     // Binding this keyword 
     // this.updateState = this.componentDidMount.bind(this)
@@ -32,13 +29,13 @@ class Login extends React.Component {
 
   componentDidMount(){
     // get access token
-    let params = (new URL(document.location)).searchParams;
-    this.setState({login_redirect: params.get('login_redirect')}) 
-    let u_id = params.get('u_id'); 
+    // let params = (new URL(document.location)).searchParams;
+    // this.setState({login_redirect: params.get('login_redirect')}) 
+    // this.setState({login_redirect: params.get('next')})
+    // let u_id = params.get('u_id');
     
   }
   componentDidUpdate(){
-    const {items, status} = this.state
     const registerForm = document.querySelector('#regForm')
 
     registerForm.querySelectorAll('input').forEach(e=>{
@@ -51,17 +48,16 @@ class Login extends React.Component {
       })
     }
     
-
-    
     // Handle error codes
+    console.log(this.state.items.access)
     if (this.state.items.access) {
-        setCookie('access', this.state.items.access)
-        setCookie('refresh', this.state.items.refresh)
-        setCookie('u_id', this.state.items.u_id)
-        setCookie('username', this.state.items.username)
+        setCookie('access', this.state.items.access, 30)
+        setCookie('refresh', this.state.items.refresh, 30)
+        setCookie('u_id', this.state.items.u_id, 30)
+        setCookie('username', this.state.items.username, 30)
     }
     
-    handleError(this.state.status, items, registerForm, '/register/details')
+    handleError(this.state.status, this.state.items, registerForm, this.state.next)
   }
 
   // get formData and post data with fetch api
@@ -79,14 +75,7 @@ class Login extends React.Component {
         body: formData
     };
 
-
-    if (checkEnv() === "production") {
-      fetAPI(this, "https://api.instincthub.com/auth/login/", requestOptions)
-    }
-    else if(checkEnv() === "local"){ // Fetch static json in local
-      fetAPI(this, "http://127.0.0.1:8000/auth/login/", requestOptions)
-    }
-    
+    fetAPI(this, HOST_URL()+"/auth/login/", requestOptions)
   }
   
   render(){ 
@@ -126,7 +115,7 @@ class Login extends React.Component {
                     
                     &nbsp;&nbsp; or &nbsp;&nbsp;
                     
-                    <a href="https://skills.instincthub.com/accounts/password_reset/" target="_blank">Reset password</a>
+                    <a href="https://skills.instincthub.com/accounts/password_reset/" target="_blank" rel="noreferrer">Reset password</a>
                     </div>
                 
                 </section>

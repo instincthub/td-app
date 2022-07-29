@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { loginRequired, getCookie } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
