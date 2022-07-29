@@ -28,7 +28,7 @@ class RegDetails extends React.Component {
   componentDidMount(){
     
     cookiesRequired()
-    loginRequired(getCookie('access') !== 'null' ? 200 : 401)// if data status is 401
+    loginRequired(getCookie('access'))// if data status is 401
     
     // get access token
     let params = (new URL(document.location)).searchParams;

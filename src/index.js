@@ -12,6 +12,8 @@ import QuizInstruction from "./pages/QuizIntruction";
 import QuizTest from "./pages/QuizTest";
 import QuizResults from "./pages/QuizResults";
 import Login from "./pages/Login";
+import LoginSuccess from "./pages/LoginSuccess";
+// eslint-disable-next-line
 import RegTracker from "./pages/RegTracker";
 import { BasicTable } from "./pages/BasicTable";
 
@@ -41,6 +43,7 @@ function Index() {
               <Route path="quiz/quiztest" element={<QuizTest />} />
               <Route path="quiz/quiztest/results" element={<QuizResults />} />
               <Route path="login" element={<Login />} />
+              <Route path="login/success" element={<LoginSuccess />} />
               {/* <Route path="reg_tracker" element={<RegTracker />} /> */}
               <Route path="reg_tracker" element={<BasicTable />} />
           </Routes>

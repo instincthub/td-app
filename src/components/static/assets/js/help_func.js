@@ -360,7 +360,7 @@ export const checkEnv = ()=> {
 
 export const loginRequired = (status) =>{
   // console.log(status)
-    if(status === 401 || status === 'null') { // Login Required
+    if(status === 401 || status === null) { // Login Required
         console.log(window.location.href )
         window.location.href = `/login/?next=${window.location.pathname}`
       }

@@ -11,7 +11,7 @@ function QuizTest() {
 
     // Required 
     cookiesRequired()
-    loginRequired(getCookie('access') !== 'null' ? 200 : 401)// if data status is 401
+    loginRequired(getCookie('access'))
 
     // To hold the actual data
     const [data, setData] = useState([])
@@ -74,13 +74,14 @@ function QuizTest() {
         answerData['assessment'] = assessment_id
         answerData['tech_diversity'] = data['a_tech_diversity'][0]['pk']
         answerData['question'] = current_records[0]['pk']
-    }
+    
 
-    // Change button label if last item
-    if (currentPage === nPages) { // Change button text
-        const quizBtn = document.getElementById('btn_label')
-        quizBtn.textContent = 'See Results'
-        quizBtn.parentElement.style.backgroundColor = "var(--CaribbeanGreen)"
+        // Change button label if last item
+        if (currentPage === nPages) { // Change button text
+            const quizBtn = document.getElementById('btn_label')
+            quizBtn.textContent = 'See Results'
+            quizBtn.parentElement.style.backgroundColor = "var(--CaribbeanGreen)"
+        }
     }
 
     // Send response to db

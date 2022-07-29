@@ -33,6 +33,8 @@ class Login extends React.Component {
     // this.setState({login_redirect: params.get('login_redirect')}) 
     // this.setState({login_redirect: params.get('next')})
     // let u_id = params.get('u_id');
+    console.log(this.state.next === 'null' ? '/login/success' : this.state.next)
+    console.log(this.state.next === null)
     
   }
   componentDidUpdate(){
@@ -49,15 +51,15 @@ class Login extends React.Component {
     }
     
     // Handle error codes
-    console.log(this.state.items.access)
     if (this.state.items.access) {
         setCookie('access', this.state.items.access, 30)
         setCookie('refresh', this.state.items.refresh, 30)
         setCookie('u_id', this.state.items.u_id, 30)
         setCookie('username', this.state.items.username, 30)
     }
-    
-    handleError(this.state.status, this.state.items, registerForm, this.state.next)
+
+    let redirect = this.state.next === null ? '/login/success' : this.state.next
+    handleError(this.state.status, this.state.items, registerForm, redirect)
   }
 
   // get formData and post data with fetch api
