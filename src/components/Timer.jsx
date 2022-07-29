@@ -10,6 +10,12 @@ const Timer = (props) => {
     const [seconds, setSeconds ] =  useState(sec ? sec: 0);
 
     useEffect(()=>{
+
+        if (localStorage.getItem('quiz_duration_min') === null || localStorage.getItem('quiz_duration_min') === 'undefined') {
+            // localStorage.setItem('quiz_duration_min', props.duration === 'undefined' ? 0 : props.duration)
+            // localStorage.setItem('quiz_duration_sec', 0)
+            setMinutes(props.duration)
+        }
         
         let myInterval = setInterval(() => {
             if (seconds > 0) {
@@ -23,7 +29,7 @@ const Timer = (props) => {
                     localStorage.removeItem('quiz_duration_sec')
                     localStorage.removeItem('current_page')
                     
-                    window.location.href = `/quiz/quiztest/results/?user_id=${props.user_id}&assessment_id=${props.assessment_id}`
+                    // window.location.href = `/quiz/quiztest/results/?user_id=${props.user_id}&assessment_id=${props.assessment_id}`
 
                 } else {
                     setMinutes(minutes - 1);
@@ -36,8 +42,11 @@ const Timer = (props) => {
         return ()=> {
             clearInterval(myInterval);
         };
+
             
         });
+
+
         
 
     return (

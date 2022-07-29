@@ -30,7 +30,7 @@ function QuizResults() {
 
 		  
 		  
-    }, [data])
+    }, [])
 
   return (
     <div>

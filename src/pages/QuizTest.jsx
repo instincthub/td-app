@@ -15,11 +15,12 @@ function QuizTest() {
 
     // To hold the actual data
     const [data, setData] = useState([])
-    // const [submitAnswer, setSubmitAnswer] = useState([])
+    const [submitAnswer, setSubmitAnswer] = useState([])
     // const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    // const [duration, setDuration] = useState();
     const [recordsPerPage] = useState(1);
+    const [duration, setDuration] = useState();
+    // const [assessment_id, setAssessment_id] = useState();
 
     const answerData = {}
 
@@ -39,12 +40,18 @@ function QuizTest() {
         // console.log(requestOptions)
 
         fetAPI(setData, HOST_URL()+"/assessment/quiztest/1", requestOptions, true)
+    
+
+        
 
         // eslint-disable-next-line
-    }, [])
+    }, [duration])
     if (localStorage.getItem('current_page') !== null && localStorage.getItem('current_page') > currentPage) {
         setCurrentPage(Number(localStorage.getItem('current_page')))
     }
+    // setDuration(data['duration'])
+
+    console.log(data['duration'])
     
     const assessment = data['a_assessment']
     const indexOfLastRecord = currentPage * recordsPerPage;
@@ -60,10 +67,7 @@ function QuizTest() {
         nPages = Math.ceil(assessment.length / recordsPerPage)
         // console.log(data['duration'])
 
-        if (localStorage.getItem('quiz_duration_min') === null || localStorage.getItem('quiz_duration_sec') === null || localStorage.getItem('quiz_duration_min') === 'undefined') {
-            localStorage.setItem('quiz_duration_min', data['duration'])
-            localStorage.setItem('quiz_duration_sec', 0)
-        }
+       
         
 
         // Get user id and tech diversity
@@ -81,6 +85,7 @@ function QuizTest() {
             const quizBtn = document.getElementById('btn_label')
             quizBtn.textContent = 'See Results'
             quizBtn.parentElement.style.backgroundColor = "var(--CaribbeanGreen)"
+            
         }
     }
 
@@ -116,12 +121,12 @@ function QuizTest() {
                 body: JSON.stringify(answerData)
             };
             
-            fetAPI(setData, HOST_URL()+"/assessment/answer/", requestOptions, true)
+            fetAPI(setSubmitAnswer, HOST_URL()+"/assessment/answer/", requestOptions, true)
            
         }
         
     }
-    if (assessment) {
+    // if (typeof(assessment) === 'object') {
         return (
             
             <div>
@@ -156,7 +161,7 @@ function QuizTest() {
                 </div>
             </div>
         );
-    }
+    // }
 }
 
 export default QuizTest;
