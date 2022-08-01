@@ -40,11 +40,15 @@ const Navbar = () => {
               <a href="https://skills.instincthub.com/course/tracks/units/1/" target="blank" itemProp="url">Course Details</a>
             </li>
             <li>
+              <Link to="/community/signup">Become a Mentor</Link>
+            </li>
+            <li>
               <a href="/#benefits">Benefits</a>
             </li>
             <li>
               <a href="/#faq">FAQs</a>
             </li>
+            
             {/* <li>
               <a href="https://instioncthub.com/blog" target="blank">Blog</a>
             </li> */}

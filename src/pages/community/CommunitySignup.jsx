@@ -48,7 +48,7 @@ class CommunitySignup extends React.Component {
   
 
   postData(form){
-    // spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
+    spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
 
     // Grab form data 
     let formData = {}; 
@@ -101,11 +101,11 @@ class CommunitySignup extends React.Component {
                 <p>You can be part of that journey! Two steps to join the community support;</p>
                 <ol>
                   <li>Create an account (or login as an existing user).</li>
-                  <li>Submit your details for review (Links to GitHub, Linked, Twitter etc.</li>
+                  <li>Submit your details for review (Links to GitHub, Linked, Twitter etc).</li>
                 </ol>
 
                 <br/>
-                <p>Signup if you're a new user or <Link className='inline-link' to='/login/?next=/community/signup/details/' target="blank">Login here</Link>.</p>
+                <p>Signup if you're a new user or <Link className='inline-link' to='/login/?next=/community/signup/details/' target="blank">Login here</Link> as an existing user.</p>
                 <br/>
 
                 <div className="personal_data d-flex d-wrap d-between">
