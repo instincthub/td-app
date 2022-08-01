@@ -45,7 +45,7 @@ class RegDetails extends React.Component {
     if(getCookie('access') === null || '') { // if not token, direct user to register
       cookiesRequired()
       loginRequired(getCookie('access'))// if data status is 401
-      
+
       document.querySelector('.form_content').innerHTML = `
       <div class="container mt-10 mb-10">
         <span>To input details, you need to either login of create an account.</span>
@@ -116,7 +116,7 @@ class RegDetails extends React.Component {
       method: 'POST',
       'X-CSRFToken': getCookie('csrftoken'),
       'headers': {
-        "Authorization": "Token " + getCookie('access')
+        "Authorization": "Bearer " + getCookie('access')
       },
       body: formData
     };

@@ -33,8 +33,8 @@ class Login extends React.Component {
     // this.setState({login_redirect: params.get('login_redirect')}) 
     // this.setState({login_redirect: params.get('next')})
     // let u_id = params.get('u_id');
-    console.log(this.state.next === 'null' ? '/login/success' : this.state.next)
-    console.log(this.state.next === null)
+    // console.log(this.state.next === 'null' ? '/login/success' : this.state.next)
+    // console.log(this.state.next === null)
     
   }
   componentDidUpdate(){
