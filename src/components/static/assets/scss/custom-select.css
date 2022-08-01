@@ -22,15 +22,17 @@ select {
   padding:0.25em 0.5em;
   margin: 0;
   width: 100%;
-  font-family: inherit;
-  font-size: inherit;
   cursor: inherit;
   line-height: inherit;
   z-index: 1;
   outline: none;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-  color: var(--ChineseBlue);
+  -webkit-appearance: none;
+  background-color: transparent !important;
+  color: var(--Gunmetal);
   font-weight: 500;
+  font-style: var(--Montserat);
+  font-size: 15px;
 }
 select::-ms-expand {
   display: none;
@@ -41,28 +43,38 @@ select::-ms-expand {
   grid-template-areas: "select";
   align-items: center;
   position: relative;
-  min-width: 15ch;
-  max-width: 30ch;
-  border: 1px solid var(--select-border);
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
   font-size: 1.25rem;
   cursor: pointer;
   line-height: 1.1;
   background-color: #fff !important;
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+  width: 100%;
+  font-style: var(--Montserat);
+  padding: 15px;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  height: 50px;
+  font-size: 15px;
+  outline: 0;
 }
+/* .select select option{
+  width: 100%;
+  
+} */
 select, .select::after {
   grid-area: select;
 }
-.select:not(.select--multiple)::after {
-  content: "";
+.select::after {
+  content: "dddd";
   justify-self: end;
-  width: 0.8em;
-  height: 0.5em;
+  width: 1em;
+  height: 0.7em;
   background-color: var(--select-arrow);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  z-index: 1;
+  
 }
 
 select:focus + .focus {

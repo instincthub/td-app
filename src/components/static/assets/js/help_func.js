@@ -185,7 +185,17 @@ export const setCookie = (cname, cvalue, exdays) => {
 // removeCookie('test3', -10)
 // console.log(getCookie('u_id'))
 
-
+// Page hero background
+export const PageHeroBanner = (tag_id, img) =>{
+  const tag = document.getElementById(tag_id)
+  tag.style.backgroundImage = `url(${img})`
+  tag.style.height = '200px'
+  tag.style.maxWidth = '100%'
+  tag.style.width = '100%'
+  tag.style.marginTop = '85px'
+  tag.style.marginBottom = '40px'
+  tag.style.backgroundSize = 'cover'
+}
 
 export const printErr = (key, value, index) =>{
     let inputField = document.querySelector('#regForm').querySelector(`[name="${key}"]`)
@@ -231,6 +241,10 @@ export const printErr = (key, value, index) =>{
           // console.log(key)
           inputField.parentElement.parentElement.append(span_tag)
         }
+        else if (inputField.nodeName === "SELECT") {
+          console.log(key)
+          inputField.parentElement.append(span_tag)
+        }
         else{
           inputField.parentElement.append(span_tag)
         }
@@ -248,15 +262,20 @@ export const handleError = (status, items, registerForm, r_path) =>{
   const serverTag = document.querySelector('.server_err')
 
   if (status === 400){
-    if (items.user[0] === "This field must be unique."){
-      serverTag.style.display="block";
-      serverTag.style.backgroundColor = "var(--DarkCyan)"
-      serverTag.querySelector('a button span').innerHTML = 'Take Assessment'
-      serverTag.querySelector('a').href = '/quiz/'
-      serverTag.querySelector('h3').textContent = "We already have your details!"
+    if (items.user){
+      if (items.user[0] === "This field must be unique.") {
+        serverTag.style.display="block";
+        serverTag.style.backgroundColor = "var(--DarkCyan)"
 
-      spinBtn(registerForm, 'none', false)
-      window.location.href = "#Duration"
+        if (document.location.pathname === '/register/details' || document.location.pathname === '/register/details/') {
+          serverTag.querySelector('a button span').innerHTML = 'Take Assessment'
+          serverTag.querySelector('a').href = '/quiz/'
+        }
+        serverTag.querySelector('h3').textContent = "We already have your details!"
+
+        spinBtn(registerForm, 'none', false)
+        window.location.href = "#Socials"
+      }
     }
     else{
       spinBtn(registerForm, 'none', false) // spin button: parameter >> form, display and status
@@ -276,7 +295,7 @@ export const handleError = (status, items, registerForm, r_path) =>{
         serverTag.querySelector('a').innerHTML = ''
         serverTag.querySelector('h3').textContent = items.detail
         spinBtn(registerForm, 'none', false)
-        window.location.href = "#Duration" 
+        window.location.href = "#Socials" 
     }
       
   }
@@ -330,8 +349,8 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                 }
             }
             
-            // console.log(result)
-            // console.log(status)
+            console.log(result)
+            console.log(status)
             return result
         },
         (error) => {
@@ -371,6 +390,8 @@ export const spinBtn = (form, display, status) =>{
     form.disabled = status; // This disables the whole form via the fieldset
     form.querySelector('button .bt-spinner').style.display = display;
 }
+
+// var country_list = ;
 
 export const customData = {
     universities: [
@@ -699,5 +720,6 @@ export const customData = {
         "Science & Technology",
         "Education",
         "Law"
-    ]
+    ],
+    "country_list":["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre &amp; Miquelon","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sri Lanka","St Kitts &amp; Nevis","St Lucia","St Vincent","St. Lucia","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad &amp; Tobago","Tunisia","Turkey","Turkmenistan","Turks &amp; Caicos","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"]
 }

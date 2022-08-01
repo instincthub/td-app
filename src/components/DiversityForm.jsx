@@ -2,7 +2,7 @@ import {React, useEffect} from "react";
 // import { DatePick } from "./DatePick";
 import BannerImg from "./static/assets/images/diversity_bg.jpg";
 import { autocomplete } from "./static/assets/js/autocomplete";
-import { customData } from "./static/assets/js/help_func";
+import { customData, PageHeroBanner } from "./static/assets/js/help_func";
 import { MediaLinks } from "./MediaLinks";
 import { SubmitButton } from "./SubmitButton";
 import { FileInputField } from "./FileInputField";
@@ -17,17 +17,18 @@ const Form = ({formEvent, ...props}) => {
       autocomplete(document.getElementById('id_course'), customData['courses'])
       autocomplete(document.getElementById('id_faculty'), customData['faculties'])
     }
-    
+    PageHeroBanner('PageHeroBannerTag', BannerImg)
   });
+  
 
   return (
     <>
-      <div className="img_4_banner container">
-        <img src={BannerImg} alt="tech diversity banner" />
+      <div className="img_4_banner container" id="PageHeroBannerTag">
+        {/* <img src={BannerImg} alt="tech diversity banner" /> */}
       </div>
       <div className="container">
         <div className="diversity_assessment">
-          <h4>Tech Diversity Assessment</h4>
+          <h1>Tech Diversity Assessment</h1>
 
           <p>
           Thank you for being so interested in our tech diversity program! This application will take roughly 10 minutes and help us assess your suitability for the program. 
@@ -336,7 +337,7 @@ const Form = ({formEvent, ...props}) => {
           {/* <!--==============
         SUBMISSION BUTTON
       ================== --> */}
-          <SubmitButton text="Submit Detail"/>
+          <SubmitButton label="Submit Detail"/>
         </section>
       </form>
     </>

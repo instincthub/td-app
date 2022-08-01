@@ -1,18 +1,17 @@
 import React from 'react';
-import { DatePick } from "../components/DatePick";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import { fetAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL } from "../components/static/assets/js/help_func";
-import {SubmitButton} from '../components/SubmitButton'
-import { ServerErr } from '../components/ServerErr';
+import { DatePick } from "../../components/DatePick";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { fetAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL } from "../../components/static/assets/js/help_func";
+import {SubmitButton} from '../../components/SubmitButton'
+import { ServerErr } from '../../components/ServerErr';
 import { Link } from 'react-router-dom';
 // import { Navbar, Banner, Features } from "./";
-import "../components/static/assets/scss/staff.css";
-import "../components/static/assets/scss/diversity.css";
-import "../components/static/assets/scss/register.css";
-import "../components/static/assets/scss/custom-select.css";
+import "../../components/static/assets/scss/staff.css";
+import "../../components/static/assets/scss/diversity.css";
+import "../../components/static/assets/scss/register.css";
 
-class Register extends React.Component {
+class CommunitySignup extends React.Component {
 
   constructor(props) {
     super(props);
@@ -43,24 +42,23 @@ class Register extends React.Component {
       }
     })
 
-    // Handle error 400, null and else redirect to /quiz if success 
+    // Handle error 400, null and else redirect to /register/verify if success 
     handleError(status, items, registerForm, '/register/verify')
   }
   
 
   postData(form){
-    spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
+    // spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
 
     // Grab form data 
     let formData = {}; 
     form.querySelectorAll("input").forEach((node)=> {
       formData[node.name] = node.value;
-      console.log(node.value)
     });
 
-    formData['redirect_url'] = window.location.origin+'/register/details';
+    formData['redirect_url'] = window.location.origin+'/community/signup/details/';
     formData['invalid_token_url'] = window.location.origin+'/register/invalid-token';
-    formData['coupon'] = "TECH2.0"
+    formData['coupon'] = "COMMUNITY-SUPPORT"
 
 
 
@@ -96,7 +94,19 @@ class Register extends React.Component {
             
             <section className="container">
               <div className="diversity_data register">
-                <h2>Signup for Tech Diversity</h2>
+                <h1>Become a Mentor</h1>
+                <br/>
+                <p>Our goal is to <strong><em>train 100,000 individuals and place 20% into direct jobs,</em></strong> which will create wealth for families locked out of employment opportunities.</p>
+
+                <p>You can be part of that journey! Two steps to join the community support;</p>
+                <ol>
+                  <li>Create an account (or login as an existing user).</li>
+                  <li>Submit your details for review (Links to GitHub, Linked, Twitter etc.</li>
+                </ol>
+
+                <br/>
+                <p>Signup if you're a new user or <Link className='inline-link' to='/login/?next=/community/signup/details/' target="blank">Login here</Link>.</p>
+                <br/>
 
                 <div className="personal_data d-flex d-wrap d-between">
                   <div className="input_parent width-48">
@@ -138,7 +148,7 @@ class Register extends React.Component {
                 </div>
                 <SubmitButton label="Signup"/>
                 <br></br>
-                <Link className='inline-link' to="/login/">Login an existing account</Link>
+                <Link className='inline-link' to="/login/?next=/community/signup/details/" target="blank">Login an existing account</Link>
               </div>
               
             </section>
@@ -149,4 +159,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default CommunitySignup;

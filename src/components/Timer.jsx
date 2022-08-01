@@ -12,8 +12,6 @@ const Timer = (props) => {
     useEffect(()=>{
 
         if (localStorage.getItem('quiz_duration_min') === null || localStorage.getItem('quiz_duration_min') === 'undefined') {
-            // localStorage.setItem('quiz_duration_min', props.duration === 'undefined' ? 0 : props.duration)
-            // localStorage.setItem('quiz_duration_sec', 0)
             setMinutes(props.duration)
         }
         
@@ -42,9 +40,8 @@ const Timer = (props) => {
         return ()=> {
             clearInterval(myInterval);
         };
-
-            
-        });
+        
+    });
 
 
         

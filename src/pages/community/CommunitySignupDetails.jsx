@@ -1,15 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Form from "../components/DiversityForm";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import CommunityDetails from "../../components/CommunityDetails";
 
-import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL} from "../components/static/assets/js/help_func";
-import "../components/static/assets/scss/staff.css";
-import "../components/static/assets/scss/diversity.css";
-import "../components/static/assets/scss/register.css";
-import "../components/static/assets/scss/custom-select.css";
+import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL} from "../../components/static/assets/js/help_func";
+import "../../components/static/assets/scss/staff.css";
+import "../../components/static/assets/scss/diversity.css";
+import "../../components/static/assets/scss/register.css";
+import "../../components/static/assets/scss/custom-select.css";
 
-class RegDetails extends React.Component {
+class CommunitySignupDetails extends React.Component {
 
   constructor(props) {
     super(props);
@@ -45,7 +45,6 @@ class RegDetails extends React.Component {
     if(getCookie('access') === null || '') { // if not token, direct user to register
       cookiesRequired()
       loginRequired(getCookie('access'))// if data status is 401
-      
       document.querySelector('.form_content').innerHTML = `
       <div class="container mt-10 mb-10">
         <span>To input details, you need to either login of create an account.</span>
@@ -76,7 +75,7 @@ class RegDetails extends React.Component {
     }
     
     // Handle error 400, null and else redirect to /quiz if success 
-    handleError(status, items, registerForm, '/quiz')
+    handleError(status, items, registerForm, '/community/signup/details/success')
   }
 
   // get formData and post data with fetch api
@@ -84,44 +83,38 @@ class RegDetails extends React.Component {
     spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
 
     const formData  = new FormData(form);
-    // const new_obj = {}
-
-    // Grab form data 
-    form.querySelectorAll("input").forEach((node)=> {
-      if (node.getAttribute('type') === 'radio') {
-        if (node.checked  === true) { // if input is checked
-          if (Number(node.dataset.value)) { // if number
-            formData.append(node.name, Number(node.dataset.value))
-          }
-          else if (node.dataset.value === "true") {
-            formData.append(node.name, true)
-          }
-          else if (node.dataset.value === 'false') {
-            formData.append(node.name, false)
-          }
-          else{
-            formData.append(node.name, node.dataset.value)
-          }
-        }
-      }
-      
-      
-    });
     formData.append("user", this.state.user_id)
 
-    console.log(this.state.token)
-    console.log(this.state.user_id)
+
+    let bool_fields = ['completed_our_course', 'currently_employed', 'looking_for_job']
+
+    bool_fields.forEach(e=>{
+      if (formData.get(e) === null) {
+        formData.append(e, null)
+      }
+    })
+
+    // console.log(formData.get('completed_our_course'));
+    // if (formData.get('completed_our_course') === null) {
+    //   formData.append("completed_our_course", null)
+    // }
+    // if (formData.get('currently_employed') === null) {
+    //   formData.append("currently_employed", null)
+    // }
+    // if (formData.get('looking_for_job') === null) {
+    //   formData.append("looking_for_job", null)
+    // }
 
     const requestOptions = {
       method: 'POST',
       'X-CSRFToken': getCookie('csrftoken'),
       'headers': {
-        "Authorization": "Token " + getCookie('access')
+        "Authorization": "Bearer " + getCookie('access')
       },
       body: formData
     };
 
-    fetAPI(this, HOST_URL()+"/auth/register/tech-diversity/detail/", requestOptions)
+    fetAPI(this, HOST_URL()+"/auth/community/signup/details/", requestOptions)
     
   }
   
@@ -131,7 +124,7 @@ class RegDetails extends React.Component {
       <div>
         <Navbar />
         <div className="form_content">
-          <Form formEvent={this}/>
+          <CommunityDetails formEvent={this}/>
         </div>
         <Footer />
       </div>
@@ -139,4 +132,4 @@ class RegDetails extends React.Component {
   }
 }
 
-export default RegDetails;
+export default CommunitySignupDetails;

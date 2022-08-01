@@ -13,6 +13,12 @@ import QuizTest from "./pages/QuizTest";
 import QuizResults from "./pages/QuizResults";
 import Login from "./pages/Login";
 import LoginSuccess from "./pages/LoginSuccess";
+
+// Community Support
+import CommunitySignup from "./pages/community/CommunitySignup";
+import CommunitySignupDetails from "./pages/community/CommunitySignupDetails";
+import CommunitySignupSuccess from "./pages/community/CommunitySignupSuccess";
+
 // eslint-disable-next-line
 import RegTracker from "./pages/RegTracker";
 import { BasicTable } from "./pages/BasicTable";
@@ -44,6 +50,12 @@ function Index() {
               <Route path="quiz/quiztest/results" element={<QuizResults />} />
               <Route path="login" element={<Login />} />
               <Route path="login/success" element={<LoginSuccess />} />
+
+              {/* Community Support */}
+              <Route path="/community/signup/" element={<CommunitySignup />} />
+              <Route path="/community/signup/details/" element={<CommunitySignupDetails />} />
+              <Route path="/community/signup/details/success" element={<CommunitySignupSuccess/>} />
+
               {/* <Route path="reg_tracker" element={<RegTracker />} /> */}
               <Route path="reg_tracker" element={<BasicTable />} />
           </Routes>
