@@ -29,7 +29,7 @@ function QuizResults() {
 		fetAPI(setData, `${HOST_URL()}/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
 
 		  
-		  
+	// eslint-disable-next-line
     }, [])
 
   return (
@@ -48,7 +48,7 @@ function QuizResults() {
 						
                         <p className="mt-3">{data.met_expectation ? "Congratulation, you qualified!" : "You didn't have enough point. You can still learn a lot! "} <strong> We've emailed you.</strong></p>
 						<div className="mt-4">
-                            <a href={data.met_expectation === true ? data.whatsapp_group : 'https://chat.whatsapp.com/IvuvWu6DtwR3PWp0mUWJRn'} target="_blank" rel="noreferrer"><button className="primary-btn d-inline-block"><span>Join WhatsApp Group</span></button></a>
+                            <a href={data.met_expectation === true && data.tdn === true ? data.whatsapp_group : 'https://chat.whatsapp.com/IvuvWu6DtwR3PWp0mUWJRn'} target="_blank" rel="noreferrer"><button className="primary-btn d-inline-block"><span>Join WhatsApp Group</span></button></a>
 						</div>
 					</div>
 				</div>
