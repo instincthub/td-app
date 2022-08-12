@@ -820,6 +820,9 @@ nav .navbar img {
       justify-content: space-around;
   height: 50px;
 }
+.navlinks li a:hover{
+  font-weight: 500;
+}
 
 .track {
   color: var(--DarkCyan);
@@ -1292,6 +1295,15 @@ pre {
   max-height: 450px;
   overflow: scroll;
 }
+
+
+/* Campus Lead Sign */
+.verify_email section{
+  margin-top: 150px;
+
+}
+/* End Campus Lead Sign */
+
 
 .input_parent {
   margin: 25px 0;
@@ -2509,7 +2521,7 @@ header nav {
 @media (min-width: 786px) {
   .staff_nav ul {
     margin-top: 18px;
-    width: 620px;
+    width: 820px;
   }
 }
 

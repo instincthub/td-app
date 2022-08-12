@@ -43,6 +43,9 @@ const Navbar = () => {
               <Link to="/community/signup">Become a Mentor</Link>
             </li>
             <li>
+              <Link to="/community/signup/campus-lead/">Become a Campus Lead</Link>
+            </li>
+            <li>
               <a href="/#benefits">Benefits</a>
             </li>
             <li>

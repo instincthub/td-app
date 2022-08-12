@@ -287,7 +287,9 @@ export const handleError = (status, items, registerForm, r_path) =>{
     }
   }
   else if (status === 200 || status === 201 || status === 202){
-    window.location.href = r_path
+    if (r_path !== null) {
+      window.location.href = r_path
+    }
   }
   else{
     if(status === 401){
@@ -349,7 +351,7 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                 }
             }
             
-            console.log(result)
+            // console.log(result)
             console.log(status)
             return result
         },

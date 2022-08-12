@@ -18,6 +18,7 @@ import LoginSuccess from "./pages/LoginSuccess";
 import CommunitySignup from "./pages/community/CommunitySignup";
 import CommunitySignupDetails from "./pages/community/CommunitySignupDetails";
 import CommunitySignupSuccess from "./pages/community/CommunitySignupSuccess";
+import CampusLeadSignup from "./pages/community/CampusLeadSignup";
 
 // eslint-disable-next-line
 import RegTracker from "./pages/RegTracker";
@@ -55,6 +56,7 @@ function Index() {
               <Route path="/community/signup/" element={<CommunitySignup />} />
               <Route path="/community/signup/details/" element={<CommunitySignupDetails />} />
               <Route path="/community/signup/details/success" element={<CommunitySignupSuccess/>} />
+              <Route path="/community/signup/campus-lead" element={<CampusLeadSignup/>} />
 
               {/* <Route path="reg_tracker" element={<RegTracker />} /> */}
               <Route path="reg_tracker" element={<BasicTable />} />
