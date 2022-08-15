@@ -7,10 +7,10 @@ import { SubmitButton } from "./SubmitButton";
 // Source: https://codepen.io/johnhoulder/pen/VOKJPo
 
 export const OTPInput = (...props) =>{
-    const OTP = [0,0,0,0,0,0]
 
     useEffect(() => {  
 
+      // OTP length is 6 digit, inset user input in the respective index
       const spliceItem = (arr, index, new_value, type) => {
         const c = arr
       
@@ -26,6 +26,8 @@ export const OTPInput = (...props) =>{
 
       let otp_input = props[0].event.state.otp;
 
+      // Grab user input and move to the next input
+      // Delete index when the user 'Backspace'
       $('.digit-group').find('input').each(function(index) {
         $(this).attr('maxlength', 1);
         $(this).on('keyup', function(e) {
@@ -40,9 +42,8 @@ export const OTPInput = (...props) =>{
 
             // Remove and update array index state with user input 
             otp_input= spliceItem(props[0].event.state.otp, index, $(this)[0].value, 'remove')
-            // console.log(otp_input)
 
-          } else if(Number(e.key) || e.key && OTP.length <= 5){
+          } else if(Number(e.key) || e.key){
             var next = parent.find('input#' + $(this).data('next'));
             
             if(next.length) {
@@ -52,7 +53,6 @@ export const OTPInput = (...props) =>{
                 // parent.submit();
               }
             }
-
             // Replace and update array index state with user input 
             otp_input= spliceItem(props[0].event.state.otp, index, $(this)[0].value, 'add')
           }
@@ -68,7 +68,7 @@ export const OTPInput = (...props) =>{
     <div className="otp_input">
       <div className="otp_wrapper">
         <h1>Two-step authentication</h1>
-        <p className="prompt"> To continue, please enter the 6-digit verification code sent to your email: {props[0].event.state.items.email}.</p>
+        <p className="prompt"> To continue, please enter the 6-digit verification code sent to your email: <strong>{props[0].event.state.items.email}</strong>.</p>
         <p className="retry">Didn't receive a code? <a href="/community/signup/campus-lead/">Resend.</a></p>
         <form method="get" id='regForm' className="digit-group" data-group-name="digits" data-autosubmit="false" autoComplete="off">
           <input type="text" id="digit-1" name="digit-1" data-next="digit-2" autoComplete="false"  autoFocus={true}/>

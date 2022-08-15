@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import CampusLeadForm from "../../components/CampusLeadForm";
 import { ServerErr } from "../../components/ServerErr";
 
-import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, HOST_URL} from "../../components/static/assets/js/help_func";
+import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, HOST_URL, prefillInput} from "../../components/static/assets/js/help_func";
 import "../../components/static/assets/scss/staff.css";
 import "../../components/static/assets/scss/diversity.css";
 import "../../components/static/assets/scss/register.css";
@@ -55,7 +55,7 @@ class CampusLeadSignup extends React.Component {
   }
   componentDidUpdate(){
     // console.log(this.state.token)
-    const {items, status, verified} = this.state
+    const {items, status, verified, otp} = this.state
     const registerForm = document.querySelector('#regForm')
 
     if (verified === 'details' || verified === 'email') {
@@ -68,15 +68,32 @@ class CampusLeadSignup extends React.Component {
           e.textContent = "";
         })
       }
-      if (Number(items.previous_otp) === items.previous_otp && this.state.verified !== 'otp' && this.state.verified !== 'details') {
+
+      // Change verified state to otp validation input
+      if ((Number(items.previous_otp) === items.previous_otp && this.state.verified !== 'otp' && this.state.verified !== 'details') || (status === 400 && verified === 'email')) {
         this.setState({
           verified: 'otp'
         })
       }
+
+
+      // Auto fill user details if exist. 
+      if (Array.isArray(items.email) && verified === 'details' && status === 400) {
+        fetAPI(this, HOST_URL()+`/auth/campus/details/get/${items.email.join('')}/${otp.join('')}/`, {method: 'GET'})
+      }
+
+
+      if (items[0]) {
+        if (new Date(items[0].timestamp) instanceof Date && status === 200) {
+          prefillInput(items[0])
+        }
+      }
       
       // Handle error 400, null and else redirect to /quiz if success 
-      let success_url = (items.message === 'Campus Lead details was added successfully.' ? '/community/signup/details/success' : null)
-      handleError(status, items, registerForm, success_url)
+      if (status !== 400) {
+        let success_url = (items.message === 'Campus Lead details was added successfully.' ? '/community/signup/details/success' : null)
+        handleError(status, items, registerForm, success_url)
+      }
     }
   }
 
@@ -114,10 +131,15 @@ class CampusLeadSignup extends React.Component {
 
     // console.log(otp)
     let otp_join = otp.join('')
+    // console.log('......', otp_join);
     if (otp_join.length === 6) {
       let num_otp = Number(otp_join)
+      console.log(num_otp);
       if (num_otp) {
-        if (items.previous_otp === num_otp) {
+        // console.log((Number(items.previous_otp.join('')) === num_otp));
+      
+        let array_otp = items.previous_otp.length >= 1 ? items?.previous_otp.join('') : null
+        if ((Number(items.previous_otp) === num_otp) || (array_otp === num_otp)) {
           this.setState({
             verified: 'details'
           })

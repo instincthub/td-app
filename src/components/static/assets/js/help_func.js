@@ -303,6 +303,31 @@ export const handleError = (status, items, registerForm, r_path) =>{
   }
 }
 
+// Prefill user input 
+export const prefillInput = (items) =>{
+  Object.entries(items).forEach((item, index)=> {
+    const [key, value] = item;
+
+    let inputField = document.querySelector('#regForm').querySelectorAll(`[name="${key}"]`)
+
+    // Target regular fields
+    if (inputField[0] && value) {
+      inputField[0].value = value
+    }
+
+    // Target radio button type 
+    if (inputField.length !== 0) {
+      if (inputField[0].getAttribute('type') === 'radio') {
+        inputField.forEach(i =>{
+          if (i.value === value || (i.value === 'true' ? true : false) === value) {
+            i.checked = true
+          }
+        })
+      }
+    }
+  });
+}
+
 // Set type to null if not required. 
 export const reqOptions = (method, data=null, type="application/json") =>{
   let myHeaders = new Headers();

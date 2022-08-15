@@ -41,7 +41,7 @@ const CampusLeadForm = ({formEvent, ...props}) => {
       </> 
     ) 
   }
-  else{
+  else if (props.verified === 'details'){
     return (
       <div>
         <div className="img_4_banner container" id="PageHeroBannerTag">
@@ -70,7 +70,11 @@ const CampusLeadForm = ({formEvent, ...props}) => {
           id='regForm'
           onSubmit={(e)=>{
               e.preventDefault();
-              formEvent.postData(e.target, "PUT", `/auth/campus/details/${formEvent.state.items.email}/`)
+              let u_email = Array.isArray(formEvent.state.items.email) ? formEvent.state.items.email.join('') : formEvent.state.items.email 
+              if (u_email === undefined){
+                u_email = formEvent.state.items[0].email
+              }
+              formEvent.postData(e.target, "PUT", `/auth/campus/details/${u_email}/`)
             }
           }
               >
@@ -181,37 +185,37 @@ const CampusLeadForm = ({formEvent, ...props}) => {
                   <label className="radio">
                     <input 
                       type="radio" 
-                      name="level" id="id_level" data-value="100" />
+                      name="level" id="id_level" value="100" />
                     <span>100</span>
                   </label>
                 </div>
                 <div className="radio_parent">
                   <label className="radio">
-                    <input type="radio" name="level" data-value="200" />
+                    <input type="radio" name="level" value="200" />
                     <span>200</span>
                   </label>
                 </div>
                 <div className="radio_parent">
                   <label className="radio">
-                    <input type="radio" name="level" data-value="300" />
+                    <input type="radio" name="level" value="300" />
                     <span>300</span>
                   </label>
                 </div>
                 <div className="radio_parent">
                   <label className="radio">
-                    <input type="radio" name="level" data-value="400" />
+                    <input type="radio" name="level" value="400" />
                     <span>400</span>
                   </label>
                 </div>
                 <div className="radio_parent">
                   <label className="radio">
-                    <input type="radio" name="level" data-value="500" />
+                    <input type="radio" name="level" value="500" />
                     <span>500</span>
                   </label>
                 </div>
                 <div className="radio_parent">
                   <label className="radio">
-                    <input type="radio" name="level" data-value="None" />
+                    <input type="radio" name="level" value="None" />
                     <span>None</span>
                   </label>
                 </div>
