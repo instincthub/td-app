@@ -71,13 +71,13 @@ export const OTPInput = (...props) =>{
         <p className="prompt"> To continue, please enter the 6-digit verification code sent to your email: <strong>{props[0].event.state.items.email}</strong>.</p>
         <p className="retry">Didn't receive a code? <a href="/community/signup/campus-lead/">Resend.</a></p>
         <form method="get" id='regForm' className="digit-group" data-group-name="digits" data-autosubmit="false" autoComplete="off">
-          <input type="text" id="digit-1" name="digit-1" data-next="digit-2" autoComplete="false"  autoFocus={true}/>
-          <input type="text" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" autoComplete="false"/>
-          <input type="text" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" autoComplete="false"/>
+          <input type="number" id="digit-1" name="digit-1" data-next="digit-2" autoComplete="false"  autoFocus={true}/>
+          <input type="number" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" autoComplete="false"/>
+          <input type="number" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" autoComplete="false"/>
           <span className="splitter">&ndash;</span>
-          <input type="text" id="digit-4" name="digit-4" data-next="digit-5" data-previous="digit-3" autoComplete="false"/>
-          <input type="text" id="digit-5" name="digit-5" data-next="digit-6" data-previous="digit-4" autoComplete="false"/>
-          <input type="text" id="digit-6" name="digit-6" data-previous="digit-5" autoComplete="false"/>
+          <input type="number" id="digit-4" name="digit-4" data-next="digit-5" data-previous="digit-3" autoComplete="false"/>
+          <input type="number" id="digit-5" name="digit-5" data-next="digit-6" data-previous="digit-4" autoComplete="false"/>
+          <input type="number" id="digit-6" name="digit-6" data-previous="digit-5" autoComplete="false"/>
         </form>
         <p id="otpErr">
           <svg aria-hidden="true" class="SVGInline-svg SVGInline--cleaned-svg SVG-svg Icon-svg Icon--warning-svg Icon-color-svg Icon-color--red-svg" height="12" width="12" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m10.115 1.308 5.635 11.269A2.365 2.365 0 0 1 13.634 16H2.365A2.365 2.365 0 0 1 .25 12.577L5.884 1.308a2.365 2.365 0 0 1 4.231 0zM8 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM8 9c.552 0 1-.32 1-.714V4.714C9 4.32 8.552 4 8 4s-1 .32-1 .714v3.572C7 8.68 7.448 9 8 9z" fill-rule="evenodd"></path></svg>

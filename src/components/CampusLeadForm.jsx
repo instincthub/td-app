@@ -103,10 +103,10 @@ const CampusLeadForm = ({formEvent, ...props}) => {
                     id="id_last_name"
                     type="text"
                     name="last_name"
-                    placeholder="First Name *"
+                    placeholder="Last Name *"
                     required
                   />
-                  <label htmlFor="id_last_name">First Name *</label>
+                  <label htmlFor="id_last_name">Last Name *</label>
                 </div>
 
                 <div className="input_parent">
