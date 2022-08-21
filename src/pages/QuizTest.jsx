@@ -44,7 +44,7 @@ function QuizTest() {
         // console.log(requestOptions)
 
    
-        let new_path = url_path ? url_path : 'tech-diversity-qui'
+        let new_path = url_path ? url_path : 'tech-diversity-quiz'
         fetAPI(setData, HOST_URL()+`/assessment/quiztest/${new_path}`, requestOptions, true)
     
 
@@ -132,7 +132,7 @@ function QuizTest() {
         }
         
     }
-    if (data.detail !== 'Not found.') {
+    // if (data.detail !== 'Not found.') {
         return (
             
             <div>
@@ -167,12 +167,12 @@ function QuizTest() {
                 </div>
             </div>
         );
-    }
-    else{
-        return(
-            <h3>Details not found</h3>
-        )
-    }
+    // }
+    // else{
+    //     return(
+    //         <h3>Details not found</h3>
+    //     )
+    // }
 }
 
 export default QuizTest;
