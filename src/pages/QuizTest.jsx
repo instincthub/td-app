@@ -13,8 +13,12 @@ function QuizTest() {
     cookiesRequired()
     loginRequired(getCookie('access'))
 
+    // get access token
+    let params = (new URL(document.location)).searchParams;
+
     // To hold the actual data
     const [data, setData] = useState([])
+    const [url_path] = useState(params.get('slug'))
     const [submitAnswer, setSubmitAnswer] = useState([])
     // const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -39,7 +43,9 @@ function QuizTest() {
         };
         // console.log(requestOptions)
 
-        fetAPI(setData, HOST_URL()+"/assessment/quiztest/1", requestOptions, true)
+   
+        let new_path = url_path ? url_path : 'tech-diversity-qui'
+        fetAPI(setData, HOST_URL()+`/assessment/quiztest/${new_path}`, requestOptions, true)
     
 
         
@@ -126,7 +132,7 @@ function QuizTest() {
         }
         
     }
-    // if (typeof(assessment) === 'object') {
+    if (data.detail !== 'Not found.') {
         return (
             
             <div>
@@ -161,7 +167,12 @@ function QuizTest() {
                 </div>
             </div>
         );
-    // }
+    }
+    else{
+        return(
+            <h3>Details not found</h3>
+        )
+    }
 }
 
 export default QuizTest;

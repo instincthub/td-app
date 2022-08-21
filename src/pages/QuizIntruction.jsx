@@ -30,10 +30,10 @@ function QuizInstruction() {
                                 The test contains 20 questions and there is <strong>20 minutes</strong> time limit.
 							</li>
 							<li>
-                                You will get 5 points for each correct answer. At the end of the Quiz, your total score will be displayed. Maximum score is 100 points.
+                                You will get 1 points for each correct answer. At the end of the Quiz, your total score will be displayed. Maximum score is 20 points.
 							</li>
                             <li>
-                                You need the minimum of 50 points to stand a chance to be part.
+                                You need the minimum of 10 points to stand a chance to be part.
 							</li>
 						</ol>
                         <h3 className="mt-3">Good luck!</h3>

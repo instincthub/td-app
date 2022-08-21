@@ -376,7 +376,7 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                 }
             }
             
-            // console.log(result)
+            console.log(result)
             console.log(status)
             return result
         },
@@ -408,7 +408,7 @@ export const loginRequired = (status) =>{
   // console.log(status)
     if(status === 401 || status === null) { // Login Required
         console.log(window.location.href )
-        window.location.href = `/login/?next=${window.location.pathname}`
+        window.location.href = `/login/?next=${window.location.pathname+window.location.search}`
       }
 }
 
