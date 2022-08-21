@@ -46,7 +46,7 @@ function QuizTest() {
    
         let new_path = (HOST_URL()+`/assessment/quiztest/${ url_path ? url_path : 'tech-diversity-quiz'}/`)
         console.log(new_path);
-        fetAPI(setData, 'https://api.instincthub.com/assessment/quiztest/javascript-events', requestOptions, true)
+        fetAPI(setData, new_path, requestOptions, true)
     
 
         
