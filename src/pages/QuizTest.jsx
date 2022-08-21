@@ -23,7 +23,7 @@ function QuizTest() {
     // const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage] = useState(1);
-    const [duration, setDuration] = useState();
+    const [duration, setDuration] = useState(1);
     // const [assessment_id, setAssessment_id] = useState();
 
     const answerData = {}
@@ -132,7 +132,7 @@ function QuizTest() {
         }
         
     }
-    // if (data.detail !== 'Not found.') {
+    if (data.detail !== 'Not found.') {
         return (
             
             <div>
@@ -167,12 +167,12 @@ function QuizTest() {
                 </div>
             </div>
         );
-    // }
-    // else{
-    //     return(
-    //         <h3>Details not found</h3>
-    //     )
-    // }
+    }
+    else{
+        return(
+            <h3>Details not found</h3>
+        )
+    }
 }
 
 export default QuizTest;
