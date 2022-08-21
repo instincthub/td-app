@@ -23,7 +23,7 @@ function QuizTest() {
     // const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage] = useState(1);
-    const [duration, setDuration] = useState(1);
+    const [duration, setDuration] = useState();
     // const [assessment_id, setAssessment_id] = useState();
 
     const answerData = {}
@@ -45,7 +45,7 @@ function QuizTest() {
 
    
         let new_path = url_path ? url_path : 'tech-diversity-quiz'
-        fetAPI(setData, HOST_URL()+`/assessment/quiztest/${new_path}`, requestOptions, true)
+        fetAPI(setData, HOST_URL()+`/assessment/quiztest/tech-diversity-quiz`, requestOptions, true)
     
 
         
