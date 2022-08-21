@@ -44,8 +44,8 @@ function QuizTest() {
         // console.log(requestOptions)
 
    
-        let new_path = url_path ? url_path : 'tech-diversity-quiz'
-        fetAPI(setData, HOST_URL()+`/assessment/quiztest/tech-diversity-quiz`, requestOptions, true)
+        let new_path = (url_path ? url_path : 'tech-diversity-quiz')
+        fetAPI(setData, HOST_URL()+`/assessment/quiztest/${new_path}`, requestOptions, true)
     
 
         
