@@ -83,7 +83,7 @@ function QuizTest() {
 
         answerData['user'] = user_id
         answerData['assessment'] = assessment_id
-        answerData['tech_diversity'] = data['a_tech_diversity'][0]['pk']
+        // answerData['tech_diversity'] = data['a_tech_diversity'][0]['pk']
         answerData['question'] = current_records[0]['pk']
     
 
