@@ -376,7 +376,7 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                 }
             }
             
-            console.log(result)
+            // console.log(result)
             console.log(status)
             return result
         },

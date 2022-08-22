@@ -45,7 +45,7 @@ function QuizTest() {
 
    
         let new_path = (HOST_URL()+`/assessment/quiztest/${ url_path ? url_path : 'tech-diversity-quiz'}/`)
-        console.log(new_path);
+        // console.log(new_path);
         fetAPI(setData, new_path, requestOptions, true)
     
 
@@ -58,7 +58,7 @@ function QuizTest() {
     }
     // setDuration(data['duration'])
 
-    console.log(data['duration'])
+    // console.log(data['duration'])
     
     const assessment = data['a_assessment']
     const indexOfLastRecord = currentPage * recordsPerPage;

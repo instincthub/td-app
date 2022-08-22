@@ -16,7 +16,7 @@ function QuizResults() {
 		let params = (new URL(document.location)).searchParams;
 		let assessment_id = params.get('assessment_id'); // is the string "token".
 		let u_id = params.get('user_id'); 
-		console.log(data)
+		// console.log(data)
 
 		// get assessment from db
         const requestOptions = {
