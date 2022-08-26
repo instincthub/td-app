@@ -95,7 +95,9 @@ class Register extends React.Component {
               </div>
             
             <section className="container">
-              <div className="diversity_data register">
+
+              {/* Registration Form */}
+              {/* <div className="diversity_data register">
                 <h2>Signup for Tech Diversity</h2>
 
                 <div className="personal_data d-flex d-wrap d-between">
@@ -139,6 +141,16 @@ class Register extends React.Component {
                 <SubmitButton label="Signup"/>
                 <br></br>
                 <Link className='inline-link' to="/login/">Login an existing account</Link>
+              </div> */}
+
+              <div className='reg_closed'>
+                <br/>
+                <br/>
+                <h3>Registration has been closed.</h3>
+                <p>Registration for this programme has been closed as we are currently in session.</p>
+                <p>We appreciate your interest!</p>
+                <br/>
+                <br/>
               </div>
               
             </section>
