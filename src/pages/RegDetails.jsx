@@ -29,6 +29,10 @@ class RegDetails extends React.Component {
     
     // get access token
     let params = (new URL(document.location)).searchParams;
+    let chart_link = querySelector(`href="?category=${params.get('category')}"`)
+    if (chart_link) {
+      chart_link.classList.add('link_active')
+    }
 
     if (params.get('access') !== null && params.get('access') !== '') {
         setCookie('refresh',  params.get('refresh'), 30)

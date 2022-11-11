@@ -368,7 +368,6 @@ h2{
   margin: 10px auto;
   max-width: 900px;
   width: 100%;
-  margin-top: -220px;
 }
 
 .video_frame iframe {
@@ -563,9 +562,6 @@ h2{
   .slick-dots{
     bottom: -20px;
   }
-  .video_frame{
-    margin-top: -70px;
-  }
   .slick-track{
     height: 450px;
   }
@@ -636,9 +632,6 @@ h2{
   }
 }
 @media(min-width: 1024px){
-  .video_frame{
-    margin-top: -270px;
-  }
   .testimonial_box .t_avatars {
     margin-bottom: 30px;
   }
