@@ -34,10 +34,10 @@ function Banner() {
           <div className="sponsored"></div>
         </div>
 
-        <div className="container bysterling" itemScope itemType="https://ft.intsincthub.com/">
+        {/* <div className="container bysterling" itemScope itemType="https://ft.intsincthub.com/">
           <p itemProp="description">Sponsored by:</p>
           <img itemProp="Sterling Bank Logo" src={sterling} alt="Sterling Bank Logo" />
-        </div>
+        </div> */}
       </section>
     </div>
   );
