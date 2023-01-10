@@ -6,8 +6,8 @@ const Records = ({data, responseData, ...props}) => {
   return (  
 
         <div>
-            {data.map(item => (
-            <div>
+            {data.map((item, index) => (
+            <div key={index}>
                 <p id="qtext">{item.question}</p>
                 
                 <form role="form" id="quizform" name="quizform" method="post">
@@ -24,9 +24,10 @@ const Records = ({data, responseData, ...props}) => {
                         {item['q_option'].map((item, index)=> (
                             
                             <label 
-                                key="{item.pk}"
                                 className="radiocontainer checkedlabel" 
-                                id={"label"+(index+=1)}> 
+                                id={"label"+(index+=1)}
+                                key={index}
+                            > 
 
                                 <span>{item.option}</span>
                                 

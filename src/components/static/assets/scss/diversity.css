@@ -20,6 +20,18 @@ h2{
   box-shadow: var(--shadow);
   display: none;
 }
+
+.server_err.active{
+  display: block;
+}
+.server_err.active ul,
+.server_err.active ul li{
+  list-style-type: auto !important;
+  color: #fff !important;
+}
+.server_err.active ul{
+  padding: 20px !important;
+}
 .server_err h3{
   display: inline-block;
   margin-right: 10px;
@@ -444,6 +456,7 @@ h2{
 
 .diversity_assessment {
   max-width: 875px;
+  margin: 0 auto;
 }
 
 .diversity_assessment h4 {
@@ -560,7 +573,7 @@ h2{
     width: 45%;
   }
   .slick-dots{
-    bottom: -20px;
+    bottom: -60px;
   }
   .slick-track{
     height: 450px;

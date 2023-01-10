@@ -246,7 +246,7 @@ export const printErr = (key, value, index) =>{
           inputField.parentElement.append(span_tag)
         }
         else{
-          inputField.parentElement.append(span_tag)
+          inputField.parentElement.parentElement.append(span_tag)
         }
       }
       
@@ -257,12 +257,71 @@ export const printErr = (key, value, index) =>{
     
 }
 
+export const printErrNew = (items) =>{
+  if(items){
+    // spinBtn(registerForm, 'none', false) // spin button: parameter >> form, display and status
+    let inputField;
+    Object.entries(items).forEach((item, index)=> {
+      const [key, value] = item;
+      inputField = document.querySelector(`.${key}`)
+      if (index === 0) inputField.focus() 
+      let err_tag = document.createElement('P')
+      err_tag.textContent = value
+
+      if(inputField){
+        inputField.classList.add('s_err')
+        inputField.append(err_tag)
+        let input_field = inputField.querySelector('.field input')
+        if(input_field.getAttribute('type') === "number" || 
+          input_field.getAttribute('type') === "text" || 
+          input_field.getAttribute('type') === "email" || input_field.getAttribute('type') === "password"
+          ){
+            input_field.style.border = '1px solid var(--TurkishRose)'
+          }
+          else{
+            inputField.querySelector('.field').style.border = '1px solid var(--TurkishRose)'
+          }
+        
+      }
+
+
+      
+    });
+    // document.querySelector('.server_err').style.display="none";
+  }
+}
+
+export const inputTagErrorEvent = (tags) =>{
+    // let tag = document.querySelector(`[name="${tags}"]`)
+    
+    let input_field_wrap = document.querySelector('div.'+tags.name);
+    let msg_wrap = document.querySelector('#err_message');
+    let msg_tag = document.createElement('LI');
+
+
+    if (!input_field_wrap.classList.contains('s_err')) {
+      input_field_wrap.classList.add('s_err')
+      msg_wrap.classList.add('active')
+      input_field_wrap.querySelector('.field').style.border = '1px solid var(--TurkishRose)';
+      if (input_field_wrap.querySelector('h5')) {
+        msg_tag.textContent = input_field_wrap.querySelector('h5').textContent;
+      }
+
+      msg_wrap.querySelector('ul').append(msg_tag)
+
+    }
+    
+    
+    // document.querySelector('.server_err').style.display="none";
+}
+
 
 export const handleError = (status, items, registerForm, r_path) =>{
   const serverTag = document.querySelector('.server_err')
 
   if (status === 400){
-    if (items.user){
+    console.log(items);
+    if (items.user || items.username){
       if (items.user[0] === "This field must be unique.") {
         serverTag.style.display="block";
         serverTag.style.backgroundColor = "var(--DarkCyan)"
@@ -349,14 +408,14 @@ export const reqOptions = (method, data=null, type="application/json") =>{
   return request
 }
 
-export const fetAPI = (session, api, reqOptions, func=false) =>{
+export const fetAPI = (session, api, reqOptions, func=false, setStatus=null) =>{
 
     let status = null
     fetch(api, reqOptions)
     .then(res => {
         status=res.status; 
         if (status === 401) { // Login required
-          loginRequired(status)
+          // loginRequired(status)
         }
         return res.json()
     })
@@ -374,9 +433,13 @@ export const fetAPI = (session, api, reqOptions, func=false) =>{
                 else{
                     session(result)
                 }
+                
+                // Signal field validation
+                if (status === 400 && setStatus) setStatus(400) 
+                else if(setStatus) setStatus(null)
             }
             
-            // console.log(result)
+            console.log(result)
             console.log(status)
             return result
         },

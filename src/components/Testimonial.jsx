@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Settings } from "./static/assets/js/testimonial";
 import { StarSVG } from "./StarSVG";
 import { checkEnv } from "./static/assets/js/help_func"; // check environment
-import { fetAPI } from "./static/assets/js/help_func";
+import { fetAPI, HOST_URL } from "./static/assets/js/help_func";
 import TestimonialJSON from "./static/json/testimonies.json";
 import ava1 from "./static/assets/review-thumbnails/ally-kimi.png";
 import ava2 from "./static/assets/review-thumbnails/gemma-usiku.png";
@@ -28,26 +28,24 @@ class Testimonial extends React.Component {
     // this.updateState = this.componentDidMount.bind(this)
   }
   componentDidMount(){ // Fetch testimonial API in production
-    if (checkEnv() === "production") {
-      fetAPI(this, "https://instincthub.com/tech-diversity/api/testimonies/", null)
-    }
-    else if(checkEnv() === "local"){ // Fetch static json in local
-      this.setState({
-        items: TestimonialJSON
-      })
-      // fetAPI(this, "http://127.0.0.1:8000/tech-diversity/api/testimonies/")
-    } 
+    // if (checkEnv() === "production") {
+    //   fetAPI(this, HOST_URL()+"/api/v1/assessment/testimonies/", null)
+    // }
+    // else if(checkEnv() === "local"){ // Fetch static json in local
+    //   this.setState({
+    //     items: TestimonialJSON
+    //   })
+    // } 
+    fetAPI(this, HOST_URL()+"/api/v1/assessment/testimonies/", null)
   }
 
 
   render(){
     const {items, error} = this.state
-    if (error) {
-      console.log('fetch_err', error.message)
-    }
+    if (error) console.log('fetch_err', error.message)
     // console.log('render.....> ', items)
     
-    if(items.length > 0){ // Check if items is greater than one
+    if(items.results){ // Check if items is greater than one
       return (
         <div className="testimonial_box container" itemScope itemType="https://g.page/r/CR0XN_PyghOiEAE">
           <div className="p_reviews">
@@ -67,9 +65,9 @@ class Testimonial extends React.Component {
             </div>
           </div>
           <Slider {...Settings} className="cell_box carousel_box owl-carousel">
-            {items.map(item => {
+            {items.results.map((item, index) => {
               return(
-                <div className="review_cards item" itemProp="customer review">
+                <div className="review_cards item" itemProp="customer review" key={index}>
                   <div className="stars">
                     <img src={item.img} className="card_pic" alt={item.full_name} itemProp="user"/>
                     <span className="card_name">

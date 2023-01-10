@@ -93,11 +93,35 @@ class Register extends React.Component {
               <div className='mt-10'>
                 <ServerErr/>
               </div>
+
+
+              <div className="container">
+                <div className="diversity_assessment">
+                  <h1>Tech Diversity Assessment</h1>
+
+                  <p>
+                  Thank you for being so interested in our tech diversity program! This application will take roughly 10 minutes and help us assess your suitability for the program. 
+                  </p>
+
+                  <p>
+                  Please try and be as descriptive as possible and ensure all links can be accessed by a representative from InstinctHub using an @instincthub.com domain.
+                  </p>
+                  <p>Kindly follow all the social media handles below. While we encourage you to follow these pages for continuous updates, it is not part of the prerequisite:</p>
+
+                  <h4>Schedules (12 weeks for each cohort):</h4>
+                  <ul>
+                    <li id="Duration"> TDN 3.0 : 1<sup>st</sup> March - 31<sup>st</sup> May 2023 </li>
+                    <li id="Duration"> TDN 3.1 : 1<sup>st</sup> June - 31<sup>st</sup> August 2023 </li>
+                    <li id="Duration"> TDN 3.2 : 1<sup>st</sup> September - 30<sup>th</sup> November 2023 </li>
+                  </ul>
+                  <p> P.S. The 3 month training is Free for shortlisted individuals.</p>
+                </div>
+              </div>
             
             <section className="container">
 
               {/* Registration Form */}
-              {/* <div className="diversity_data register">
+              <div className="diversity_data register">
                 <h2>Signup for Tech Diversity</h2>
 
                 <div className="personal_data d-flex d-wrap d-between">
@@ -141,9 +165,9 @@ class Register extends React.Component {
                 <SubmitButton label="Signup"/>
                 <br></br>
                 <Link className='inline-link' to="/login/">Login an existing account</Link>
-              </div> */}
+              </div>
 
-              <div className='reg_closed'>
+              {/* <div className='reg_closed'>
                 <br/>
                 <br/>
                 <h3>Registration has been closed.</h3>
@@ -151,7 +175,7 @@ class Register extends React.Component {
                 <p>We appreciate your interest!</p>
                 <br/>
                 <br/>
-              </div>
+              </div> */}
               
             </section>
             </form>

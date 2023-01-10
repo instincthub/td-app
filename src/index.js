@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import App from "./pages/Home";
 import RegDetails from "./pages/RegDetails";
 import Register from './pages/Register'
+import Register2 from './pages/Register2'
 import CheckMail from "./pages/CheckMail"
 import InvalidToken from "./pages/InvalidToken"
 import QuizInstruction from "./pages/QuizIntruction";
@@ -43,6 +44,7 @@ function Index() {
           <Routes>
               <Route index element={<App />} />
               <Route path="register" element={<Register />} />
+              <Route path="register2" element={<Register2 />} />
               <Route path="register/verify" element={<CheckMail />} />
               <Route path="register/details" element={<RegDetails />} />
               <Route path="register/invalid-token" element={<InvalidToken />} />

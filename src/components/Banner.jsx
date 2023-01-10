@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import sterling from "./static/assets/images/sterling.jpg";
+// import sterling from "./static/assets/images/sterling.jpg";
 import people from "./static/assets/images/grid_style.jpg";
 import { showVideo } from "./static/assets/js/nav";
 
@@ -11,7 +11,7 @@ function Banner() {
         <div className="container diversity_banner" itemScope itemType="https://ft.intsincthub.com/enrol">
           <div className="frace">
             <h1 itemProp="Tittle">
-              Tech Diversity In Nigeria <span>(2022 edition)</span>
+              Tech Diversity In Nigeria <span>(2023 edition)</span>
             </h1>
             <p itemProp="description">
             Position yourself for a unique opportunity and endless possibilities! Join other university students to unlock your coding skills.

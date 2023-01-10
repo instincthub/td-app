@@ -35,6 +35,7 @@ export const DatePick = ({placeholder, labelText, id, name, required, addClass, 
       id={id} 
       name={name} 
       required={required}
+      autoComplete="off"
       {...props}
     />
     

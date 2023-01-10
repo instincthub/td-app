@@ -51,15 +51,15 @@ class Login extends React.Component {
     }
     
     // Handle error codes
-    if (this.state.items.access) {
-        setCookie('access', this.state.items.access, 30)
-        setCookie('refresh', this.state.items.refresh, 30)
-        setCookie('u_id', this.state.items.u_id, 30)
-        setCookie('username', this.state.items.username, 30)
+    if (this.state.items.access_token) {
+        setCookie('access', this.state.items.access_token, 30)
+        setCookie('refresh', this.state.items.refresh_token, 30)
+        setCookie('u_id', this.state.items.user.id, 30)
+        setCookie('username', this.state.items.user.username, 30)
     }
 
     let redirect = this.state.next === null ? '/login/success' : this.state.next
-    handleError(this.state.status, this.state.items, registerForm, redirect)
+    // handleError(this.state.status, this.state.items, registerForm, redirect)
   }
 
   // get formData and post data with fetch api
@@ -68,16 +68,18 @@ class Login extends React.Component {
 
     const formData  = new FormData(form);
 
-    console.log(formData)
+    let myHeaders = new Headers();
+    myHeaders.append("Instincthub-sk-header", "22-072021kidbackendyste3333ifkIks304");
 
 
     // get assessment from db
     const requestOptions = {
         method: 'POST',
+        headers: myHeaders,
         body: formData
     };
 
-    fetAPI(this, HOST_URL()+"/auth/login/", requestOptions)
+    fetAPI(this, HOST_URL()+"/api/v1/auth/login/", requestOptions)
   }
   
   render(){ 

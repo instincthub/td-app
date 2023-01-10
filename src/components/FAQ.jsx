@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import faqJSON from "./static/json/faqs.json";
 import { checkEnv, faqTag } from "./static/assets/js/help_func"; // check environment
-import { fetAPI } from "./static/assets/js/help_func";
+import { fetAPI, HOST_URL } from "./static/assets/js/help_func";
 
 // import "./carousel";
 
@@ -20,21 +20,22 @@ class FAQ extends React.Component {
     }
   
     componentDidMount(){ // Fetch faqs API in production
-        if (checkEnv() === "production") {
-          fetAPI(this, "https://instincthub.com/tech-diversity/api/faqs/")
-        }
-        else if(checkEnv() === "local"){ // Fetch static json in local
-          this.setState({
-            items: faqJSON
-        })
-        } 
+        // if (checkEnv() === "production") {
+        //   fetAPI(this, HOST_URL()+"/api/v1/assessment/faqs/")
+        // }
+        // else if(checkEnv() === "local"){ // Fetch static json in local
+        //   this.setState({
+        //     items: faqJSON
+        // })
+        // } 
+        fetAPI(this, HOST_URL()+"/api/v1/assessment/faqs/")
     }
     
 
     render(){
         const { items } = this.state;
 
-        if(items.length > 0){ // Check if items is greater than one
+        if(items.results){ // Check if items is greater than one
             return (
                 <div 
                     id="faq"
@@ -46,7 +47,7 @@ class FAQ extends React.Component {
                         <h2 itemProp="tittle">Frequently Asked Questions</h2>
                     </div>
                     <div className="faq_wrap">
-                        {items.map(item => {
+                        {items.results.map(item => {
                             return(
                                 <div className="faq">
                                     <div className="faq_text">

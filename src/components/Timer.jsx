@@ -27,7 +27,7 @@ const Timer = (props) => {
                     localStorage.removeItem('quiz_duration_sec')
                     localStorage.removeItem('current_page')
                     
-                    // window.location.href = `/quiz/quiztest/results/?user_id=${props.user_id}&assessment_id=${props.assessment_id}`
+                    window.location.href = `/quiz/quiztest/results/?user_id=${props.user_id}&assessment_id=${props.assessment_id}`
 
                 } else {
                     setMinutes(minutes - 1);

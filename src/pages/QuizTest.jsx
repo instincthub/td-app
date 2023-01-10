@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from "react";
 import { fetAPI, loginRequired, cookiesRequired, getCookie, HOST_URL } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
+import { useSearchParams } from "react-router-dom";
 import Records from "../components/quiz-pagination/Record";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -11,7 +12,7 @@ function QuizTest() {
 
     // Required 
     cookiesRequired()
-    loginRequired(getCookie('access'))
+    loginRequired(getCookie('uu_id'))
 
     // get access token
     let params = (new URL(document.location)).searchParams;
@@ -24,6 +25,7 @@ function QuizTest() {
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage] = useState(1);
     const [duration, setDuration] = useState();
+    const [searchParams, setSearchParams] = useSearchParams();
     // const [assessment_id, setAssessment_id] = useState();
 
     const answerData = {}
@@ -33,8 +35,11 @@ function QuizTest() {
         // console.log('Previous response: ', submitAnswer)
         // get assessment from db
         var myHeaders = new Headers();
+        // let access_tkn = getCookie('access');
+
         let u_access = "Bearer " + getCookie('access')
         myHeaders.append("Authorization", u_access)
+        myHeaders.append("Instincthub-sk-header", "22-072021kidbackendyste3333ifkIks304");
 
         const requestOptions = {
             method: 'GET',
@@ -44,7 +49,7 @@ function QuizTest() {
         // console.log(requestOptions)
 
    
-        let new_path = (HOST_URL()+`/assessment/quiztest/${ url_path ? url_path : 'tech-diversity-quiz'}/`)
+        let new_path = (HOST_URL()+`/api/v1/assessment/quiztest/${url_path}/`)
         // console.log(new_path);
         fetAPI(setData, new_path, requestOptions, true)
     

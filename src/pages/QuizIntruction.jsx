@@ -1,80 +1,128 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useSearchParams } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
-import { loginRequired, getCookie } from "../components/static/assets/js/help_func";
+import styled from "styled-components";
+import { loginRequired, getCookie, fetAPI, HOST_URL, setCookie } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/modal.css";
 
 function QuizInstruction() {
-    loginRequired(getCookie('access'))
+    
+    const [data, setData] = useState()
+    const [searchParams, setSearchParams] = useSearchParams();
+    const q_param = searchParams.get("slug")
 
-  return (
-    <div>
-      <Navbar />
-		<div className="container">
-			<div className="m-b-50 mb-7">
-				<div className="mt-10">
-					<div className="quiz_header">
-						<h1>Tech Diversity Quiz</h1>
-						<p>
-							We want to know if you are fit for the challenge. The test is just a nice way to see how much you know how to think and communicate. 
-						</p>
-					</div>
-					<div className="signup__list">
-						<h4 className="sub_header">Quiz Instruction</h4>
-						<ol type="1" className="numbered-list">
-							<li>
-                                The test contains 20 questions and there is <strong>20 minutes</strong> time limit.
-							</li>
-							<li>
-                                You will get 1 points for each correct answer. At the end of the Quiz, your total score will be displayed. Maximum score is 20 points.
-							</li>
-                            <li>
-                                You need the minimum of 10 points to stand a chance to be part.
-							</li>
-						</ol>
-                        <h3 className="mt-3">Good luck!</h3>
-						<div className="mt-4">
-                            <button 
-                                className="outlined-btn d-inline-block"
-                                onClick={e=>{
-                                    document.getElementById("myModal").style.display = "block";
-                                }}
-                                >Start Quiz
-                            </button>
-						</div>
-					</div>
-				</div>
+    // Store access
+    if (searchParams.get("access_token")) {
+        setCookie('access', searchParams.get("access_token"), 30)
+        setCookie('refresh', searchParams.get("refresh_token"), 30)
+        setCookie('u_id', searchParams.get("id"), 30)
+        setCookie('username', searchParams.get("username"), 30)
+    }
+    else{
+        loginRequired(getCookie('access'))
+    }
 
-                <div 
-                    id="myModal" 
-                    className="modal"
-                    onClick={()=>{
-                        document.getElementById("myModal").style.display = 'none'
-                    }}
-                    >
-                    <div class="modal-content">
-                        <span 
-                            className="close"
+    useState(()=>{
+        let request_options = {
+        method: 'GET',
+        headers: {
+            'X-CSRFToken': getCookie('CSRF-TOKEN'),
+            'Origin': window.location.origin
+        },
+        };
+        
+        fetAPI(setData, HOST_URL()+"/api/v1/assessment/instructions/"+q_param, request_options, true)
+    })
+
+    console.log(data);
+    if (data) {
+        return (
+            <div>
+            <Navbar />
+                <QuizInstructionWrap className="container">
+                    <div className="m-b-50 mb-7">
+                        <div className="mt-10">
+                            <div className="quiz_header">
+                                <h1>Assessment</h1>
+                            </div>
+                            <div className="signup__list">
+                            
+                                <ReactMarkdown>{data.description }</ReactMarkdown>
+                            
+                                <div className="mt-4">
+                                    <button 
+                                        className="outlined-btn d-inline-block"
+                                        onClick={e=>{
+                                            document.getElementById("myModal").style.display = "block";
+                                        }}
+                                        >Start Quiz
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+
+                        <div 
+                            id="myModal" 
+                            className="modal"
                             onClick={()=>{
                                 document.getElementById("myModal").style.display = 'none'
                             }}
-                        >&times;</span>
-                        <p>The countdown will begin reading once you start. Ready? Hit the continue button!</p>
-
-                        <div className="mt-4">
-                            <Link to="/quiz/quiztest"><button className="outlined-btn d-inline-block mt-1">Continue...</button></Link>
-						</div>
+                            >
+                            <div class="modal-content">
+                                <span 
+                                    className="close"
+                                    onClick={()=>{
+                                        document.getElementById("myModal").style.display = 'none'
+                                    }}
+                                >&times;</span>
+                                <p>The countdown will begin reading once you start. Ready? Hit the continue button!</p>
+                                
+                                <div className="mt-4">
+                                    <Link to={"/quiz/quiztest/?slug="+data.slug}><button className="outlined-btn d-inline-block mt-1">Continue...</button></Link>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-			</div>
-		</div>
-      <Footer />
-    </div>
-  );
+                </QuizInstructionWrap>
+            <Footer />
+            </div>
+        );
+    }
+    else{
+        return(
+            <div>
+            <Navbar />
+                <QuizInstructionWrap className="container">
+                    <div className="m-b-50 mb-7">
+                        <div className="mt-10">
+                            <h2>No assigned assessment to this URL.</h2>
+                        </div>
+                    </div>
+                </QuizInstructionWrap>
+            </div>
+        )
+    }
 }
 
 export default QuizInstruction;
+
+const QuizInstructionWrap = styled.div`
+    h1{
+        font-size: 2.5em;
+    }
+    h2{
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+    h3{
+        font-size: .8em;
+    }
+`;
