@@ -59,7 +59,7 @@ class Login extends React.Component {
     }
 
     let redirect = this.state.next === null ? '/login/success' : this.state.next
-    // handleError(this.state.status, this.state.items, registerForm, redirect)
+    handleError(this.state.status, this.state.items, registerForm, redirect)
   }
 
   // get formData and post data with fetch api

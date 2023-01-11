@@ -79,7 +79,7 @@ const Register = () =>{
   },[status, cohort])
 
   if (items && items.assessment !== 'null')  {
-      window.location.href ='/quiz/?slug='+items.assessment
+      window.location.href ='/register/verify'
     };
 
   
