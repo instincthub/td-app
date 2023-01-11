@@ -13,7 +13,7 @@ function Participate() {
             />
             <h3 itemProp="title">Coding Skills</h3>
             <p itemProp="description">
-            Gain industry experience in building web applications using HTML, CSS and Javascript (Front End Web Development). Build web applications compatible with both mobile and desktop devices.
+            Gain industry experience in building create new products, make intelligent decisions with data and build web applications compatible with both mobile and desktop devices. 
             </p>
           </div>
 

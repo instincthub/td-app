@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import Slider from "react-slick";
 import ReactTimeAgo from 'react-time-ago'
 import "slick-carousel/slick/slick.css";
@@ -16,36 +16,15 @@ import ava4 from "./static/assets/review-thumbnails/dalila-mn.png";
 
 import './static/assets/scss/testimonial.css'
 
-class Testimonial extends React.Component {
+const Testimonial = ()=> {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [],
-      error: null
-    };
-    // Binding this keyword 
-    // this.updateState = this.componentDidMount.bind(this)
-  }
-  componentDidMount(){ // Fetch testimonial API in production
-    // if (checkEnv() === "production") {
-    //   fetAPI(this, HOST_URL()+"/api/v1/assessment/testimonies/", null)
-    // }
-    // else if(checkEnv() === "local"){ // Fetch static json in local
-    //   this.setState({
-    //     items: TestimonialJSON
-    //   })
-    // } 
-    fetAPI(this, HOST_URL()+"/api/v1/assessment/testimonies/", null)
-  }
+  const[items, setItems] = useState(null)
+  const[error, setError] = useState()
+  useState(()=>{
+    fetAPI(setItems, HOST_URL()+"/api/v1/assessment/testimonies/", null, true)
+  })
 
-
-  render(){
-    const {items, error} = this.state
-    if (error) console.log('fetch_err', error.message)
-    // console.log('render.....> ', items)
-    
-    if(items.results){ // Check if items is greater than one
+    if(items){ // Check if items is greater than one
       return (
         <div className="testimonial_box container" itemScope itemType="https://g.page/r/CR0XN_PyghOiEAE">
           <div className="p_reviews">
@@ -65,7 +44,7 @@ class Testimonial extends React.Component {
             </div>
           </div>
           <Slider {...Settings} className="cell_box carousel_box owl-carousel">
-            {items.results.map((item, index) => {
+            {items.map((item, index) => {
               return(
                 <div className="review_cards item" itemProp="customer review" key={index}>
                   <div className="stars">
@@ -95,7 +74,6 @@ class Testimonial extends React.Component {
         </div>
       );
     }
-  };
 };
 
 export default Testimonial;

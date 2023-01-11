@@ -2,19 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import sterling from "./static/assets/images/sterling.jpg";
 import people from "./static/assets/images/grid_style.jpg";
+import tdnImg from "./static/assets/images/tdn-3.0-banner.jpg";
 import { showVideo } from "./static/assets/js/nav";
+import styled from "styled-components";
 
 function Banner() {
   return (
-    <div>
+    <Header>
       <section>
-        <div className="container diversity_banner" itemScope itemType="https://ft.intsincthub.com/enrol">
+        <div className="container diversity_banner" itemScope itemType="https://tech.intsincthub.com/register">
           <div className="frace">
             <h1 itemProp="Tittle">
               Tech Diversity In Nigeria <span>(2023 edition)</span>
             </h1>
             <p itemProp="description">
-            Position yourself for a unique opportunity and endless possibilities! Join other university students to unlock your coding skills.
+            Our goal is to create a renewed sense of purpose through digital education. Train 100,000 people and place 20% into direct jobs. This will create wealth for families locked out of employment opportunities. Become a beneficiary!
             </p>
 
             <div className="v_btn">
@@ -28,7 +30,7 @@ function Banner() {
           </div>
 
           <div className="pic_grid">
-            <img src={people} alt="sterling"/>
+            <img src={tdnImg} alt="A lady siting with a laptop"/>
           </div>
 
           <div className="sponsored"></div>
@@ -39,8 +41,17 @@ function Banner() {
           <img itemProp="Sterling Bank Logo" src={sterling} alt="Sterling Bank Logo" />
         </div> */}
       </section>
-    </div>
+    </Header>
   );
 }
 
 export default Banner;
+
+const Header = styled.div`
+  min-height: 70vh;
+
+  .diversity_banner {
+    align-items: center;
+    margin-top: calc(100vh - 76vh);
+  }
+`
