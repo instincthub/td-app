@@ -44,7 +44,7 @@ const Testimonial = ()=> {
             </div>
           </div>
           <Slider {...Settings} className="cell_box carousel_box owl-carousel">
-            {items.map((item, index) => {
+            {items.results.map((item, index) => {
               return(
                 <div className="review_cards item" itemProp="customer review" key={index}>
                   <div className="stars">

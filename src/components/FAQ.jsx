@@ -29,7 +29,7 @@ const FAQ = () => {
                     <h2 itemProp="tittle">Frequently Asked Questions</h2>
                 </div>
                 <div className="faq_wrap">
-                    {items.map(item => {
+                    {items.results.map(item => {
                         return(
                             <div className="faq">
                                 <div className="faq_text">

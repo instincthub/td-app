@@ -75,24 +75,15 @@ const Register = () =>{
     // '/register/verify'
     if(status===400)printErrNew(items)
 
-   
-  },[status, cohort])
-   // Store Objects
-  //  if (items && items.results) {
-  //   let c_choice = []
-  //   items.results.map((option, index)=>{
-  //     console.log(option);
-  //     c_choice.push({
-  //       id: option.id,
-  //       title: option.track.title,
-  //     })
-
-      
-  //   })
-  //   // setCourseChoice(c_choice)
-  // }
-
     
+  },[status, cohort])
+
+  if (items && items.assessment !== 'null')  {
+      window.location.href ='/quiz/?slug='+items.assessment
+    };
+
+  
+
   
   const hideFields = (e, lists) =>{
 
@@ -185,13 +176,13 @@ const Register = () =>{
             <section className="container">
               
               <div className="diversity_data register">
-                {
+                {/* {
                   access === null
                   ?
                   <Link className='inline-link' to="/login/?next=/register2">Login an existing account</Link>
                   :
                   ''
-                }
+                } */}
                 <RadioField options={cohort ? cohort.results : []}
                   names="cohort"
                   labels="Choose a cohort:"
@@ -300,6 +291,8 @@ const Register = () =>{
                 requireds={true}
               />
 
+              <TextField types="text" name="expected_income" label="Income Expectation (eg. N10,000)" maxLengths="250" />
+
             <RadioField options={[
               {title: '4 hours', id: '4'},
               {title: '8 hours', id: '8'},
@@ -391,6 +384,7 @@ const Register = () =>{
             <input type="text" hidden name='influencer' id='id_influencer' defaultValue={influencerSlug ? influencerSlug : ''}/>
             <input type="text" hidden name='invalid_token_url' id='id_invalid_token_url' defaultValue={window.location.origin+'/register/invalid-token'}/>
             <input type="text" hidden name='redirect_url' id='id_redirect_url' defaultValue={window.location.origin+'/quiz/?slug='}/>
+            <input type="text" hidden name='assessment' id='id_assessment' defaultValue='mull'/>
 
             <aside id='err_message' className="container server_err mb-1">
               <h3>Check these fields</h3>
@@ -406,13 +400,13 @@ const Register = () =>{
 
                 <SubmitButton label="Signup"/>
                 <br></br>
-                {
+                {/* {
                   access === null
                   ?
                   <Link className='inline-link' to="/login/?next=/register2">Login an existing account</Link>
                   :
                   ''
-                }
+                } */}
               </div>
 
               

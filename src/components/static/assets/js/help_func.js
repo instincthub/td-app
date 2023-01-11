@@ -264,7 +264,7 @@ export const printErrNew = (items) =>{
     Object.entries(items).forEach((item, index)=> {
       const [key, value] = item;
       inputField = document.querySelector(`.${key}`)
-      if (index === 0) inputField.focus() 
+      
       let err_tag = document.createElement('P')
       err_tag.textContent = value
 
@@ -277,6 +277,7 @@ export const printErrNew = (items) =>{
           input_field.getAttribute('type') === "email" || input_field.getAttribute('type') === "password"
           ){
             input_field.style.border = '1px solid var(--TurkishRose)'
+            if (index === 0) inputField.focus() 
           }
           else{
             inputField.querySelector('.field').style.border = '1px solid var(--TurkishRose)'

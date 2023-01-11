@@ -43,8 +43,8 @@ function Index() {
         <BrowserRouter>
           <Routes>
               <Route index element={<App />} />
-              <Route path="register" element={<Register />} />
-              <Route path="register2" element={<Register2 />} />
+              <Route path="register" element={<Register2 />} />
+              {/* <Route path="register2" element={<Register2 />} /> */}
               <Route path="register/verify" element={<CheckMail />} />
               <Route path="register/details" element={<RegDetails />} />
               <Route path="register/invalid-token" element={<InvalidToken />} />
