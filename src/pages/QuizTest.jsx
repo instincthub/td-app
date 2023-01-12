@@ -133,7 +133,7 @@ function QuizTest() {
                 body: JSON.stringify(answerData)
             };
             
-            fetAPI(setSubmitAnswer, HOST_URL()+"/assessment/answer/", requestOptions, true)
+            fetAPI(setSubmitAnswer, HOST_URL()+"/api/v1/assessment/answer/", requestOptions, true)
            
         }
         
