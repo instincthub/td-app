@@ -26,7 +26,7 @@ function QuizResults() {
 			}
         };
 
-		fetAPI(setData, `${HOST_URL()}/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
+		fetAPI(setData, `${HOST_URL()}/api/v1/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
 
 		  
 	// eslint-disable-next-line

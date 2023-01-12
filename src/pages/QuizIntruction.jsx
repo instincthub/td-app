@@ -18,7 +18,7 @@ function QuizInstruction() {
     const q_param = searchParams.get("slug")
 
     // Store access
-    if (searchParams.get("access_token")) {
+    if (searchParams.get("access_token") && searchParams.get("refresh_token") && searchParams.get("id") && searchParams.get("username")) {
         setCookie('access', searchParams.get("access_token"), 30)
         setCookie('refresh', searchParams.get("refresh_token"), 30)
         setCookie('u_id', searchParams.get("id"), 30)

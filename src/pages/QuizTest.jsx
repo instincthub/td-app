@@ -12,7 +12,7 @@ function QuizTest() {
 
     // Required 
     cookiesRequired()
-    loginRequired(getCookie('uu_id'))
+    loginRequired(getCookie('u_id'))
 
     // get access token
     let params = (new URL(document.location)).searchParams;

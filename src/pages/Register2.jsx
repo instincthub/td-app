@@ -78,9 +78,9 @@ const Register = () =>{
     
   },[status, cohort])
 
-  if (items && items.assessment !== 'null')  {
-      window.location.href ='/register/verify'
-    };
+  // if (items && items.assessment !== 'null')  {
+  //     window.location.href ='/register/verify'
+  //   };
 
   
 
@@ -112,7 +112,7 @@ const Register = () =>{
     // console.log(formData.get('student'))
 
     formData.set('user', Number(getCookie('u_id')))
-    formData.set('redirect_url', window.location.origin+'/register/details')
+    formData.set('redirect_url', window.location.origin+'/quiz/?slug=')
     formData.set('invalid_token_url', window.location.origin+'/register/invalid-token')
     formData.set('coupon', "TECH3")
 
@@ -131,7 +131,7 @@ const Register = () =>{
 
     fetAPI(setItems, access_url, requestOptions, true, setStatus)
   }
-  
+  console.log(window.location.origin);
     return (
       <div>
         <Navbar />
@@ -382,8 +382,6 @@ const Register = () =>{
             />
 
             <input type="text" hidden name='influencer' id='id_influencer' defaultValue={influencerSlug ? influencerSlug : ''}/>
-            <input type="text" hidden name='invalid_token_url' id='id_invalid_token_url' defaultValue={window.location.origin+'/register/invalid-token'}/>
-            <input type="text" hidden name='redirect_url' id='id_redirect_url' defaultValue={window.location.origin+'/quiz/?slug='}/>
             <input type="text" hidden name='assessment' id='id_assessment' defaultValue='mull'/>
 
             <aside id='err_message' className="container server_err mb-1">

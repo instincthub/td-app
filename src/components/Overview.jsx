@@ -1,10 +1,26 @@
-import React from "react";
+import {React, useState} from "react";
+import styled from "styled-components";
+import { fetAPI, HOST_URL, getCookie } from "./static/assets/js/help_func";
 
 function Overview() {
+  const [cohort, setCohort] = useState()
+  const [courseChoice, setCourseChoice] = useState()
+  useState(()=>{
+    let request_options = {
+      method: 'GET',
+      headers: {
+        'X-CSRFToken': getCookie('CSRF-TOKEN'),
+        'Origin': window.location.origin
+      },
+    };
+    
+    fetAPI(setCourseChoice, HOST_URL()+"/api/v1/assessment/course_choice/", request_options, true)
+    fetAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", request_options, true)
+  })
   return (
-    <div>
-      <div class="container tech_overview" itemScope itemType="https://ft.intsincthub.com/enrol">
-        <div class="purpose">
+    <Wrap>
+      <div className="container tech_overview" itemScope itemType="https://ft.intsincthub.com/enrol">
+        <div className="purpose">
           <h2 itemProp="overview">Overview</h2>
           <div itemProp="description">
             <p>
@@ -15,17 +31,45 @@ function Overview() {
             </p>
 
             <p>We have scheduled 3 cohorts for this year, each cohort will last for 12 weeks. Participants will have the privilege to pick any of the listed tracks below.</p>
-            <ol>
-              <li>Wen Development - Beginner </li>
-              <li>Wen Development - Intermediate </li>
-              <li>Product Design - Beginner </li>
-              <li>Data Analysis  - Beginner </li>
-            </ol>
+            {
+              courseChoice ?
+              <ol>
+                <h3>Courses</h3>
+                {
+                  courseChoice.results.map((option, index)=>{
+                    return<li key={index}>{option.title}</li>
+                  })
+                }
+              </ol>
+            : ''
+            }
+
+            {
+              cohort ?
+              <ol className="mt-5">
+                <h3>Cohorts:</h3>
+                {
+                  cohort.results.map((option, index)=>{
+                    return<li key={index}>{option.title}</li>
+                  })
+                }
+              </ol>
+            : ''
+            }
           </div>
         </div>
       </div>
-    </div>
+    </Wrap>
   );
 }
 
 export default Overview;
+
+const Wrap = styled.div`
+  h3{
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+`;

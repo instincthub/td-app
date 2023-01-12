@@ -29,16 +29,15 @@ const FAQ = () => {
                     <h2 itemProp="tittle">Frequently Asked Questions</h2>
                 </div>
                 <div className="faq_wrap">
-                    {items.results.map(item => {
-                        return(
-                            <div className="faq">
+                    {items.results.map((item, index) => {
+                        return <div className="faq" key={index}>
                                 <div className="faq_text">
                                     <h3>{item.question}</h3>
                                     <p>{item.answer}</p>
                                 </div>
                                 <span className="btn">&#43;</span>
                             </div>
-                        )
+                        
                     })}
                 </div>
             </div>
