@@ -335,7 +335,7 @@ const Register = () =>{
             
 
             {/* <!-- Upload File --> */}
-            <h5 className="top_form">Upload your school ID *</h5>
+            <h5 className="top_form">Upload valid ID (NIN, Drivers License, Passport etc. *</h5>
             <div className="upload_img">
               <FileInputField name='valid_id' requireds={true}/>
             </div>
