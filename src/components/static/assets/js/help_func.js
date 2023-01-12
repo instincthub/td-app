@@ -440,8 +440,8 @@ export const fetAPI = (session, api, reqOptions, func=false, setStatus=null) =>{
                 else if(setStatus) setStatus(null)
             }
             
-            console.log(result)
-            console.log(status)
+            // console.log(result)
+            // console.log(status)
             return result
         },
         (error) => {
