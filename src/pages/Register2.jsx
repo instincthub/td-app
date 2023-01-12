@@ -100,7 +100,7 @@ const Register = () =>{
   
 
   const postData = (form) =>{
-    // spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
+    spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
 
     // Grab form data 
     let formData = new FormData(form); 
