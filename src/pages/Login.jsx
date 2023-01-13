@@ -77,6 +77,7 @@ class Login extends React.Component {
 
     let myHeaders = new Headers();
     myHeaders.append(SK_KEY, SK_VALUE);
+    console.log(SK_KEY, SK_VALUE);
 
 
     // get assessment from db
