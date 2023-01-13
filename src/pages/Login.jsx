@@ -76,8 +76,8 @@ class Login extends React.Component {
     const formData  = new FormData(form);
 
     let myHeaders = new Headers();
-    myHeaders.append(SK_KEY, SK_VALUE);
-    console.log(SK_KEY, SK_VALUE);
+    myHeaders.append(SK_KEY(), SK_VALUE());
+    console.log(SK_KEY(), SK_VALUE());
 
 
     // get assessment from db
