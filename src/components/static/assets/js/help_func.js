@@ -8,7 +8,17 @@ export const HOST_URL = ()=> {
 }
 
 export const SK_KEY = "instincthub-sk-header"
-export const SK_VALUE = "22-072021kidbackendyste3333ifkIks304"
+
+
+export const SK_VALUE = () =>{
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "192.168.0.174" || window.location.hostname === "") {
+    return "22-072021kidbackendyste3333ifkIks304"
+  }
+  else{
+    return "sk-dvbfkbvfbkfkbssnjdv232299sddsk"
+  }
+  
+}
 
 export const cookiesEnabled = () =>{
   var i, j, cookies, found;
