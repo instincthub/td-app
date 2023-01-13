@@ -40,8 +40,6 @@ class Login extends React.Component {
   }
   componentDidUpdate(){
     const registerForm = document.querySelector('#regForm')
-    console.log(this);
-    console.log(this.state.status);
 
     if (this.state.items && this.state.items.non_field_errors) {
       registerForm.querySelector('#errMsg').textContent = this.state.items.non_field_errors[0]
@@ -77,8 +75,6 @@ class Login extends React.Component {
 
     let myHeaders = new Headers();
     myHeaders.append(SK_KEY, SK_VALUE());
-    console.log(SK_KEY, SK_VALUE());
-
 
     // get assessment from db
     const requestOptions = {
