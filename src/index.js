@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import App from "./pages/Home";
 import RegDetails from "./pages/RegDetails";
 import Register from './pages/Register'
-import Register2 from './pages/Register2'
+import Register2 from './pages/Register'
 import CheckMail from "./pages/CheckMail"
 import InvalidToken from "./pages/InvalidToken"
 import QuizInstruction from "./pages/QuizIntruction";

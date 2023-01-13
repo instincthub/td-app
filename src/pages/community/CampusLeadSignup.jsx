@@ -79,7 +79,7 @@ class CampusLeadSignup extends React.Component {
 
       // Auto fill user details if exist. 
       if (Array.isArray(items.email) && verified === 'details' && status === 400) {
-        fetAPI(this, HOST_URL()+`/auth/campus/details/get/${items.email.join('')}/${otp.join('')}/`, {method: 'GET'})
+        fetAPI(this, HOST_URL()+`/api/v1/auth/campus/details/get/${items.email.join('')}/${otp.join('')}/`, {method: 'GET'})
       }
 
 

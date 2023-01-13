@@ -2,17 +2,16 @@ import React from "react";
 import "./static/assets/scss/file-input-field.css";
 import styled from "styled-components";
 
-export const FileInputField = ({name, label, requireds, ...props}) =>{
+export const FileInputField = ({name, label, requireds, titles, ...props}) =>{
     const fileLabel = label ? label : "Browse File"
   return (
     <div className={name}>
+      <h5 className="top_form">{titles}</h5>
       <div className="field">
         <Labels className="file">
             <input 
               id="uploadFile" 
               className="f-input"
-              
-              
               />
             <div className="fileUpload btn--browse">
                 <span>{fileLabel}</span>

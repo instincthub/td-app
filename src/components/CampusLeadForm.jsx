@@ -74,7 +74,7 @@ const CampusLeadForm = ({formEvent, ...props}) => {
               if (u_email === undefined){
                 u_email = formEvent.state.items[0].email
               }
-              formEvent.postData(e.target, "PUT", `/auth/campus/details/${u_email}/`)
+              formEvent.postData(e.target, "PUT", `/api/v1/auth/campus/details/${u_email}/`)
             }
           }
               >

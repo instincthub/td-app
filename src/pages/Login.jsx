@@ -9,6 +9,7 @@ import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
 import "../components/static/assets/scss/custom-select.css";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 class Login extends React.Component {
 
@@ -39,6 +40,12 @@ class Login extends React.Component {
   }
   componentDidUpdate(){
     const registerForm = document.querySelector('#regForm')
+    console.log(this);
+    console.log(this.state.status);
+
+    if (this.state.items && this.state.items.non_field_errors) {
+      registerForm.querySelector('#errMsg').textContent = this.state.items.non_field_errors[0]
+    }
 
     registerForm.querySelectorAll('input').forEach(e=>{
       e.style.borderColor = "#d0d0d0";
@@ -84,7 +91,7 @@ class Login extends React.Component {
   
   render(){ 
     return (
-      <div>
+      <Wrap>
         <Navbar />
 
             {/* Server Error State */}
@@ -113,6 +120,9 @@ class Login extends React.Component {
                         <label htmlFor="id_password">Password *</label>
                         </div>
                     </div>
+
+                      <p id="errMsg"></p>
+
                     <SubmitButton type="submit" label="Get Access"/>
                     <br/>
                     <Link to="/register/">Create Account</Link>
@@ -125,9 +135,15 @@ class Login extends React.Component {
                 </section>
             </form>
         <Footer />
-      </div>
+      </Wrap>
     );
   }
 }
 
 export default Login;
+
+const Wrap = styled.div`
+  #errMsg{
+    color: var(--TurkishRose);
+  }
+`;
