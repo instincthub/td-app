@@ -1,0 +1,51 @@
+.slick-slide{
+    position: relative;
+}
+.slick-slide .when{
+    position: absolute !important;
+    bottom: 64px;
+}
+@media(max-width: 540px){
+    .review_cards{
+        min-height: 380px !important;
+    }
+    .slick-slide .when{
+        bottom: 40px;
+    }
+}
+
+@media(min-width: 768px){
+    .review_cards{
+        min-height: 400px !important;
+    }
+    .slick-slide:nth-child(2),
+    .slick-slide:nth-child(3),
+    .slick-slide:nth-child(4){
+        margin-left: 1% !important;
+    }
+    .slick-slide{
+        width: 24% !important;
+    }
+}
+@media(min-width: 1024px){
+    .review_cards{
+        min-height: 400px;
+    }
+}
+@media(min-width: 1112px){
+    .review_cards{
+        min-height: 418px !important;
+    }
+    .slick-slide .when {
+        bottom: 44px;
+    }
+    
+
+}
+@media(min-width: 1280px){
+    .slick-slide:nth-child(2),
+    .slick-slide:nth-child(3),
+    .slick-slide:nth-child(4){
+        margin-left: 1% !important;
+    }
+}

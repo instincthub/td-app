@@ -1,0 +1,105 @@
+:root {
+  --Gunmetal: #2c333a;
+  --ViridianGreen: #009ba2;
+  --Magnolia: #f4f3fe;
+  --White: #ffffff;
+  --Nunito: "Nunito", sans-serif;
+  --Montserat: "Montserrat", sans-serif;
+}
+
+footer {
+  box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.05), 0px 2px 8px rgba(0, 0, 0, 0.05);
+  height: auto;
+  background-color: #ffffff;
+  // padding-bottom: 20px;s
+  z-index: 10;
+  position: relative;
+  .footer_wrap {
+  }
+  .quick_links {
+    padding-top: 30px;
+    li {
+      a {
+        font-family: var(--Nunito);
+      }
+      transform: scale(1);
+      transition: 0.4s;
+      margin-bottom: 10px;
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+  .social_media {
+    text-align: center;
+    .media {
+      margin: 30px auto 0;
+      display: flex;
+      justify-content: space-between;
+      width: 16%;
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  .copyright {
+    text-align: center;
+    // height: 50px;
+    padding: 15px 0;
+    background-color: var(--Gunmetal);
+    h5 {
+      margin: 0;
+      color: var(--White);
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 19px;
+
+      text-align: center;
+      text-transform: capitalize;
+    }
+  }
+  ul.breadcrumb {
+    list-style: none;
+    margin: 20px 0 40px 0;
+    font-family: var(--Nunito);
+  }
+  ul.breadcrumb li {
+    display: inline;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--DarkCyan);
+  }
+  ul.breadcrumb li + li:before {
+    content: "";
+    // font-size: 30px;
+    border: 1px solid var(--Gunmetal);
+    transform: rotate(90deg);
+    // padding: 0 10px;
+    background-color: var(--Gunmetal);
+    display: inline-block;
+    width: 0px;
+    position: relative;
+    top: -4px;
+  }
+  ul.breadcrumb li a {
+    color: var(--Gunmetal);
+    text-decoration: none;
+    transition: 0.7s ease;
+  }
+  ul.breadcrumb li a:hover {
+    color: var(--Gunmetal);
+    text-decoration: underline;
+  }
+}
+@media (min-width: 580px) {
+  .footer_wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    .quick_links {
+      padding-bottom: 40px;
+    }
+  }
+}

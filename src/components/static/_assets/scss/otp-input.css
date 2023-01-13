@@ -1,0 +1,113 @@
+:root {
+    --BaseBG: #00838f;
+}
+/*Hide Input Number Arrows*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.otp_input{
+    height: 100vh;
+}
+.otp_input div.otp_wrapper,
+.otp_input div.email_wrapper{
+    max-width: 540px;
+    max-height: 500px;
+    padding: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-family: "Nunito";
+	font-weight: 200;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -60px;
+    bottom: 0;
+    margin: auto
+}
+.otp_input div.otp_wrapper{
+    max-height: 500px;
+}
+.otp_input div.email_wrapper form{
+    width: 100%;
+}
+.otp_input h1{
+    font-size: 1.5em;
+    width: 100%;
+    padding-top: 50px;
+}
+.otp_input .prompt,
+.otp_input .retry {
+    width: 100%;
+}
+.otp_input .retry {
+    margin-bottom: 50px;
+}
+.otp_input .retry a {
+    color: var(--ViridianGreen) !important;
+}
+
+.digit-group input {
+    width: 50px;
+    height: 50px;
+    background-color: var(--Gunmetal);
+    border: none;
+    line-height: 50px;
+    text-align: center;
+    font-size: 24px;
+    /* font-family: "Raleway", sans-serif; */
+    font-weight: 200;
+    color: white !important;
+    margin: 0 2px;
+}
+.digit-group input:focus{
+    background-color: var(--LavenderGray) !important;
+}
+.digit-group .splitter {
+    padding: 0 5px;
+    /* color: white; */
+    font-size: 24px;
+}
+#otpErr{
+    display: none;
+    width: 100%;
+    margin-top: 25px;
+}
+#otpErr svg{
+     margin-right: 10px;
+     fill: var(--TurkishRose);
+}
+#otpErr span{
+     color: var(--TurkishRose);
+}
+
+/* .prompt {
+	margin-bottom: 20px;
+} */
+
+@media (max-width: 414px){
+    .digit-group input {
+        font-size: 16px;
+        width: 40px;
+    }
+}
+@media (max-width: 375px){
+    .digit-group input {
+        font-size: 16px;
+        width: 13%;
+        padding: 5px !important;
+    }
+}

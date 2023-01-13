@@ -198,9 +198,7 @@ const Register = () =>{
               e.preventDefault();
               postData(e.target)
               }}
-            onInvalid={(e)=>{
-                inputTagErrorEvent(e.target.name) 
-              }}>
+            onInvalid={(e)=> inputTagErrorEvent(e.target.name)}>
 
               {/* Server Error State */}
               <div className='mt-10'>
