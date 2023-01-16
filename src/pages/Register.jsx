@@ -48,7 +48,11 @@ const Register = () =>{
     
     fetAPI(setCourseChoice, HOST_URL()+"/api/v1/assessment/course_choice/", request_options, true)
     fetAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", request_options, true)
-    fetAPI(setStudent, HOST_URL()+"/api/v1/auth/tdn_register/details/get/"+getCookie('u_id'), request_options, true)
+
+    if (getCookie('u_id')) {
+      fetAPI(setStudent, HOST_URL()+"/api/v1/auth/tdn_register/details/get/"+getCookie('u_id'), request_options, true)
+    }
+    
   })
 
   useEffect(()=>{
@@ -76,7 +80,7 @@ const Register = () =>{
     // '/register/verify'
     
     // Hide or show new account field
-    if(student && student.id || student && student.status === false){
+    if((student && student.id && !access) || (student && student.status === false)){
       setAccess(true)
     }
     else setAccess(null)
