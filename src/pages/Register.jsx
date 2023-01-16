@@ -76,9 +76,7 @@ const Register = () =>{
     // '/register/verify'
     
 
-    if((student && student.id && !access) || (student && student.id || student && student.status !== false)){
-      setAccess(true)
-
+    if(student && student.id && !access){
       // Prefill inputs from database
       if(student && student.id){
         for (const key in student) {
@@ -108,6 +106,9 @@ const Register = () =>{
           }
         }
     }
+    }
+    if(student && student.id || student && student.status === false){
+      setAccess(true)
     }
     else setAccess(null)
 
