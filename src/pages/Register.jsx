@@ -260,7 +260,7 @@ const Register = () =>{
               {/* Registration Form */}
               {
                 
-                !access
+                access == null
                 ?
                   <>
                   <br/><br/>
