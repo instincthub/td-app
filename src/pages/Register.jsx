@@ -77,9 +77,9 @@ const Register = () =>{
     
     // Hide or show new account field
     if(student && student.id || student && student.status === false){
-      setAccess(null)
+      setAccess(true)
     }
-    else setAccess(true)
+    else setAccess(null)
 
     if(student && student.id && !access){
       // Prefill inputs from database
@@ -236,7 +236,7 @@ const Register = () =>{
               
               <div className="diversity_data register">
                 {
-                  access !== null
+                  access === null
                   ?
                   <div className='mb-5'>
                     <Link className='inline-link' to="/login/?next=/register">Login to an existing account</Link>
@@ -260,7 +260,7 @@ const Register = () =>{
               {/* Registration Form */}
               {
                 
-                access !== null
+                access === null
                 ?
                   <>
                   <br/><br/>
