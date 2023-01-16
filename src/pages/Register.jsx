@@ -436,10 +436,19 @@ const Register = () =>{
               requireds={true}
             />
 
-            <input type="text" hidden name='influencer' id='id_influencer' defaultValue={influencerSlug ? influencerSlug : ''}/>
-            <input type="text" hidden name='assessment' id='id_assessment' defaultValue='mull'/>
-            <input type="text" hidden name='user' id='id_assessment' defaultValue={student ? student.id : ''}/>
+            {
+            influencerSlug ?
+              <input type="text" hidden name='influencer' id='id_influencer' defaultValue={influencerSlug}/>
+              : ''
+            }
+
+            <input type="text" hidden name='assessment' id='id_assessment' defaultValue='null'/>
             
+            {
+              student && student.id ?  
+              <input type="text" hidden name='user' id='id_assessment' defaultValue={student.id}/>
+              : ''
+            }
           
             <aside id='err_message' className="container server_err mb-1">
               <h3>Check these fields</h3>

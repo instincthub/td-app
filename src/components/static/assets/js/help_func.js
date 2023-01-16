@@ -283,7 +283,7 @@ export const printErrNew = (items) =>{
       err_tag.style.color = 'var(--TurkishRose)';
       err_tag.textContent = value
 
-      if(inputField && !inputField.classList.contains('s_err') && inputField.querySelector('.err_msg')){
+      if(inputField && !inputField.classList.contains('s_err') && !inputField.querySelector('.err_msg')){
         inputField.classList.add('s_err')
         inputField.append(err_tag)
         let input_field = inputField.querySelector('.field input')
@@ -308,6 +308,7 @@ export const printErrNew = (items) =>{
 }
 
 export const inputTagErrorEvent = (tags, border=true) =>{
+  console.log('Errrr');
     // let tag = document.querySelector(`[name="${tags}"]`)
     // console.log(tags);
     
