@@ -75,6 +75,11 @@ const Register = () =>{
     // Handle error 400, null and else redirect to /quiz if success 
     // '/register/verify'
     
+    // Hide or show new account field
+    if(student && student.id || student && student.status === false){
+      setAccess(null)
+    }
+    else setAccess(true)
 
     if(student && student.id && !access){
       // Prefill inputs from database
@@ -105,12 +110,9 @@ const Register = () =>{
               }
           }
         }
+      }
     }
-    }
-    if(student && student.id || student && student.status === false){
-      setAccess(true)
-    }
-    else setAccess(null)
+    
 
   },[status, cohort, student])
 
