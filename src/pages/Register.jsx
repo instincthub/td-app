@@ -76,34 +76,36 @@ const Register = () =>{
     // '/register/verify'
     
 
-    if((student && student.id && !access) || (student && student.id && student.status === false)){
+    if((student && student.id && !access) || (student && student.id || student && student.status === false)){
       setAccess(true)
 
       // Prefill inputs from database
-      for (const key in student) {
-        if (student.hasOwnProperty(key)) {
-            // console.log(`${key}: ${student[key]}`);
-            let tags = document.querySelectorAll(`input[name="${key}"]`);
+      if(student && student.id){
+        for (const key in student) {
+          if (student.hasOwnProperty(key)) {
+              // console.log(`${key}: ${student[key]}`);
+              let tags = document.querySelectorAll(`input[name="${key}"]`);
 
-              for (let index = 0; index < tags.length; index++) {
-                const element = tags[index];
-                if (element.getAttribute('type') === "radio") {
-                  if (element.value === student[key]) {
-                    element.checked = true;
+                for (let index = 0; index < tags.length; index++) {
+                  const element = tags[index];
+                  if (element.getAttribute('type') === "radio") {
+                    if (element.value === student[key]) {
+                      element.checked = true;
+                    }
+                    else if(element.value === student[key] || `${element.value}` === `${student[key]}`){
+                      element.checked =  true
+                    }
                   }
-                  else if(element.value === student[key] || `${element.value}` === `${student[key]}`){
-                    element.checked =  true
+                  else if (element.getAttribute('type') === "file") {
+                    element.file = student[key];
+                    document.querySelector('#id_valid_id').file = student[key];
                   }
-                }
-                else if (element.getAttribute('type') === "file") {
-                  element.file = student[key];
-                  document.querySelector('#id_valid_id').file = student[key];
-                }
-                else{
-                  element.value = student[key];
-                  element.parentElement.classList.add('value')
-                } 
-            }
+                  else{
+                    element.value = student[key];
+                    element.parentElement.classList.add('value')
+                  } 
+              }
+          }
         }
     }
     }
