@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { loginRequired, getCookie, fetAPI, HOST_URL, setCookie } from "../components/static/assets/js/help_func";
+import { loginRequired, getCookie, fetchAPI, HOST_URL, setCookie, reqOptions } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -29,15 +29,8 @@ function QuizInstruction() {
     }
 
     useState(()=>{
-        let request_options = {
-        method: 'GET',
-        headers: {
-            'X-CSRFToken': getCookie('CSRF-TOKEN'),
-            'Origin': window.location.origin
-        },
-        };
-        
-        fetAPI(setData, HOST_URL()+"/api/v1/assessment/instructions/"+q_param, request_options, true)
+        const requestOptions =  reqOptions("GET", null, true)
+        fetchAPI(setData, HOST_URL()+"/api/v1/assessment/instructions/"+q_param, requestOptions, true)
     })
 
     console.log(data);

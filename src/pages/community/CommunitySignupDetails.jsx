@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CommunityDetails from "../../components/CommunityDetails";
 
-import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL} from "../../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL, reqOptions} from "../../components/static/assets/js/help_func";
 import "../../components/static/assets/scss/staff.css";
 import "../../components/static/assets/scss/diversity.css";
 import "../../components/static/assets/scss/register.css";
@@ -85,36 +85,9 @@ class CommunitySignupDetails extends React.Component {
     const formData  = new FormData(form);
     formData.append("user", this.state.user_id)
 
+    const requestOptions =  reqOptions("POST", formData, true)
 
-    let bool_fields = ['completed_our_course', 'currently_employed', 'looking_for_job']
-
-    bool_fields.forEach(e=>{
-      if (formData.get(e) === null) {
-        formData.append(e, null)
-      }
-    })
-
-    // console.log(formData.get('completed_our_course'));
-    // if (formData.get('completed_our_course') === null) {
-    //   formData.append("completed_our_course", null)
-    // }
-    // if (formData.get('currently_employed') === null) {
-    //   formData.append("currently_employed", null)
-    // }
-    // if (formData.get('looking_for_job') === null) {
-    //   formData.append("looking_for_job", null)
-    // }
-
-    const requestOptions = {
-      method: 'POST',
-      'X-CSRFToken': getCookie('csrftoken'),
-      'headers': {
-        "Authorization": "Bearer " + getCookie('access')
-      },
-      body: formData
-    };
-
-    fetAPI(this, HOST_URL()+"/auth/community/signup/details/", requestOptions)
+    fetchAPI(this, HOST_URL()+"/api/v1/auth/community/signup/details/", requestOptions)
     
   }
   

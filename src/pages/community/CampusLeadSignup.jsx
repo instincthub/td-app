@@ -4,7 +4,7 @@ import Footer from "../../components/Footer";
 import CampusLeadForm from "../../components/CampusLeadForm";
 import { ServerErr } from "../../components/ServerErr";
 
-import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, HOST_URL, prefillInput} from "../../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, HOST_URL, prefillInput, reqOptions} from "../../components/static/assets/js/help_func";
 import "../../components/static/assets/scss/staff.css";
 import "../../components/static/assets/scss/diversity.css";
 import "../../components/static/assets/scss/register.css";
@@ -79,7 +79,8 @@ class CampusLeadSignup extends React.Component {
 
       // Auto fill user details if exist. 
       if (Array.isArray(items.email) && verified === 'details' && status === 400) {
-        fetAPI(this, HOST_URL()+`/api/v1/auth/campus/details/get/${items.email.join('')}/${otp.join('')}/`, {method: 'GET'})
+        const requestOptions =  reqOptions("GET", null)
+        fetchAPI(this, HOST_URL()+`/api/v1/auth/campus/details/get/${items.email.join('')}/${otp.join('')}/`, requestOptions)
       }
 
 
@@ -115,13 +116,10 @@ class CampusLeadSignup extends React.Component {
       console.log('previous_otp.... ', formData.get('previous_otp'))
     }
 
-    const requestOptions = {
-      method: method,
-      'X-CSRFToken': getCookie('csrftoken'),
-      body: formData
-    };
 
-    fetAPI(this, HOST_URL()+api, requestOptions)
+    const requestOptions =  reqOptions(method, formData)
+
+    fetchAPI(this, HOST_URL()+api, requestOptions)
     
   }
 

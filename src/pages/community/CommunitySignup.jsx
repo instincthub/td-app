@@ -2,7 +2,7 @@ import React from 'react';
 import { DatePick } from "../../components/DatePick";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import { fetAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL } from "../../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, reqOptions } from "../../components/static/assets/js/help_func";
 import {SubmitButton} from '../../components/SubmitButton'
 import { ServerErr } from '../../components/ServerErr';
 import { Link } from 'react-router-dom';
@@ -47,33 +47,18 @@ class CommunitySignup extends React.Component {
   }
   
 
-  postData(form){
-    spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
+  postData(e){
+    spinBtn(e, 'inline-block', true) // spin button: parameter >> form, display and status    
 
-    // Grab form data 
-    let formData = {}; 
-    form.querySelectorAll("input").forEach((node)=> {
-      formData[node.name] = node.value;
-    });
+    const formData = new FormData(e)
+    formData.append('redirect_url', window.location.origin+'/community/signup/details/');
+    formData.append('invalid_token_url', window.location.origin+'/register/invalid-token');
+    formData.append('coupon', "COMMUNITY-SUPPORT");
 
-    formData['redirect_url'] = window.location.origin+'/community/signup/details/';
-    formData['invalid_token_url'] = window.location.origin+'/register/invalid-token';
-    formData['coupon'] = "COMMUNITY-SUPPORT"
+    const requestOptions =  reqOptions("POST", formData, true)
 
 
-
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "Authorization": "Token " + getCookie('access'),
-        'X-CSRFToken': getCookie('CSRF-TOKEN'),
-        'Origin': window.location.origin
-      },
-      body: JSON.stringify(formData)
-    };
-
-    fetAPI(this, HOST_URL()+"/auth/register/", requestOptions, false)
+    fetchAPI(this, HOST_URL()+"/api/v1/auth/register/", requestOptions, false)
   }
   
   render(){ 

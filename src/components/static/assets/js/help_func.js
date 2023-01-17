@@ -1,5 +1,5 @@
 export const HOST_URL = ()=> {
-  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "192.168.0.174" || window.location.hostname === "") {
+  if (process.env.NODE_ENV === "development") {
       return "http://127.0.0.1:8000"
   }
   else{
@@ -7,18 +7,8 @@ export const HOST_URL = ()=> {
   }
 }
 
-export const SK_KEY = "instincthub-sk-header"
-
-
-export const SK_VALUE = () =>{
-  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" || window.location.hostname === "192.168.0.174" || window.location.hostname === "") {
-    return "22-072021kidbackendyste3333ifkIks304"
-  }
-  else{
-    return "sk-dvbfkbvfbkfkbssnjdv232299sddsk"
-  }
-  
-}
+export const SK_KEY = process.env.REACT_APP_SK_KEY
+export const SK_VALUE = process.env.REACT_APP_SK_VALUE
 
 export const cookiesEnabled = () =>{
   var i, j, cookies, found;
@@ -408,16 +398,17 @@ export const prefillInput = (items) =>{
   });
 }
 
-// Set type to null if not required. 
-export const reqOptions = (method, data=null, type="application/json") =>{
-  let myHeaders = new Headers();
-  myHeaders.append("Authorization", "Bearer "+getCookie('access'));
-  
-  myHeaders.append("Cookie", "csrftoken="+getCookie('csrftoken'));
 
-  if (type !== null) {
-    myHeaders.append("Content-Type", type);
+// Set type to null if not required. 
+export const reqOptions = (method, data, bearer=null) =>{
+
+  let myHeaders =  {
+    'X-CSRFToken': getCookie('CSRF-TOKEN'),
+    'Origin': window.location.origin
   }
+  myHeaders[SK_KEY] = SK_VALUE
+
+  if (bearer)  myHeaders["Authorization"] = "Bearer "+getCookie('access');
   
   var request = {
     method: method,
@@ -425,12 +416,10 @@ export const reqOptions = (method, data=null, type="application/json") =>{
     body: data,
     redirect: 'follow'
   };
-
   return request
 }
 
-export const fetAPI = (session, api, reqOptions, func=false, setStatus=null) =>{
-
+export const fetchAPI = (session, api, reqOptions, func=false, setStatus=false, setError=false) =>{
     let status = null
     fetch(api, reqOptions)
     .then(res => {
@@ -438,30 +427,35 @@ export const fetAPI = (session, api, reqOptions, func=false, setStatus=null) =>{
         if (status === 401) { // Login required
           // loginRequired(status)
         }
+
         return res.json()
     })
     .then(
         (result) => {
             if (func === false) { // if class component
                 session.setState({
-                    items: result,
+                    data: result,
                     status: status
                 })
             }else if (func === true){// if function component
-                if (status === 401) {
-                    session(status)
+                if (status === 400) {
+                  if(setStatus && setError) setError(result);
+                  setStatus(status) // Display message banner. 
                 }
-                else{
-                    session(result)
+                else if(status === 201 || status === 200){
+                  session(result);
+                  if(setStatus && setError)  setError([]);
+                  if(setStatus) setStatus('success'); // Display message banner. 
                 }
-                
-                // Signal field validation
-                if (status === 400 && setStatus) setStatus(400) 
-                else if(setStatus) setStatus(null)
+                else if(status === 404) setStatus(status)
             }
             
-            console.log(result)
-            console.log(status)
+            if (process.env.NODE_ENV === "development") {
+              console.log(reqOptions);
+              console.log(result)
+              console.log(status)
+            }
+            
             return result
         },
         (error) => {
@@ -471,9 +465,13 @@ export const fetAPI = (session, api, reqOptions, func=false, setStatus=null) =>{
                 })
             }
             else{
-                session(error)
+              //   session(error)
+                
             }
-            console.log(error.message)
+            if (process.env.NODE_ENV === "development") {
+              console.log(reqOptions);
+              console.log(error.message)
+            }
             return error.message
         }
     )

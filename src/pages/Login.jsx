@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { SubmitButton } from "../components/SubmitButton";
-import { fetAPI, spinBtn, handleError, setCookie, HOST_URL, SK_KEY, SK_VALUE } from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, setCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 import { ServerErr } from "../components/ServerErr";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -73,17 +73,10 @@ class Login extends React.Component {
 
     const formData  = new FormData(form);
 
-    let myHeaders = new Headers();
-    myHeaders.append(SK_KEY, SK_VALUE());
-
     // get assessment from db
-    const requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: formData
-    };
+    const requestOptions =  reqOptions("POST", formData)
 
-    fetAPI(this, HOST_URL()+"/api/v1/auth/login/", requestOptions)
+    fetchAPI(this, HOST_URL()+"/api/v1/auth/login/", requestOptions)
   }
   
   render(){ 

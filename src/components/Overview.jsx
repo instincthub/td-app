@@ -1,21 +1,15 @@
 import {React, useState} from "react";
 import styled from "styled-components";
-import { fetAPI, HOST_URL, getCookie } from "./static/assets/js/help_func";
+import { fetchAPI, HOST_URL, getCookie, reqOptions } from "./static/assets/js/help_func";
 
 function Overview() {
   const [cohort, setCohort] = useState()
   const [courseChoice, setCourseChoice] = useState()
   useState(()=>{
-    let request_options = {
-      method: 'GET',
-      headers: {
-        'X-CSRFToken': getCookie('CSRF-TOKEN'),
-        'Origin': window.location.origin
-      },
-    };
+    const requestOptions =  reqOptions("GET", null)
     
-    fetAPI(setCourseChoice, HOST_URL()+"/api/v1/assessment/course_choice/", request_options, true)
-    fetAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", request_options, true)
+    fetchAPI(setCourseChoice, HOST_URL()+"/api/v1/assessment/course_choice/", requestOptions, true)
+    fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
   })
   return (
     <Wrap>

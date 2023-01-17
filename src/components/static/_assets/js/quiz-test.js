@@ -5,7 +5,10 @@ export function clickRadio(elmnt) {
       x = document.getElementById("label" + i);
       if (x) {x.className = x.className.replace(" checkedlabel", "");}
     }
-    document.getElementById("label" + n).className += " checkedlabel";
+    if (document.getElementById("label" + n)) {
+        document.getElementById("label" + n).classList.add("checkedlabel")
+    }
+    
 }
 
 export function clickNextButton(n) {

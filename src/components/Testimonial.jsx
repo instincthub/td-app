@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Settings } from "./static/assets/js/testimonial";
 import { StarSVG } from "./StarSVG";
 import { checkEnv } from "./static/assets/js/help_func"; // check environment
-import { fetAPI, HOST_URL } from "./static/assets/js/help_func";
+import { fetchAPI, HOST_URL, reqOptions } from "./static/assets/js/help_func";
 import TestimonialJSON from "./static/json/testimonies.json";
 import ava1 from "./static/assets/review-thumbnails/ally-kimi.png";
 import ava2 from "./static/assets/review-thumbnails/gemma-usiku.png";
@@ -21,7 +21,8 @@ const Testimonial = ()=> {
   const[items, setItems] = useState(null)
   const[error, setError] = useState()
   useState(()=>{
-    fetAPI(setItems, HOST_URL()+"/api/v1/assessment/testimonies/", null, true)
+    const requestOptions =  reqOptions("GET", null)
+    fetchAPI(setItems, HOST_URL()+"/api/v1/assessment/testimonies/", requestOptions, true)
   })
 
     if(items){ // Check if items is greater than one

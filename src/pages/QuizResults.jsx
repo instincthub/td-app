@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { fetAPI, loginRequired, getCookie, HOST_URL } from "../components/static/assets/js/help_func";
+import { fetchAPI, loginRequired, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -18,15 +18,9 @@ function QuizResults() {
 		let u_id = params.get('user_id'); 
 		// console.log(data)
 
-		// get assessment from db
-        const requestOptions = {
-            method: 'GET',
-			headers: {
-				"Authorization": `Bearer ${getCookie('access')}`,
-			}
-        };
+		const requestOptions =  reqOptions("GET", null, true)
 
-		fetAPI(setData, `${HOST_URL()}/api/v1/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
+		fetchAPI(setData, `${HOST_URL()}/api/v1/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
 
 		  
 	// eslint-disable-next-line

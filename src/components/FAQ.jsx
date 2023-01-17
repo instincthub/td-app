@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import faqJSON from "./static/json/faqs.json";
 import { checkEnv, faqTag } from "./static/assets/js/help_func"; // check environment
-import { fetAPI, HOST_URL } from "./static/assets/js/help_func";
+import { fetchAPI, HOST_URL, reqOptions } from "./static/assets/js/help_func";
 
 // import "./carousel";
 
@@ -12,7 +12,8 @@ import './static/assets/scss/faq.css'
 const FAQ = () => {
     const [items, setItems] = useState(null)
     useState(()=>{
-        fetAPI(setItems, HOST_URL()+"/api/v1/assessment/faqs/", null, true)
+        const requestOptions =  reqOptions("GET", null)
+        fetchAPI(setItems, HOST_URL()+"/api/v1/assessment/faqs/", requestOptions, true)
     })
   
     

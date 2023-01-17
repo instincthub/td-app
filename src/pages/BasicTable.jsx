@@ -3,7 +3,7 @@ import { useTable } from 'react-table'
 import MOCK_DATA from '../components/table/MOCK_DATA.json'
 import { COLUMNS } from '../components/table/columns'
 import '../components/table/table.css'
-import { fetAPI, spinBtn, handleError, setCookie, getCookie, HOST_URL, reqOptions, FetchReturnData } from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 
 export const BasicTable = () => {
   const columns = useMemo(() => COLUMNS, [])
@@ -15,12 +15,8 @@ export const BasicTable = () => {
   // const dd = FetchReturnData('/assessment/reg_tracker/', 'GET')
 // console.log(dd)
   useEffect(()=>{
-    
-
-      fetAPI(setItems, HOST_URL()+"/assessment/reg_tracker/", reqOptions("GET"), true)
-      console.log(items)
-      console.log()
-
+    const requestOptions =  reqOptions("GET", null)
+    fetchAPI(setItems, HOST_URL()+"/pai/v1/assessment/reg_tracker/", requestOptions, true)
 
 },[])
 const {

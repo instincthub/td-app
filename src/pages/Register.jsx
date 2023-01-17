@@ -3,7 +3,7 @@ import { DatePick } from "../components/DatePick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import DiversityForm2 from '../components/DiversityForm2';
-import { fetAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, printErrNew, inputTagErrorEvent } from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, printErrNew, inputTagErrorEvent, reqOptions } from "../components/static/assets/js/help_func";
 import {SubmitButton} from '../components/SubmitButton';
 import { ServerErr } from '../components/ServerErr';
 import { Link } from 'react-router-dom';
@@ -38,19 +38,13 @@ const Register = () =>{
 
   
   useState(()=>{
-    let request_options = {
-      method: 'GET',
-      headers: {
-        'X-CSRFToken': getCookie('CSRF-TOKEN'),
-        'Origin': window.location.origin
-      },
-    };
+    const requestOptions =  reqOptions("GET", null)
     
-    fetAPI(setCourseChoice, HOST_URL()+"/api/v1/assessment/course_choice/", request_options, true)
-    fetAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", request_options, true)
+    fetchAPI(setCourseChoice, HOST_URL()+"/api/v1/assessment/course_choice/", requestOptions, true)
+    fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
 
     if (getCookie('u_id')) {
-      fetAPI(setStudent, HOST_URL()+"/api/v1/auth/tdn_register/details/get/"+getCookie('u_id'), request_options, true)
+      fetchAPI(setStudent, HOST_URL()+"/api/v1/auth/tdn_register/details/get/"+getCookie('u_id'), requestOptions, true)
     }
     
   })
@@ -120,10 +114,12 @@ const Register = () =>{
 
   },[status, cohort, student])
 
+  if (items && items.message === 'updated')  window.location.href ='/quiz/?slug='+items.assessment
+    else if(!access && items && status==='success') window.location.href ='/register/verify';
+
   
   const removeErrMsg = ()=>{
     // REMOVE ERROR MESSAGES 
-    console.log("TESTING");
     const ERR = document.querySelectorAll('.s_err')
       if (ERR) {
         ERR.forEach((option)=>{ // Remove message
@@ -144,15 +140,10 @@ const Register = () =>{
   // PRINT INPUT ERRORS 
     if(status===400){
       removeErrMsg()
-      printErrNew(items) // Add message
+      printErrNew(error) // Add message
       spinBtn(document.querySelector('form#regForm'), 'none', false)
     }
 
-  if (items && items.assessment !== 'null' && status!==400)  {
-    if (items.message === 'updated')  window.location.href ='/quiz/?slug='+items.assessment
-    else window.location.href ='/register/verify';
-
-  };
 
   // console.log(document.querySelector('input[name="have_laptop"]').value);
   // console.log(`${student.have_laptop}`);
@@ -181,19 +172,11 @@ const Register = () =>{
     formData.set('redirect_url', window.location.origin+'/quiz/?slug=')
     formData.set('invalid_token_url', window.location.origin+'/register/invalid-token')
     formData.set('coupon', "TECH3")
-
-    const requestOptions = {
-      method: access ? 'PUT' : 'POST',
-      headers: {
-        "Authorization": "Token " + getCookie('access'),
-        'X-CSRFToken': getCookie('CSRF-TOKEN'),
-        'Origin': window.location.origin
-      },
-      body: formData
-    };
+    
+    const requestOptions =  reqOptions(access ? "PUT" : "POST", formData, (access ? true : null))
 
     let access_url = access ? `${HOST_URL()}/api/v1/auth/tdn_register/details/put/${getCookie('u_id')}/` : HOST_URL()+"/api/v1/auth/tdn_register/"
-    fetAPI(setItems, access_url, requestOptions, true, setStatus)
+    fetchAPI(setItems, access_url, requestOptions, true, setStatus, setError)
   }
 
     return (

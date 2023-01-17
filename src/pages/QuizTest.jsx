@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import { fetAPI, loginRequired, cookiesRequired, getCookie, HOST_URL } from "../components/static/assets/js/help_func";
+import { fetchAPI, loginRequired, cookiesRequired, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import { useSearchParams } from "react-router-dom";
 import Records from "../components/quiz-pagination/Record";
@@ -31,27 +31,12 @@ function QuizTest() {
     const answerData = {}
 
     useEffect(() => {
+
+        const requestOptions =  reqOptions("GET", null, true)
         
-        // console.log('Previous response: ', submitAnswer)
-        // get assessment from db
-        var myHeaders = new Headers();
-        // let access_tkn = getCookie('access');
-
-        let u_access = "Bearer " + getCookie('access')
-        myHeaders.append("Authorization", u_access)
-        myHeaders.append("Instincthub-sk-header", "22-072021kidbackendyste3333ifkIks304");
-
-        const requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-        // console.log(requestOptions)
-
-   
         let new_path = (HOST_URL()+`/api/v1/assessment/quiztest/${url_path}/`)
         // console.log(new_path);
-        fetAPI(setData, new_path, requestOptions, true)
+        fetchAPI(setData, new_path, requestOptions, true)
     
 
         
@@ -124,16 +109,21 @@ function QuizTest() {
             }
 
 
-            const requestOptions = {
-                method: 'post',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${getCookie('access')}`,
-                  },
-                body: JSON.stringify(answerData)
-            };
+            // const requestOptions = {
+            //     method: 'post',
+            //     headers: { 
+            //         'Content-Type': 'application/json',
+            //         "Authorization": `Bearer ${getCookie('access')}`,
+            //       },
+            //     body: JSON.stringify(answerData)
+            // };
+
+            const formData = new FormData()
+            for (let key in answerData) formData.append(key, answerData[key]);
+
+            const requestOptions =  reqOptions("POST", formData, true)
             
-            fetAPI(setSubmitAnswer, HOST_URL()+"/api/v1/assessment/answer/", requestOptions, true)
+            fetchAPI(setSubmitAnswer, HOST_URL()+"/api/v1/assessment/answer/", requestOptions, true)
            
         }
         

@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Form from "../components/DiversityForm";
 
-import { fetAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL} from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL, reqOptions} from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
@@ -84,44 +84,11 @@ class RegDetails extends React.Component {
     spinBtn(form, 'inline-block', true) // spin button: parameter >> form, display and status
 
     const formData  = new FormData(form);
-    // const new_obj = {}
-
-    // Grab form data 
-    form.querySelectorAll("input").forEach((node)=> {
-      if (node.getAttribute('type') === 'radio') {
-        if (node.checked  === true) { // if input is checked
-          if (Number(node.dataset.value)) { // if number
-            formData.append(node.name, Number(node.dataset.value))
-          }
-          else if (node.dataset.value === "true") {
-            formData.append(node.name, true)
-          }
-          else if (node.dataset.value === 'false') {
-            formData.append(node.name, false)
-          }
-          else{
-            formData.append(node.name, node.dataset.value)
-          }
-        }
-      }
-      
-      
-    });
+    
     formData.append("user", this.state.user_id)
+    const requestOptions =  reqOptions("POST", formData, true)
 
-    console.log(this.state.token)
-    console.log(this.state.user_id)
-
-    const requestOptions = {
-      method: 'POST',
-      'X-CSRFToken': getCookie('csrftoken'),
-      'headers': {
-        "Authorization": "Bearer " + getCookie('access')
-      },
-      body: formData
-    };
-
-    fetAPI(this, HOST_URL()+"/auth/register/tech-diversity/detail/", requestOptions)
+    fetchAPI(this, HOST_URL()+"/api/v1/auth/register/tech-diversity/detail/", requestOptions)
     
   }
   
