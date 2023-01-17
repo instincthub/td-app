@@ -16,7 +16,6 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
       status: 0,
       error: null,
       login_redirect: null,
@@ -41,8 +40,8 @@ class Login extends React.Component {
   componentDidUpdate(){
     const registerForm = document.querySelector('#regForm')
 
-    if (this.state.items && this.state.items.non_field_errors) {
-      registerForm.querySelector('#errMsg').textContent = this.state.items.non_field_errors[0]
+    if (this.state.data && this.state.data.non_field_errors) {
+      registerForm.querySelector('#errMsg').textContent = this.state.data.non_field_errors[0]
     }
 
     registerForm.querySelectorAll('input').forEach(e=>{
@@ -56,15 +55,15 @@ class Login extends React.Component {
     }
     
     // Handle error codes
-    if (this.state.items.access_token) {
-        setCookie('access', this.state.items.access_token, 30)
-        setCookie('refresh', this.state.items.refresh_token, 30)
-        setCookie('u_id', this.state.items.user.id, 30)
-        setCookie('username', this.state.items.user.username, 30)
+    if (this.state.data.access_token) {
+        setCookie('access', this.state.data.access_token, 30)
+        setCookie('refresh', this.state.data.refresh_token, 30)
+        setCookie('u_id', this.state.data.user.id, 30)
+        setCookie('username', this.state.data.user.username, 30)
     }
 
     let redirect = this.state.next === null ? '/login/success' : this.state.next
-    handleError(this.state.status, this.state.items, registerForm, redirect)
+    handleError(this.state.status, this.state.data, registerForm, redirect)
   }
 
   // get formData and post data with fetch api
