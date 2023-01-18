@@ -112,7 +112,7 @@ const Register = () =>{
     }
     
 
-  },[status, cohort, student])
+  },[status, cohort, student, items])
 
   if (items && items.message === 'updated')  window.location.href ='/quiz/?slug='+items.assessment
     else if(!access && items && status==='success') window.location.href ='/register/verify';
