@@ -345,7 +345,7 @@ const Register = () =>{
               {title: '4 hours', id: '4'},
               {title: '8 hours', id: '8'},
               {title: '12 hours', id: '12'},
-              {title: '12 hours +', id: '12+'}
+              {title: '12 hours +', id: '13'}
             ]}
               names="commitment_hours"
               labels="How many hours can you dedicate to learning the skills each week?
