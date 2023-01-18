@@ -451,7 +451,7 @@ export const fetchAPI = (session, api, reqOptions, func=false, setStatus=false, 
             }
             
             if (process.env.NODE_ENV === "production") {
-              // console.log(reqOptions);
+              console.log(reqOptions);
               console.log(result)
               console.log(status)
             }
