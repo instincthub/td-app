@@ -10,10 +10,12 @@ import { loginRequired, getCookie, fetchAPI, HOST_URL, setCookie, reqOptions } f
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/modal.css";
+import { PageLoading } from "../components/forms/PageLoading";
 
 function QuizInstruction() {
     
     const [data, setData] = useState()
+    const [status, setStatus] = useState()
     const [searchParams, setSearchParams] = useSearchParams();
     const q_param = searchParams.get("slug")
 
@@ -29,15 +31,18 @@ function QuizInstruction() {
     }
 
     useState(()=>{
-        const requestOptions =  reqOptions("GET", null, true)
-        fetchAPI(setData, HOST_URL()+"/api/v1/assessment/instructions/"+q_param, requestOptions, true)
-    })
+        if(!data){
+            const requestOptions =  reqOptions("GET", null, true)
+            fetchAPI(setData, HOST_URL()+"/api/v1/assessment/instructions/"+q_param, requestOptions, true, setStatus)
+        }
+    }, [status])
 
-    console.log(data);
     if (data) {
         return (
             <div>
             <Navbar />
+                { data && data.description ?
+
                 <QuizInstructionWrap className="container">
                     <div className="m-b-50 mb-7">
                         <div className="mt-10">
@@ -85,11 +90,14 @@ function QuizInstruction() {
                         </div>
                     </div>
                 </QuizInstructionWrap>
+
+                : <PageLoading labels={'Instruction'}/>}
+                
             <Footer />
             </div>
         );
     }
-    else{
+    else if (status === 404){
         return(
             <div>
             <Navbar />

@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from "react";
 import { fetchAPI, loginRequired, cookiesRequired, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
+import { PageLoading } from "../components/forms/PageLoading";
 import { useSearchParams } from "react-router-dom";
 import Records from "../components/quiz-pagination/Record";
 import "../components/static/assets/scss/staff.css";
@@ -19,6 +20,7 @@ function QuizTest() {
 
     // To hold the actual data
     const [data, setData] = useState([])
+    const [status, setStatus] = useState('loading')
     const [url_path] = useState(params.get('slug'))
     const [submitAnswer, setSubmitAnswer] = useState([])
     // const [loading, setLoading] = useState(true);
@@ -36,7 +38,7 @@ function QuizTest() {
         
         let new_path = (HOST_URL()+`/api/v1/assessment/quiztest/${url_path}/`)
         // console.log(new_path);
-        fetchAPI(setData, new_path, requestOptions, true)
+        fetchAPI(setData, new_path, requestOptions, true, setStatus)
     
 
         
@@ -123,16 +125,16 @@ function QuizTest() {
 
             const requestOptions =  reqOptions("POST", formData, true)
             
-            fetchAPI(setSubmitAnswer, HOST_URL()+"/api/v1/assessment/answer/", requestOptions, true)
+            fetchAPI(setSubmitAnswer, HOST_URL()+"/api/v1/assessment/answer/", requestOptions, true, setStatus)
            
         }
         
     }
-    if (data.detail !== 'Not found.') {
+    if (nPages) {
         return (
             
             <div>
-            {/* <Navbar /> */}
+            
                 <div 
                 id="quizcontainer" 
                 className="container mt-8"
@@ -140,7 +142,6 @@ function QuizTest() {
                     submitAnswerToDB(e)
                 }}
                 >
-
                     <h3>Question {currentPage} of {nPages}:</h3>
                     
                     <Records data={current_records}/>
@@ -154,19 +155,26 @@ function QuizTest() {
                         user_id={user_id}
                         assessment_id={assessment_id}
                     />
-            
                 </div>
                 <div className="from">
                     <h3>from</h3>
                     <img src={require("../components/static/assets/svgs/instincthub_logo.svg").default}
                     alt="instincthub Logo" />
                 </div>
+                
             </div>
         );
     }
-    else{
+    else if (status == 'loading') {
         return(
-            <h3>Details not found</h3>
+            <PageLoading labels={'Quiz'}/>
+        )
+    }
+    else if (status === 404){
+        return(
+            <div className="container mt-9">
+                <h3>Details not found</h3>
+            </div>
         )
     }
 }

@@ -21,6 +21,7 @@ import TextField from '../components/forms/TextField'
 import RadioField from '../components/forms/RadioField';
 import { FileInputField } from '../components/FileInputField';
 import { MediaLinks } from '../components/MediaLinks';
+import { PageLoading } from '../components/forms/PageLoading';
 
 const Register = () =>{
   const [items, setItems] = useState()
@@ -179,11 +180,10 @@ const Register = () =>{
     fetchAPI(setItems, access_url, requestOptions, true, setStatus, setError)
   }
 
+  if (cohort && cohort.count !== 0) {
     return (
       <div>
         <Navbar />
-        {
-          cohort && cohort.count !== 0?
           <form 
             id='regForm'
             onSubmit={(e)=>{
@@ -345,7 +345,7 @@ const Register = () =>{
               {title: '4 hours', id: '4'},
               {title: '8 hours', id: '8'},
               {title: '12 hours', id: '12'},
-              {title: '12 hours +', id: '12>'}
+              {title: '12 hours +', id: '12+'}
             ]}
               names="commitment_hours"
               labels="How many hours can you dedicate to learning the skills each week?
@@ -462,22 +462,28 @@ const Register = () =>{
               
             </section>
             </form>
-            :
-            <div className='container'>
-              <div className='reg_closed'>
-                  <br/>
-                  <br/>
-                  <h3>Registration has been closed.</h3>
-                  <p>Registration for this programme has been closed as we are currently in session.</p>
-                  <p>We appreciate your interest!</p>
-                  <br/>
-                  <br/>
-              </div>
-            </div>
-          }
         <Footer />
       </div>
     );
+  }
+  else if (cohort && cohort.count === 0){
+    <div className='container'>
+      <div className='reg_closed'>
+          <br/>
+          <br/>
+          <h3>Registration has been closed.</h3>
+          <p>Registration for this programme has been closed as we are currently in session.</p>
+          <p>We appreciate your interest!</p>
+          <br/>
+          <br/>
+      </div>
+    </div>
+  }
+  else{
+    <>
+      <PageLoading/>
+    </>
+  }
 }
 
 export default Register;
