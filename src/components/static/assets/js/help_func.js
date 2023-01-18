@@ -399,11 +399,21 @@ export const prefillInput = (items) =>{
 }
 
 
+export const generateCSRFToken = () => {
+  var csrf_token = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < 32; i++) {
+      csrf_token += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return csrf_token;
+}
+
+
 // Set type to null if not required. 
 export const reqOptions = (method, data, bearer=null) =>{
 
   let myHeaders =  {
-    'X-CSRFToken': getCookie('CSRF-TOKEN'),
+    'X-CSRFToken': getCookie('CSRF-TOKEN') ? getCookie('CSRF-TOKEN') : generateCSRFToken(),
     'Origin': window.location.origin
   }
   myHeaders[SK_KEY] = SK_VALUE
