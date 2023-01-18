@@ -450,8 +450,8 @@ export const fetchAPI = (session, api, reqOptions, func=false, setStatus=false, 
                 else if(status === 404) setStatus(status)
             }
             
-            if (process.env.NODE_ENV === "development") {
-              console.log(reqOptions);
+            if (process.env.NODE_ENV === "production") {
+              // console.log(reqOptions);
               console.log(result)
               console.log(status)
             }
