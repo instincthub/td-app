@@ -3,7 +3,7 @@ import { DatePick } from "../components/DatePick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import DiversityForm2 from '../components/DiversityForm2';
-import { fetchAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, printErrNew, inputTagErrorEvent, reqOptions, loginRequired } from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, printErrNew, inputTagErrorEvent, reqOptions, loginRequired, SK_KEY, SK_VALUE } from "../components/static/assets/js/help_func";
 import {SubmitButton} from '../components/SubmitButton';
 import { ServerErr } from '../components/ServerErr';
 import { Link } from 'react-router-dom';
@@ -178,10 +178,25 @@ const Register = () =>{
     formData.set('invalid_token_url', window.location.origin+'/register/invalid-token')
     formData.set('coupon', "TECH3")
     
-    const requestOptions =  reqOptions(access ? "PUT" : "POST", formData, (access ? true : null))
+
+    let myHeaders = new Headers();
+    myHeaders.append(SK_KEY, SK_VALUE);
+    myHeaders.append("Authorization", "Bearer "+getCookie('access'));
+
+    // const requestOptions =  reqOptions(access ? "PUT" : "POST", formData, (access ? true : null))
+
+    var request = {
+      method: access ? "PUT" : "POST",
+      headers: myHeaders,
+      body: formData,
+      redirect: 'follow'
+    };
+
+    
+
 
     let access_url = access ? `${HOST_URL()}/api/v1/auth/tdn_register/details/put/${getCookie('u_id')}/` : HOST_URL()+"/api/v1/auth/tdn_register/"
-    fetchAPI(setItems, access_url, requestOptions, true, setStatus, setError)
+    fetchAPI(setItems, access_url, request, true, setStatus, setError)
   }
 
   if (cohort && cohort.count !== 0) {
