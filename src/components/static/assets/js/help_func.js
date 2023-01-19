@@ -499,9 +499,20 @@ export const checkEnv = ()=> {
 
 export const loginRequired = (status) =>{
   // console.log(status)
+    let redirect_url = `/login/?next=${window.location.pathname+window.location.search}`
     if(status === 401 || status === null) { // Login Required
-        // console.log(window.location.href )
-        window.location.href = `/login/?next=${window.location.pathname+window.location.search}`
+        window.location.href = redirect_url
+    }
+    else{
+      // If access token exist, verify from server if access and ID is valid.
+      fetch(`${HOST_URL()}/api/v1/auth/verify_token/?access_token=${getCookie('access')}&user_id=${getCookie('u_id')}`, reqOptions('GET'))
+        .then(response => response.text())
+        .then(result => {
+          if (!JSON.parse(result).status) {
+            window.location.href = redirect_url
+          }
+        })
+        .catch(error => console.log('error', error));
       }
 }
 

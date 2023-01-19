@@ -3,7 +3,7 @@ import { DatePick } from "../components/DatePick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import DiversityForm2 from '../components/DiversityForm2';
-import { fetchAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, printErrNew, inputTagErrorEvent, reqOptions } from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, printErrNew, inputTagErrorEvent, reqOptions, loginRequired } from "../components/static/assets/js/help_func";
 import {SubmitButton} from '../components/SubmitButton';
 import { ServerErr } from '../components/ServerErr';
 import { Link } from 'react-router-dom';
@@ -36,6 +36,10 @@ const Register = () =>{
   const [searchParams, setSearchParams] = useSearchParams();
   const influencerSlug = searchParams.get("inf")
   let err_tags = [];
+
+  if(getCookie('access')){
+    loginRequired(getCookie('access'))
+  }
 
   
   useState(()=>{
