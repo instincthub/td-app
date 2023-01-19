@@ -179,33 +179,11 @@ const Register = () =>{
     formData.set('coupon', "TECH3")
     
 
-    // let myHeaders = new Headers();
-    // myHeaders.append(SK_KEY, SK_VALUE);
-    // myHeaders.append("Authorization", "Bearer "+getCookie('access'));
+    const requestOptions =  reqOptions(access ? "PUT" : "POST", formData, (access ? true : null))
 
-    // const requestOptions =  reqOptions(access ? "PUT" : "POST", formData, (access ? true : null))
-
-    let myHeaders =  {
-      // 'X-CSRFToken': getCookie('CSRF-TOKEN') ? getCookie('CSRF-TOKEN') : generateCSRFToken(),
-      // 'Origin': window.location.origin,
-      "Authorization": "Bearer "+getCookie('access'),
-      "instincthub-sk-header": SK_VALUE,
-    }
-    
-
-    var request = {
-      method: access ? "PUT" : "POST",
-      headers: myHeaders,
-      body: formData,
-      redirect: 'follow'
-    };
-
-    console.log(request);
-    
-
-
+  
     let access_url = access ? `${HOST_URL()}/api/v1/auth/tdn_register/details/put/${getCookie('u_id')}/` : HOST_URL()+"/api/v1/auth/tdn_register/"
-    fetchAPI(setItems, access_url, request, true, setStatus, setError)
+    fetchAPI(setItems, access_url, requestOptions, true, setStatus, setError)
   }
 
   if (cohort && cohort.count !== 0) {
