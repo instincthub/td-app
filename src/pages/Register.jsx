@@ -179,11 +179,19 @@ const Register = () =>{
     formData.set('coupon', "TECH3")
     
 
-    let myHeaders = new Headers();
-    myHeaders.append(SK_KEY, SK_VALUE);
-    myHeaders.append("Authorization", "Bearer "+getCookie('access'));
+    // let myHeaders = new Headers();
+    // myHeaders.append(SK_KEY, SK_VALUE);
+    // myHeaders.append("Authorization", "Bearer "+getCookie('access'));
 
     // const requestOptions =  reqOptions(access ? "PUT" : "POST", formData, (access ? true : null))
+
+    let myHeaders =  {
+      // 'X-CSRFToken': getCookie('CSRF-TOKEN') ? getCookie('CSRF-TOKEN') : generateCSRFToken(),
+      // 'Origin': window.location.origin,
+      "Authorization": "Bearer "+getCookie('access'),
+      SK_KEY: SK_VALUE,
+    }
+    
 
     var request = {
       method: access ? "PUT" : "POST",
@@ -192,6 +200,7 @@ const Register = () =>{
       redirect: 'follow'
     };
 
+    console.log(request);
     
 
 
