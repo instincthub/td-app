@@ -189,7 +189,7 @@ const Register = () =>{
       // 'X-CSRFToken': getCookie('CSRF-TOKEN') ? getCookie('CSRF-TOKEN') : generateCSRFToken(),
       // 'Origin': window.location.origin,
       "Authorization": "Bearer "+getCookie('access'),
-      SK_KEY: SK_VALUE,
+      "instincthub-sk-header": SK_VALUE,
     }
     
 
