@@ -55,7 +55,10 @@ export const faqTag = (e) => {
   if (e.target.classList.contains("faq")) {
     hideTag();
     e.target.classList.toggle("open");
-    e.target.querySelector(".btn").innerHTML = "&#8722;";
+    if (e.target.querySelector(".btn")) {
+      e.target.querySelector(".btn").innerHTML = "&#8722;";
+    }
+   
   } else if (e.target.className === "btn") {
     hideTag();
     e.target.parentElement.classList.toggle("open");
@@ -63,7 +66,9 @@ export const faqTag = (e) => {
   } else if (e.target.tagName === "H3") {
     hideTag();
     e.target.parentElement.parentElement.classList.toggle("open");
-    e.target.querySelector(".btn").innerHTML = "&#8722;";
+    if (e.target.querySelector(".btn")) {
+      e.target.querySelector(".btn").innerHTML = "&#8722;";
+    } 
   }
 };
 
