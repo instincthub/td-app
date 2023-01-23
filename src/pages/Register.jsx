@@ -390,7 +390,7 @@ const Register = () =>{
 
             {/* <!-- Upload File --> */}
             <div className="upload_img">
-              <FileInputField name='valid_id' requireds={true} titles={'Upload valid ID (NIN, Drivers License, Passport etc. *'}/>
+              <FileInputField name='valid_id' requireds={true} titles={'Upload valid ID (NIN, Drivers License, Passport etc. *'} accepts={"image/*"}/>
             </div>
 
             <RadioField options={[

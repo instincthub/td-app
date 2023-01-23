@@ -2,7 +2,7 @@ import React from "react";
 import "./static/assets/scss/file-input-field.css";
 import styled from "styled-components";
 
-export const FileInputField = ({name, label, requireds, titles, ...props}) =>{
+export const FileInputField = ({name, label, requireds, titles, accepts, ...props}) =>{
     const fileLabel = label ? label : "Browse File"
   return (
     <div className={name}>
@@ -21,6 +21,7 @@ export const FileInputField = ({name, label, requireds, titles, ...props}) =>{
                   id={"id_"+name} 
                   name={name}
                   required={requireds ? requireds : false}
+                  accept={accepts}
                   
                   onChange={(e)=>{
                     console.log(e.target.value)
