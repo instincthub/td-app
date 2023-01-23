@@ -82,9 +82,10 @@ function QuizTest() {
         // Change button label if last item
         if (currentPage === nPages) { // Change button text
             const quizBtn = document.getElementById('btn_label')
-            quizBtn.textContent = 'See Results'
-            quizBtn.parentElement.style.backgroundColor = "var(--CaribbeanGreen)"
-            
+            if (quizBtn) {
+                quizBtn.textContent = 'See Results';
+                quizBtn.parentElement.style.backgroundColor = "var(--CaribbeanGreen)";
+            }
         }
     }
 
