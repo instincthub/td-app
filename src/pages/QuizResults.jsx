@@ -6,6 +6,7 @@ import { fetchAPI, loginRequired, getCookie, HOST_URL, reqOptions } from "../com
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
+import QuizResultsOptions from "../components/quiz-pagination/QuizResultsOptions";
 
 function QuizResults() {
     const [data, setData] = useState([])
@@ -16,11 +17,12 @@ function QuizResults() {
 		let params = (new URL(document.location)).searchParams;
 		let assessment_id = params.get('assessment_id'); // is the string "token".
 		let u_id = params.get('user_id'); 
+		let counts = params.get('counts'); 
 		// console.log(data)
 
 		const requestOptions =  reqOptions("GET", null, true)
 
-		fetchAPI(setData, `${HOST_URL()}/api/v1/assessment/answer/results/${u_id}/${assessment_id}/`, requestOptions, true)
+		fetchAPI(setData, `${HOST_URL()}/api/v1/assessment/answer/results/${u_id}/${assessment_id}/${counts}/`, requestOptions, true)
 
 		  
 	// eslint-disable-next-line
@@ -52,6 +54,11 @@ function QuizResults() {
                             <a href={data.met_expectation === true && data.tdn === true ? data.whatsapp_group : 'https://chat.whatsapp.com/IvuvWu6DtwR3PWp0mUWJRn'} target="_blank" rel="noreferrer"><button className="primary-btn d-inline-block"><span>Join WhatsApp Group</span></button></a>
 						</div>
 					</div>
+					{
+						data && data.results ?
+							<QuizResultsOptions results={data.results}/>
+						:''
+					}
 				</div>
 			</div>
 		</div>

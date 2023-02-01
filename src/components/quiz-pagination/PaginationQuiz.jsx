@@ -2,20 +2,11 @@ import React from 'react'
 import { SubmitButton } from '../SubmitButton'
 import Timer from '../Timer'
 
-const PaginationQuiz = ({ nPages, currentPage, setCurrentPage, duration, user_id, assessment_id }) => {
+const PaginationQuiz = ({ nPages, currentPage, setCurrentPage, duration, user_id, assessment_id, try_count, ...props}) => {
 
     // eslint-disable-next-line 
     const pageNumbers = [...Array(nPages + 1).keys()].slice(1)
-
     
-
-    const nextPage = () => {
-            if(currentPage !== nPages) {
-                setCurrentPage(currentPage + 1)
-                localStorage.setItem('current_page', currentPage + 1)
-            }
-            
-    }
     // eslint-disable-next-line 
     const prevPage = () => {
         if(currentPage !== 1) {
@@ -27,14 +18,15 @@ const PaginationQuiz = ({ nPages, currentPage, setCurrentPage, duration, user_id
     return (
         <div id="answerbuttoncontainer">
                 <SubmitButton 
-                    type="button"
+                    type="submit"
                     label="Next ❯"
-                    clicks={nextPage}
+                    // clicks={nextPage}
                     />
                     <Timer 
                         duration={duration}
                         user_id={user_id}
                         assessment_id={assessment_id}
+                        try_count={try_count}
                         />
 
             </div>

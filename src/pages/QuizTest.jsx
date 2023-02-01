@@ -24,63 +24,58 @@ function QuizTest() {
     const [url_path] = useState(params.get('slug'))
     const [submitAnswer, setSubmitAnswer] = useState([])
     // const [loading, setLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
     const [recordsPerPage] = useState(1);
     const [duration, setDuration] = useState();
     const [searchParams, setSearchParams] = useSearchParams();
-    // const [assessment_id, setAssessment_id] = useState();
+    const [shuffledArray, setShuffledArray] = useState();
+    const [itemsPerPage, setItemsPerPage] = useState(1);
+    let current_records =[]
+    
 
     const answerData = {}
 
     useEffect(() => {
 
-        const requestOptions =  reqOptions("GET", null, true)
-        
-        let new_path = (HOST_URL()+`/api/v1/assessment/quiztest/${url_path}/`)
-        // console.log(new_path);
-        fetchAPI(setData, new_path, requestOptions, true, setStatus)
+        if(data.length === 0){
+            const requestOptions =  reqOptions("GET", null, true)
+            let new_path = (HOST_URL()+`/api/v1/assessment/quiztest/${url_path}/`)
+            fetchAPI(setData, new_path, requestOptions, true, setStatus)
+        }
     
 
-        
-
         // eslint-disable-next-line
-    }, [duration])
+    }, [data, duration, current_records])
     if (localStorage.getItem('current_page') !== null && localStorage.getItem('current_page') > currentPage) {
         setCurrentPage(Number(localStorage.getItem('current_page')))
     }
-    // setDuration(data['duration'])
 
-    // console.log(data['duration'])
-    
-    const assessment = data['a_assessment']
+
+    // Shuffle Objects 
+    const shuffleArray = (array) => {
+        return array.sort(() => Math.random() - 0.5);
+    };
+
+    if (data['a_assessment'] && !shuffledArray) {
+        // const dataArray = Object.entries(data['a_assessment']).map(([key, value]) => [key, value]);
+        setShuffledArray(shuffleArray(data['a_assessment']));
+    }
+
+    const assessment = shuffledArray;
+    // const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-    let current_records =[]
     let nPages = null
-    let user_id, assessment_id;
 
     if (assessment) { // get pagination if data object
-        current_records = assessment.slice(indexOfFirstRecord, indexOfLastRecord); // single object
-       
-        nPages = Math.ceil(assessment.length / recordsPerPage)
-        // console.log(data['duration'])
-
-       
+        // current_records = assessment.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage); // single object
+        current_records = assessment[currentPage]
         
-
-        // Get user id and tech diversity
-        user_id = Number(getCookie('u_id'))
-        assessment_id = current_records[0]['assessment']
-
-        answerData['user'] = user_id
-        answerData['assessment'] = assessment_id
-        // answerData['tech_diversity'] = data['a_tech_diversity'][0]['pk']
-        answerData['question'] = current_records[0]['pk']
+        nPages = Math.ceil(assessment.length / recordsPerPage)
     
-
         // Change button label if last item
-        if (currentPage === nPages) { // Change button text
+        if (currentPage === nPages-1) { // Change button text
             const quizBtn = document.getElementById('btn_label')
             if (quizBtn) {
                 quizBtn.textContent = 'See Results';
@@ -89,49 +84,8 @@ function QuizTest() {
         }
     }
 
-    // Send response to db
-    const submitAnswerToDB = (e) =>{
-
-        // if target is btn and span
-        if (e.target.getAttribute('type') === "button" || e.target.id === "btn_label") {
-            const optionInputs = document.querySelectorAll('input[name="quiz"]')
-            optionInputs.forEach((e)=>{ // Check for user selected option
-                if (e.checked === true) {
-                    answerData['option'] = Number(e.value)
-                    e.checked = false
-                }
-            }) 
-
-            
-            if (currentPage === nPages) { // redirect to results
-                localStorage.removeItem('quiz_duration_min')
-                localStorage.removeItem('quiz_duration_sec')
-                localStorage.removeItem('current_page')
-
-                window.location.href = `/quiz/quiztest/results/?user_id=${user_id}&assessment_id=${assessment_id}`
-            }
-
-
-            // const requestOptions = {
-            //     method: 'post',
-            //     headers: { 
-            //         'Content-Type': 'application/json',
-            //         "Authorization": `Bearer ${getCookie('access')}`,
-            //       },
-            //     body: JSON.stringify(answerData)
-            // };
-
-            const formData = new FormData()
-            for (let key in answerData) formData.append(key, answerData[key]);
-
-            const requestOptions =  reqOptions("POST", formData, true)
-            
-            fetchAPI(setSubmitAnswer, HOST_URL()+"/api/v1/assessment/answer/", requestOptions, true, setStatus)
-           
-        }
-        
-    }
-    if (nPages) {
+    
+    if (nPages && current_records && current_records.pk) {
         return (
             
             <div>
@@ -139,23 +93,27 @@ function QuizTest() {
                 <div 
                 id="quizcontainer" 
                 className="container mt-8"
-                onClick={e=>{
-                    submitAnswerToDB(e)
-                }}
+                // onClick={e=>{
+                //     submitAnswerToDB(e)
+                // }
+                // }
                 >
-                    <h3>Question {currentPage} of {nPages}:</h3>
+                    <h3>Question {currentPage+1} of {nPages}:</h3>
                     
-                    <Records data={current_records}/>
-                    
-                    <PaginationQuiz
-                        nPages={nPages}
+                    <Records 
+                        data={current_records}
+                        try_count={data.try_count}
+                        setSubmitAnswer={setSubmitAnswer}
+                        setStatus={setStatus}
                         currentPage={currentPage}
+                        nPages={nPages}
                         setCurrentPage={setCurrentPage}
-                        duration={data['duration']}
-                        responseData = {answerData}
-                        user_id={user_id}
-                        assessment_id={assessment_id}
-                    />
+                        pagDuration={data['duration']}
+                        dataArray={shuffledArray}
+                        itemsPerPage={itemsPerPage}
+
+
+                        />
                 </div>
                 <div className="from">
                     <h3>from</h3>

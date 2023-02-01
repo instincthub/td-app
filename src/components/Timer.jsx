@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Timer = (props) => {
     // store duration so when user refreshes, time resumes
+    const navigate = useNavigate();
     
     let min = Number(localStorage.getItem('quiz_duration_min')) 
     let sec = Number(localStorage.getItem('quiz_duration_sec'))
@@ -27,7 +29,7 @@ const Timer = (props) => {
                     localStorage.removeItem('quiz_duration_sec')
                     localStorage.removeItem('current_page')
                     
-                    window.location.href = `/quiz/quiztest/results/?user_id=${props.user_id}&assessment_id=${props.assessment_id}`
+                    navigate(`/quiz/quiztest/results/?user_id=${props.user_id}&assessment_id=${props.assessment_id}&counts=${props.try_count}/`)
 
                 } else {
                     setMinutes(minutes - 1);

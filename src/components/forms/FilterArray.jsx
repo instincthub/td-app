@@ -1,6 +1,7 @@
 import {React, useState} from "react";
 import styled from "styled-components";
 
+
 const FilterArray = (props) => {
     const [isActive, setIsActive] = useState(false);
     const [selected, setSelected] = useState(props.defaults ? props.defaults : props.options[0]);
