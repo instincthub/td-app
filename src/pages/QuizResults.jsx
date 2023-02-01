@@ -39,7 +39,7 @@ function QuizResults() {
 						
 					</div>
 					<div className="signup__list">
-						<p>Scored: {data.score}</p>
+						<p>Scored: {data.score} | Try count: {data.try_count}</p>
 						<h2 className="sub_header">Got {data.points} points</h2>
 						
                         <p className="mt-3">{data.met_expectation ? "Congratulation, you met expectation! Keep Learning" : "You didn't have enough point. Relearn and come try again"} 
@@ -55,7 +55,7 @@ function QuizResults() {
 						</div>
 					</div>
 					{
-						data && data.results ?
+						data && data.results && data.results.length ?
 							<QuizResultsOptions results={data.results}/>
 						:''
 					}
