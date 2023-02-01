@@ -7,6 +7,7 @@ import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
 import QuizResultsOptions from "../components/quiz-pagination/QuizResultsOptions";
+import { Link } from "react-router-dom";
 
 function QuizResults() {
     const [data, setData] = useState([])
@@ -45,7 +46,7 @@ function QuizResults() {
                         <p className="mt-3">{data.met_expectation ? "Congratulation, you met expectation! Keep Learning" : "You didn't have enough point. Relearn and come try again"} 
 						{
 							data.tdn === false ? 
-							<strong> <a href={`/quiz/quiztest/?slug=${data.slug}`}>{data.step ? 'Retake Quiz' : ''}</a></strong>
+							<strong> <Link to={`/quiz/quiztest/?slug=${data.slug}`}>{data.step ? 'Retake Quiz' : ''}</Link></strong>
 							:''
 						}
 						
