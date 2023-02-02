@@ -29,43 +29,58 @@ function QuizResults() {
 	// eslint-disable-next-line
     }, [])
 
-  return (
-    <div>
-      <Navbar />
-		<div className="container">
-			<div className="m-b-50 mb-7 pt-4">
-				<div className="mt-10">
-					<div className="quiz_header">
-						<h1>Quiz Result: {data.title}</h1>
-						
-					</div>
-					<div className="signup__list">
-						<p>Scored: {data.score} | Try count: {data.try_count}</p>
-						<h2 className="sub_header">Got {data.points} points</h2>
-						
-                        <p className="mt-3">{data.met_expectation ? "Congratulation, you met expectation! Keep Learning" : "You didn't have enough point. Relearn and come try again"} 
-						{
-							data.tdn === false ? 
-							<strong> <Link to={`/quiz/quiztest/?slug=${data.slug}`}>{data.step ? 'Retake Quiz' : ''}</Link></strong>
-							:''
-						}
-						
-						</p>
-						<div className="mt-4">
-                            <a href={data.met_expectation === true && data.tdn === true ? data.whatsapp_group : 'https://chat.whatsapp.com/IvuvWu6DtwR3PWp0mUWJRn'} target="_blank" rel="noreferrer"><button className="primary-btn d-inline-block"><span>Join WhatsApp Group</span></button></a>
+	if (data.status === true){
+		return (
+			<div>
+			<Navbar />
+				<div className="container">
+					<div className="m-b-50 mb-7 pt-4">
+						<div className="mt-10">
+							<div className="quiz_header">
+								<h1>Quiz Result: {data.title}</h1>
+								
+							</div>
+							<div className="signup__list">
+								<p>Scored: {data.score} | Try count: {data.try_count}</p>
+								<h2 className="sub_header">Got {data.points} points</h2>
+								
+								<p className="mt-3">{data.met_expectation ? "Congratulation, you met expectation! Keep Learning" : "You didn't have enough point. Relearn and come try again"} 
+								{
+									data.tdn === false ? 
+									<strong> <Link to={`/quiz/quiztest/?slug=${data.slug}`}>{data.step ? 'Retake Quiz' : ''}</Link></strong>
+									:''
+								}
+								
+								</p>
+								<div className="mt-4">
+									<a href={data.met_expectation === true && data.tdn === true ? data.whatsapp_group : 'https://chat.whatsapp.com/IvuvWu6DtwR3PWp0mUWJRn'} target="_blank" rel="noreferrer"><button className="primary-btn d-inline-block"><span>Join WhatsApp Group</span></button></a>
+								</div>
+							</div>
+							{
+								data && data.results && data.results.length ?
+									<QuizResultsOptions results={data.results}/>
+								:''
+							}
 						</div>
 					</div>
-					{
-						data && data.results && data.results.length ?
-							<QuizResultsOptions results={data.results}/>
-						:''
-					}
 				</div>
+			<Footer />
 			</div>
-		</div>
-      <Footer />
-    </div>
-  );
+		);
+	}
+	else{
+		return(
+			<div>
+				<Navbar />
+				<div className="container">
+					<div className="m-b-50 mb-7 pt-4">
+						<p className="mt-10 center">Invalid Request</p>
+					</div>
+				</div>
+					
+			</div>
+		)
+	}
 }
 
 export default QuizResults;

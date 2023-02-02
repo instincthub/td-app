@@ -14,6 +14,7 @@ import QuizTest from "./pages/QuizTest";
 import QuizResults from "./pages/QuizResults";
 import Login from "./pages/Login";
 import LoginSuccess from "./pages/LoginSuccess";
+import Error404 from "./pages/Status/Error404";
 
 // Sentry
 import * as Sentry from "@sentry/react";
@@ -71,6 +72,9 @@ function Index() {
           path="/community/signup/campus-lead"
           element={<CampusLeadSignup />}
         />
+
+        {/* Errors */}
+        <Route path="*" element={<Error404 />} />
 
         {/* <Route path="reg_tracker" element={<RegTracker />} /> */}
         <Route path="reg_tracker" element={<BasicTable />} />
