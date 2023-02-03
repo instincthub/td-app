@@ -12,8 +12,8 @@ import { PageLoading } from "../components/forms/PageLoading";
 
 function QuizResults() {
     const [data, setData] = useState([])
-    const [status, setStatus] = useState([])
-    const [error, setError] = useState([])
+    // const [status, setStatus] = useState([])
+    // const [error, setError] = useState([])
 	loginRequired(getCookie('access'))
 
 	useEffect(() => {
@@ -26,7 +26,7 @@ function QuizResults() {
 
 		const requestOptions =  reqOptions("GET", null, true)
 
-		fetchAPI(setData, `${HOST_URL()}/api/v1/assessment/answer/results/${u_id}/${assessment_id}/${counts}/`, requestOptions, true, setStatus, setError)
+		fetchAPI(setData, `${HOST_URL()}/api/v1/assessment/answer/results/${u_id}/${assessment_id}/${counts}/`, requestOptions, true)
 
 		  
 	// eslint-disable-next-line
@@ -71,7 +71,7 @@ function QuizResults() {
 			</div>
 		);
 	}
-	else if (error.status === "false"){
+	else if (data.status === "false"){
 		return(
 			<div>
 				<Navbar />

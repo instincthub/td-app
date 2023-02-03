@@ -498,7 +498,7 @@ export const fetchAPI = (
             error: error,
           });
         } else {
-          //   session(error)
+            session(error)
         }
         if (process.env.NODE_ENV === "production") {
           console.log(reqOptions);
