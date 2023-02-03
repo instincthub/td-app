@@ -8,6 +8,7 @@ import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
 import QuizResultsOptions from "../components/quiz-pagination/QuizResultsOptions";
 import { Link } from "react-router-dom";
+import { PageLoading } from "../components/forms/PageLoading";
 
 function QuizResults() {
     const [data, setData] = useState([])
@@ -68,7 +69,7 @@ function QuizResults() {
 			</div>
 		);
 	}
-	else{
+	else if (data.status === 'false'){
 		return(
 			<div>
 				<Navbar />
@@ -81,6 +82,7 @@ function QuizResults() {
 			</div>
 		)
 	}
+	else return <PageLoading labels={'Results'}/>
 }
 
 export default QuizResults;
