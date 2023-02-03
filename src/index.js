@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 // import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { getCookie } from "./components/static/assets/js/help_func";
 import App from "./pages/Home";
 import RegDetails from "./pages/RegDetails";
 import Register from "./pages/Register";
@@ -103,4 +104,12 @@ Sentry.init({
   integrations: [new Sentry.Replay()],
 });
 const root = createRoot(container);
+
+/* 
+  Send Sentry user meta
+*/
+if (getCookie('access')) {
+  Sentry.setUser({ username: getCookie('username'), id:  getCookie('u_id')});
+  
+}
 root.render(<Index />);

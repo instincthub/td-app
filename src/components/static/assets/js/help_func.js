@@ -193,6 +193,14 @@ export const setCookie = (cname, cvalue, exdays) => {
 // removeCookie('test3', -10)
 // console.log(getCookie('u_id'))
 
+/* 
+  Send Sentry user meta
+*/
+// if (getCookie('access')) {
+//   Sentry.setUser({ username: getCookie('username'), id:  getCookie('	u_id')});
+  
+// }
+
 // Page hero background
 export const PageHeroBanner = (tag_id, img) => {
   const tag = document.getElementById(tag_id);
