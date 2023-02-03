@@ -16,6 +16,10 @@ function QuizResults() {
     const [error, setError] = useState([])
 	loginRequired(getCookie('access'))
 
+	console.log('data: ', data);
+	console.log('error: ', error);
+	console.log('status: ', status);
+
 	useEffect(() => {
 		// get access token
 		let params = (new URL(document.location)).searchParams;
@@ -71,7 +75,7 @@ function QuizResults() {
 			</div>
 		);
 	}
-	else if (data.status === "false"){
+	else if (error.status === "false"){
 		return(
 			<div>
 				<Navbar />
