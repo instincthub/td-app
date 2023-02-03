@@ -484,7 +484,7 @@ export const fetchAPI = (
           } else if (status === 404) setStatus(status);
         }
 
-        if (process.env.NODE_ENV === "development") {
+        if (process.env.NODE_ENV === "production") {
           console.log(reqOptions);
           console.log(result);
           console.log(status);
@@ -500,7 +500,7 @@ export const fetchAPI = (
         } else {
           //   session(error)
         }
-        if (process.env.NODE_ENV === "development") {
+        if (process.env.NODE_ENV === "production") {
           console.log(reqOptions);
           console.log(reqOptions);
           console.log(error.message);
