@@ -9,16 +9,13 @@ import "../components/static/assets/scss/quiz-test.css";
 import QuizResultsOptions from "../components/quiz-pagination/QuizResultsOptions";
 import { Link } from "react-router-dom";
 import { PageLoading } from "../components/forms/PageLoading";
+import styled from "styled-components";
 
 function QuizResults() {
     const [data, setData] = useState([])
     const [status, setStatus] = useState([])
     const [error, setError] = useState([])
 	loginRequired(getCookie('access'))
-
-	console.log('data: ', data);
-	console.log('error: ', error);
-	console.log('status: ', status);
 
 	useEffect(() => {
 		// get access token
@@ -75,9 +72,9 @@ function QuizResults() {
 			</div>
 		);
 	}
-	else if (error.status === "false"){
+	else if (error.status === "false" || status === 500){
 		return(
-			<div>
+			<ReactErrTag>
 				<Navbar />
 				<div className="container">
 					<div className="m-b-50 mb-7 pt-4">
@@ -85,10 +82,17 @@ function QuizResults() {
 					</div>
 				</div>
 					
-			</div>
+			</ReactErrTag>
 		)
 	}
 	else return <PageLoading labels={'Results'}/>
 }
 
 export default QuizResults;
+
+const ReactErrTag = styled.div`
+	p{
+		text-align: center;
+	}
+
+`;
