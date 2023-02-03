@@ -474,9 +474,9 @@ export const fetchAPI = (
           });
         } else if (func === true) {
           // if function component
-          if (status === 400) {
-            if (setStatus && setError) setError(result);
-            setStatus(status); // Display message banner.
+          if (status === 400 || status === 500) {
+            if (setError) setError(result);
+            if(setStatus) setStatus(status); // Display message banner.
           } else if (status === 201 || status === 200) {
             session(result);
             if (setStatus && setError) setError([]);
