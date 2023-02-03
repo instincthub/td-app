@@ -495,15 +495,15 @@ export const fetchAPI = (
       (error) => {
         if (func === false) {
           session.setState({
-            error: error,
+            error: error.message,
           });
         } else {
-            session(error)
+            setError(error.message)
         }
         if (process.env.NODE_ENV === "production") {
-          console.log(reqOptions);
-          console.log(reqOptions);
-          console.log(error.message);
+          // console.log(reqOptions);
+          // console.log(reqOptions);
+          // console.log(error.message);
         }
         Sentry.withScope(function (scope) {
           scope.setLevel("warning");
