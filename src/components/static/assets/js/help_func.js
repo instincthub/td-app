@@ -379,12 +379,13 @@ export const generateCSRFToken = () => {
 
 // Set type to null if not required.
 export const reqOptions = (method, data, bearer = null) => {
-  let myHeaders = {
-    "X-CSRFToken": getCookie("CSRF-TOKEN")
-      ? getCookie("CSRF-TOKEN")
-      : generateCSRFToken(),
-    Origin: window.location.origin,
-  };
+  // let myHeaders = {
+  //   "X-CSRFToken": getCookie("CSRF-TOKEN")
+  //     ? getCookie("CSRF-TOKEN")
+  //     : generateCSRFToken(),
+  //   Origin: window.location.origin,
+  // };
+  let myHeaders = {};
   myHeaders[SK_KEY] = SK_VALUE;
 
   if (bearer) myHeaders["Authorization"] = "Bearer " + getCookie("access");
@@ -392,9 +393,11 @@ export const reqOptions = (method, data, bearer = null) => {
   var request = {
     method: method,
     headers: myHeaders,
-    body: data,
     redirect: "follow",
   };
+
+  if(data) request['body'] = data
+
   return request;
 };
 
