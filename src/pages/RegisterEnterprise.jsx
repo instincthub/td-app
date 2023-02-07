@@ -2,7 +2,7 @@ import React from 'react';
 import { DatePick } from "../components/DatePick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { checkEnv, fetAPI, spinBtn, handleError, getCookie, cookiesEnabled, cookiesRequired } from "../components/static/assets/js/help_func";
+import { checkEnv, fetAPI, spinBtn, getCookie, cookiesEnabled, cookiesRequired } from "../components/static/assets/js/help_func";
 import {SubmitButton} from '../components/SubmitButton'
 import { ServerErr } from '../components/ServerErr';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,7 @@ import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
 import "../components/static/assets/scss/custom-select.css";
+import { HandleError } from '../components/forms/HandleError';
 
 class Register extends React.Component {
 
@@ -53,9 +54,6 @@ class Register extends React.Component {
         e.querySelector('.error').textContent = "";
       }
     })
-
-    // Handle error 400, null and else redirect to /quiz if success 
-    handleError(status, items, registerForm, '/register/verify')
   }
   
 
@@ -101,6 +99,7 @@ class Register extends React.Component {
   
   
   render(){ 
+      const {items, status} = this.state
       return (
         <div>
           <Navbar />
@@ -165,6 +164,7 @@ class Register extends React.Component {
               
             </section>
             </form>
+            <HandleError items={items} status={status} registerForm={document.querySelector('#regForm')} r_path={'/register/verify'}/>
           <Footer />
         </div>
       );

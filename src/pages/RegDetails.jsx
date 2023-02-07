@@ -3,11 +3,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Form from "../components/DiversityForm";
 
-import { fetchAPI, spinBtn, handleError, setCookie, getCookie, cookiesRequired, loginRequired, HOST_URL, reqOptions} from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, setCookie, getCookie, cookiesRequired, HOST_URL, reqOptions} from "../components/static/assets/js/help_func";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
 import "../components/static/assets/scss/custom-select.css";
+import { HandleError } from "../components/forms/HandleError";
+import { LoginRequired } from "../components/forms/LoginRequired";
 
 class RegDetails extends React.Component {
 
@@ -44,7 +46,7 @@ class RegDetails extends React.Component {
     }
     if(getCookie('access') === null || '') { // if not token, direct user to register
       cookiesRequired()
-      loginRequired(getCookie('access'))// if data status is 401
+      LoginRequired()// if data status is 401
 
       document.querySelector('.form_content').innerHTML = `
       <div class="container mt-10 mb-10">
@@ -75,8 +77,6 @@ class RegDetails extends React.Component {
       })
     }
     
-    // Handle error 400, null and else redirect to /quiz if success 
-    handleError(status, items, registerForm, '/quiz')
   }
 
   // get formData and post data with fetch api
@@ -94,12 +94,15 @@ class RegDetails extends React.Component {
   
   
   render(){ 
+    const {items, status} = this.state
     return (
       <div>
         <Navbar />
         <div className="form_content">
           <Form formEvent={this}/>
         </div>
+          <HandleError items={items} status={status} registerForm={document.querySelector('#regForm')} r_path={'/quiz'}/>
+
         <Footer />
       </div>
     );

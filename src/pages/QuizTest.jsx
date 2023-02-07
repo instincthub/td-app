@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from "react";
-import { fetchAPI, loginRequired, cookiesRequired, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
+import { fetchAPI, cookiesRequired, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import { PageLoading } from "../components/forms/PageLoading";
 import { useSearchParams } from "react-router-dom";
@@ -8,12 +8,13 @@ import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
 import "../components/static/assets/js/quiz-test.js";
+import { LoginRequired } from "../components/forms/LoginRequired";
 
 function QuizTest() {
 
     // Required 
     cookiesRequired()
-    loginRequired(getCookie('u_id'))
+    LoginRequired()
 
     // get access token
     let params = (new URL(document.location)).searchParams;

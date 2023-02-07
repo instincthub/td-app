@@ -337,53 +337,6 @@ export const inputTagErrorEvent = (tags, border = true) => {
   // document.querySelector('.server_err').style.display="none";
 };
 
-export const handleError = (status, items, registerForm, r_path) => {
-  const serverTag = document.querySelector(".server_err");
-
-  if (status === 400) {
-    // console.log(items);
-    if (items.user || items.username) {
-      if (items.user[0] === "This field must be unique.") {
-        serverTag.style.display = "block";
-        serverTag.style.backgroundColor = "var(--DarkCyan)";
-
-        if (
-          document.location.pathname === "/register/details" ||
-          document.location.pathname === "/register/details/"
-        ) {
-          serverTag.querySelector("a button span").innerHTML =
-            "Take Assessment";
-          serverTag.querySelector("a").href = "/quiz/";
-        }
-        serverTag.querySelector("h3").textContent =
-          "We already have your details!";
-
-        spinBtn(registerForm, "none", false);
-        window.location.href = "#Socials";
-      }
-    } else {
-      spinBtn(registerForm, "none", false); // spin button: parameter >> form, display and status
-      Object.entries(items).forEach((item, index) => {
-        const [key, value] = item;
-        printErr(key, value, index);
-      });
-      document.querySelector(".server_err").style.display = "none";
-    }
-  } else if (status === 200 || status === 201 || status === 202) {
-    if (r_path !== null) {
-      window.location.href = r_path;
-    }
-  } else {
-    if (status === 401) {
-      serverTag.style.display = "block";
-      serverTag.querySelector("a").innerHTML = "";
-      serverTag.querySelector("h3").textContent = items.detail;
-      spinBtn(registerForm, "none", false);
-      window.location.href = "#Socials";
-    }
-  }
-};
-
 // Prefill user input
 export const prefillInput = (items) => {
   Object.entries(items).forEach((item, index) => {
@@ -457,11 +410,6 @@ export const fetchAPI = (
   fetch(api, reqOptions)
     .then((res) => {
       status = res.status;
-      if (status === 401) {
-        // Login required
-        // loginRequired(status)
-      }
-
       return res.json();
     })
     .then(
@@ -484,7 +432,7 @@ export const fetchAPI = (
           } else if (status === 404) setStatus(status);
         }
 
-        if (process.env.NODE_ENV === "development") {
+        if (process.env.NODE_ENV === "production") {
           console.log(reqOptions);
           console.log(result);
           console.log(status);
@@ -500,7 +448,7 @@ export const fetchAPI = (
         } else {
             setError(error.message)
         }
-        if (process.env.NODE_ENV === "development") {
+        if (process.env.NODE_ENV === "production") {
           console.log(reqOptions);
           console.log(reqOptions);
           console.log(error.message);
@@ -528,36 +476,12 @@ export const checkEnv = () => {
   }
 };
 
-export const loginRequired = (status) => {
-  // console.log(status)
-  let redirect_url = `/login/?next=${
-    window.location.pathname + window.location.search
-  }`;
-  if (status === 401 || status === null) {
-    // Login Required
-    window.location.href = redirect_url;
-  } else {
-    // If access token exist, verify from server if access and ID is valid.
-    fetch(
-      `${HOST_URL()}/api/v1/auth/verify_token/?access_token=${getCookie(
-        "access"
-      )}&user_id=${getCookie("u_id")}`,
-      reqOptions("GET")
-    )
-      .then((response) => response.text())
-      .then((result) => {
-        if (!JSON.parse(result).status) {
-          window.location.href = redirect_url;
-        }
-      })
-      .catch((error) => console.log("error", error));
-  }
-};
-
 export const spinBtn = (form, display, status) => {
-  form.querySelector("button.submit_bt").disabled = status; // this disable the button
-  form.disabled = status; // This disables the whole form via the fieldset
-  form.querySelector("button .bt-spinner").style.display = display;
+  if (form) {
+    form.querySelector("button.submit_bt").disabled = status; // this disable the button
+    form.disabled = status; // This disables the whole form via the fieldset
+    form.querySelector("button .bt-spinner").style.display = display;
+  }
 };
 
 // var country_list = ;

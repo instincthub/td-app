@@ -1,17 +1,18 @@
 import {React, useEffect, useState} from "react";
-import { fetAPI, loginRequired, cookiesRequired, getCookie, HOST_URL } from "../components/static/assets/js/help_func";
+import { fetAPI, cookiesRequired, getCookie, HOST_URL } from "../components/static/assets/js/help_func";
 import PaginationQuiz from "../components/quiz-pagination/PaginationQuiz";
 import Records from "../components/quiz-pagination/Record";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/quiz-test.css";
 import "../components/static/assets/js/quiz-test.js";
+import { LoginRequired } from "../components/forms/LoginRequired";
 
 function QuizTest() {
 
     // Required 
     cookiesRequired()
-    loginRequired(getCookie('access'))
+    LoginRequired()
 
     // To hold the actual data
     const [data, setData] = useState([])

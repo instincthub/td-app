@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { fetchAPI, loginRequired, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
+import { fetchAPI, getCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
@@ -10,12 +10,13 @@ import QuizResultsOptions from "../components/quiz-pagination/QuizResultsOptions
 import { Link } from "react-router-dom";
 import { PageLoading } from "../components/forms/PageLoading";
 import styled from "styled-components";
+import { LoginRequired } from "../components/forms/LoginRequired";
 
 function QuizResults() {
     const [data, setData] = useState([])
     const [status, setStatus] = useState([])
     const [error, setError] = useState([])
-	loginRequired(getCookie('access'))
+	LoginRequired()
 
 	useEffect(() => {
 		// get access token

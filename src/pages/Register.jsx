@@ -22,6 +22,7 @@ import RadioField from '../components/forms/RadioField';
 import { FileInputField } from '../components/FileInputField';
 import { MediaLinks } from '../components/MediaLinks';
 import { PageLoading } from '../components/forms/PageLoading';
+import { LoginRequired } from '../components/forms/LoginRequired';
 
 const Register = () =>{
   const [items, setItems] = useState()
@@ -37,9 +38,7 @@ const Register = () =>{
   const influencerSlug = searchParams.get("inf")
   let err_tags = [];
 
-  if(getCookie('access')){
-    loginRequired(getCookie('access'))
-  }
+  LoginRequired()
 
   
   useState(()=>{

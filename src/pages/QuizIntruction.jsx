@@ -5,12 +5,13 @@ import { useSearchParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { loginRequired, getCookie, fetchAPI, HOST_URL, setCookie, reqOptions } from "../components/static/assets/js/help_func";
+import {getCookie, fetchAPI, HOST_URL, setCookie, reqOptions } from "../components/static/assets/js/help_func";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/modal.css";
 import { PageLoading } from "../components/forms/PageLoading";
+import { LoginRequired } from "../components/forms/LoginRequired";
 
 function QuizInstruction() {
     
@@ -27,7 +28,7 @@ function QuizInstruction() {
         setCookie('username', searchParams.get("username"), 30)
     }
     else{
-        loginRequired(getCookie('access'))
+        LoginRequired()
     }
 
     useState(()=>{

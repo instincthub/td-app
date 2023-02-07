@@ -9,6 +9,7 @@ import "../../components/static/assets/scss/staff.css";
 import "../../components/static/assets/scss/diversity.css";
 import "../../components/static/assets/scss/register.css";
 import "../../components/static/assets/scss/custom-select.css";
+import { HandleError } from "../../components/forms/HandleError";
 
 class CampusLeadSignup extends React.Component {
 
@@ -89,12 +90,6 @@ class CampusLeadSignup extends React.Component {
           prefillInput(items[0])
         }
       }
-      
-      // Handle error 400, null and else redirect to /quiz if success 
-      if (status !== 400) {
-        let success_url = (items.message === 'Campus Lead details was added successfully.' ? '/community/signup/details/success' : null)
-        handleError(status, items, registerForm, success_url)
-      }
     }
   }
 
@@ -156,6 +151,8 @@ class CampusLeadSignup extends React.Component {
   
   
   render(){ 
+    const {items, status} = this.state
+    let success_url = (items.message === 'Campus Lead details was added successfully.' ? '/community/signup/details/success' : null)
     return (
       <div>
         <Navbar />
@@ -166,6 +163,7 @@ class CampusLeadSignup extends React.Component {
           </div>
           <CampusLeadForm formEvent={this} verified={this.state.verified}/>
         </div>
+        <HandleError items={items} status={status} registerForm={document.querySelector('#regForm')} r_path={success_url}/>
         <Footer />
       </div>
     );

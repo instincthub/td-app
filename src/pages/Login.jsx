@@ -2,12 +2,13 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { SubmitButton } from "../components/SubmitButton";
-import { fetchAPI, spinBtn, handleError, setCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
+import { fetchAPI, spinBtn, setCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
 import { ServerErr } from "../components/ServerErr";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
 import "../components/static/assets/scss/custom-select.css";
+import { HandleError } from "../components/forms/HandleError";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -62,8 +63,6 @@ class Login extends React.Component {
         setCookie('username', this.state.data.user.username, 30)
     }
 
-    let redirect = this.state.next === null ? '/login/success' : this.state.next
-    handleError(this.state.status, this.state.data, registerForm, redirect)
   }
 
   // get formData and post data with fetch api
@@ -96,7 +95,7 @@ class Login extends React.Component {
                 }}>
                 <section className="container">
                     <div className="diversity_data register">
-                    <h2>Signup for Tech Diversity</h2>
+                    <h2>Login</h2>
 
                     <div className="personal_data">
                         <div className="input_parent">
@@ -123,6 +122,7 @@ class Login extends React.Component {
                 
                 </section>
             </form>
+            <HandleError items={this.state.data} status={this.state.status} data={this.state.data} registerForm={document.querySelector('#regForm')} r_path={this.state.next === null ? '/login/success' : this.state.next}/>
         <Footer />
       </Wrap>
     );
