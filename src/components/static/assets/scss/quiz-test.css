@@ -1,6 +1,7 @@
 
   #quizcontainer{
     max-width: 768px;
+    overflow: hidden;
   }
   #qtext {
     font-size:18px;
