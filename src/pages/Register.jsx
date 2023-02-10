@@ -46,7 +46,7 @@ const Register = () =>{
     fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
 
     if (getCookie('u_id')) {
-      LoginRequired()
+      // LoginRequired()
       fetchAPI(setStudent, HOST_URL()+"/api/v1/auth/tdn_register/details/get/"+getCookie('u_id'), requestOptions, true)
     }
     
