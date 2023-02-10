@@ -38,8 +38,6 @@ const Register = () =>{
   const influencerSlug = searchParams.get("inf")
   let err_tags = [];
 
-  LoginRequired()
-
   
   useState(()=>{
     const requestOptions =  reqOptions("GET", null)
@@ -48,6 +46,7 @@ const Register = () =>{
     fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
 
     if (getCookie('u_id')) {
+      LoginRequired()
       fetchAPI(setStudent, HOST_URL()+"/api/v1/auth/tdn_register/details/get/"+getCookie('u_id'), requestOptions, true)
     }
     
