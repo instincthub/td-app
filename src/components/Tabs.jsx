@@ -135,7 +135,9 @@ const Tab = () => {
 
   return (
             <TabsSearch>
-                <div className='cohorts'><h5>Cohorts</h5></div>
+                {/* <div className='cohorts'> */}
+                {/* </div> */}
+                  <h5 className='cohorts'>Cohorts</h5>
                  <div className="tabs">
                     <Link to="">
                      <button>All</button>
@@ -161,11 +163,8 @@ const Tab = () => {
 export default Tab;
 
 
-const TabsSearch = styled.section`
-   .normal_tab {
-     background: transparent;
-   }
-   .cohorts h5 {
+const TabsSearch = styled.div`
+   .cohorts {
     font-family: 'Nunito';
     font-weight: 700;
     font-size: 16px;
@@ -174,13 +173,12 @@ const TabsSearch = styled.section`
 
   .tabs {
     display: flex;
+    height: 0px;
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    line-height: 22px;
     align-items: center;
-
     color: #686868;
      margin: 0;
      @media(min-width: 768px){
@@ -190,15 +188,18 @@ const TabsSearch = styled.section`
 
     .tabs button {
       font-family: 'Nunito';
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 22px;
-/* identical to box height */
-
-display: flex;
-align-items: center;
-
-color: #686868;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+      display: flex;
+      align-items: center;
+      color: #686868;
     }
+
+    // Style for active Tabs
+    // .tabs:active {
+    //   color: black;
+    //   background-color: blue;
+    // }
 `;

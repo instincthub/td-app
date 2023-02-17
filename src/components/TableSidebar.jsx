@@ -21,10 +21,10 @@ const TableSidebar = () => {
           <img src={SterlingImg} alt="sterling-logo" />
         </div>
         <div class="icon-container">
-                  <img src={Overview} className='img-style' />
-                  <a href='#'>          
-                    <span className='sidebar-item'>Overview</span>
-                  </a>
+          <img src={Overview} className='img-style' />
+            <a href='#'>          
+                <span className='sidebar-item'>Overview</span>
+            </a>
         </div>
 
         <div class="icon-container">
@@ -80,17 +80,22 @@ export default TableSidebar
 
 const TableSidebarWrapper = styled.section`
     background-color: #f2f2f2;
-    border: 1px solid #ddd;
     padding: 24px;
     background: #FFFFFF;
-    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.05), 0px 2px 8px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
-
+    margin: 0px 23px;
+    padding: 0px 0px 20px 40px;      
+    min-width: 285px;
+    height: 1024px;
+    border-right: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
+        
 
   .sterling-logo {
-    width: 107px;
+    width: 115px;
     height: 95px;
-    margin-left: 19px;
+    margin-left: 31px;
+    margin-bottom: 20px;
   }
 
   .sidebar-container {
@@ -105,15 +110,17 @@ const TableSidebarWrapper = styled.section`
   .icon-container {
     display: flex;
     align-items: center;
+    margin: 20px 0;
   }
   
   .img-style {
     font-size: 24px;
     margin-right: 10px;
+    width: 24px;
   }
   
   .icon-container span {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 

@@ -6,28 +6,6 @@ import Tab from "./Tabs";
 
 
 
-const ActivityTableFrame = styled.section`  
-    width: 1118px;
-    height: 809px;
-    background-color: #f2f2f2;
-    border: 1px solid #ddd;
-    padding: 24px;
-    background: #FFFFFF;
-    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.05), 0px 2px 8px rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
-
-
-
-    table th, tfoot td {
-      padding-top: 12px;
-      padding-bottom: 12px;
-      text-align: center;
-      background-colour: gray;
-      color: #686868;
-    }
-
-`;
-
 
 
 function TablePagination() {
@@ -65,13 +43,13 @@ function TablePagination() {
                   <div>
                     <ActivityTableFrame>
                         <div>
-                  <Tab />
+                        <Tab />
                           <table>
                             <thead>
-                              <tr>
+                              <tr className="table-header-item">
                                 <th>Applicant</th>
                                 <th>Cohort</th>
-                                <th>Scchool</th>
+                                <th>School</th>
                                 <th>Course Choice</th>
                                 <th>Start date</th>
                                 <th>Duration</th>
@@ -92,4 +70,44 @@ function TablePagination() {
     };
 
 export default TablePagination;
+
+
+
+
+
+
+const ActivityTableFrame = styled.section`  
+
+    width: 1118px;
+    height: 889px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 16px;
+    background: #FFFFFF;
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.05), 0px 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+
+    th, tfoot td {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: center;
+      background-color: #4caf50;
+      color: white;
+  }
+  
+  th, tfoot td {
+      background: rgba(216, 216, 216, 0.27);
+      color: #737070;
+  }
+
+  .table-header-item {
+    font-size: 12px;
+    color: #737070;
+    font-family: 'Nunito';
+    font-weight: 600;
+  }
+
+   
+
+`;
 

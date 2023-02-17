@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import searchIcon from '../../assets/images/svgs/search.svg'
+// import searchIcon from '../../assets/images/svgs/search.svg'
+import searchIcon from '../static/assets/images/Search.png'
 
 const SearchField = (props) => {
     return ( 

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import TablePagination from './TablePagination';
+// import SearchField from './forms/SearchField';
+
 
 
 const BreadCrumb = () => {
@@ -8,11 +10,12 @@ const BreadCrumb = () => {
     <BreadCrumbWrapper>
           <div className='header'>
               <div className='tech-diversity-text'>
-                <h5>Tech Diversity accreditation</h5>
+                <h5>Tech Diversity Accreditation</h5>
               </div>
               <div className='search-field'>
-                <input type="text" id="filter" placeholder="Search applicant name"/>
-                
+              
+                <input type="text" id="filter" placeholder="Search applicant name" class="search-icon"/>
+                {/* <SearchField /> */}
               </div>
           </div>
 
@@ -61,11 +64,14 @@ const BreadCrumbWrapper = styled.section`
         display: flex;
     }
 
-    .card-container {
-        
+    .card-container {      
         margin: 25px 24px;
         min-width: 324px;
     }
+
+    .container-contents p {
+      font-size: 14px;
+    } 
 
     .container-contents {
         min-width: 358px;
@@ -108,7 +114,6 @@ const BreadCrumbWrapper = styled.section`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        // margin: 17px;
       }
 
     .stats {
@@ -127,13 +132,9 @@ const BreadCrumbWrapper = styled.section`
         margin-right: 16px;
       }
 
-      .tech-diversity-text{
-
-        
+      .tech-diversity-text h5{
         font-weight: 700;
         font-size: 25px;
         color: #000000;
       }
-
-  
 `;

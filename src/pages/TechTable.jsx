@@ -6,15 +6,10 @@ import TableSidebar from '../components/TableSidebar';
 const TechTable = () => {
   return (
     <TechDiversityWrapper>
-
       <section>
-      <div className='container'>
-          <div className='sidebar'>
+        <div className='container'>
             <TableSidebar />   
-          </div>
-          <div className='mainbar'>
-              <BreadCrumb />
-            </div>
+            <BreadCrumb />
         </div>
       </section>
     </TechDiversityWrapper>
@@ -26,31 +21,17 @@ export default TechTable
 
 
 const TechDiversityWrapper = styled.div`
-  overflow: auto
-  margin-top: 20px;
-
+  max-width: 100%;
+  overflow: auto;
+  margin: 20px;
  
  
 
   .container {
+    margin: 20px 20px;
     display: flex;
-    justify-content: space-between;
-    margin: 30px;
+    justify-content: space-evenly;
   }
-
-  .sidebar {
-    display: flex;
-    margin: 0px 20px;
-    padding: 0px 0px 20px 40px;
-    width: 557px;
-    
-  }
-  .mainbar {
-    min-width: 1188px;
-  }
-
-
-
 `;
 
 
