@@ -140,7 +140,7 @@ const Tab = () => {
                   <h5 className='cohorts'>Cohorts</h5>
                  <div className="tabs">
                     <Link to="">
-                     <button>All</button>
+                     <button className='active'>All</button>
                     </Link>
                     <Link to="#">
                      <button>Cohort 1</button>
@@ -197,9 +197,13 @@ const TabsSearch = styled.div`
       color: #686868;
     }
 
-    // Style for active Tabs
-    // .tabs:active {
-    //   color: black;
-    //   background-color: blue;
-    // }
+    .tabs .active {
+      color: gray;
+      border-bottom: 5px solid gray;
+      border-radius: 4px 4px;
+      transition: 0.5s ease;
+      // background-color: #f2f2f2;
+  
+  
+  }
 `;

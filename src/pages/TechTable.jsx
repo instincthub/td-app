@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import Nav from '../components/nav';
 import BreadCrumb from '../components/BreadCrumb';
 import TableSidebar from '../components/TableSidebar';
 
 const TechTable = () => {
   return (
     <TechDiversityWrapper>
+            <Nav />
       <section>
-        <div className='container'>
+        <div className='containerr'>
             <TableSidebar />   
             <BreadCrumb />
         </div>
@@ -21,17 +23,19 @@ export default TechTable
 
 
 const TechDiversityWrapper = styled.div`
-  max-width: 100%;
-  overflow: auto;
-  margin: 20px;
- 
- 
 
-  .container {
-    margin: 20px 20px;
-    display: flex;
-    justify-content: space-evenly;
-  }
+
+
+    
+
+    @media (min-width: 1200px) {
+      .containerr {
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+      }
+    }
+  
 `;
 
 

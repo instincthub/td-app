@@ -78,7 +78,8 @@ export default TablePagination;
 
 const ActivityTableFrame = styled.section`  
 
-    width: 1118px;
+    max-width: 1112px;
+    margin-top: 20px;
     height: 889px;
     background-color: #f2f2f2;
     border: 1px solid #ddd;
@@ -106,6 +107,8 @@ const ActivityTableFrame = styled.section`
     font-family: 'Nunito';
     font-weight: 600;
   }
+
+  
 
    
 

@@ -17,13 +17,13 @@ const TableSidebar = () => {
   return (
 
     <TableSidebarWrapper>
-      <div className='sterling-logo'>
+        <div className='sterling-logo'>
           <img src={SterlingImg} alt="sterling-logo" />
         </div>
-        <div class="icon-container">
+        <div class="icon-container active">
           <img src={Overview} className='img-style' />
             <a href='#'>          
-                <span className='sidebar-item'>Overview</span>
+                <span className='sidebar-item '>Overview</span>
             </a>
         </div>
 
@@ -79,23 +79,41 @@ const TableSidebar = () => {
 export default TableSidebar
 
 const TableSidebarWrapper = styled.section`
+   
+
+   .active {
+    color: gray;
+    border-left: 10px solid gray;
+    border-radius: 1px;
+    transition: 0.5s ease;
     background-color: #f2f2f2;
-    padding: 24px;
+  }
+    margin-top: 80px;
+    background-color: #f2f2f2;
     background: #FFFFFF;
     border-radius: 5px;
-    margin: 0px 23px;
-    padding: 0px 0px 20px 40px;      
-    min-width: 285px;
+    margin-right: 22px;
+    width: 257px;
     height: 1024px;
     border-right: 1px solid #ddd;
     border-bottom: 2px solid #ddd;
         
 
+    @media (max-width: 1200px) {
+      display: none;
+      padding: 0px 0px 20px 40px;      
+      max-width: 257px;
+      // max-width: 157px;
+      height: 1024px;
+    }
+
+   
+
+
   .sterling-logo {
-    width: 115px;
+    width: 107px;
     height: 95px;
-    margin-left: 31px;
-    margin-bottom: 20px;
+    margin: 20px 50px 0px 83px;
   }
 
   .sidebar-container {
@@ -110,117 +128,24 @@ const TableSidebarWrapper = styled.section`
   .icon-container {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    margin: 20px 15px 0px 10px;
   }
+ 
+   
+
   
   .img-style {
     font-size: 24px;
-    margin-right: 10px;
     width: 24px;
+    margin: 7px 20px;
   }
   
   .icon-container span {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 500;
   }
 `;
 
 
 
 
-// import React from 'react';
-// import styled from 'styled-components';
-
-// // import SterlingImg from './images/sterling.png';
-// // import OverviewImg from './images/overview.png';
-// // import CoursesImg from './images/courses.png';
-// // import AssessmentImg from './images/assessment.png';
-// // import ProjectsImg from './images/projects.png';
-// // import ChatImg from './images/chat.png';
-// // import CohortsImg from './images/cohorts.png';
-// // import EarnImg from './images/earn.png';
-
-
-// import SterlingImg from "./static/assets/images/sterlingLogo.png";
-// import Chat from "./static/assets/images/chat.png";
-// import Overview from "./static/assets/images/overview.png";
-// import Cohorts from "./static/assets/images/date_range.png";
-// import Courses from "./static/assets/images/cast_for_education.png";
-// import Projects from "./static/assets/images/projects.png";
-// import Earn from "./static/assets/images/Vector.png";
-// import  Assessment from "./static/assets/images/assesment.png";
-
-// const sidebarItems = [  { title: 'Overview', icon: Overview },  { title: 'Courses', icon: Courses },  { title: 'Assessments', icon: Assessment },  { title: 'Projects', icon: Projects },  { title: 'Chats', icon: Chat },  { title: 'Cohorts', icon: Cohorts },  { title: 'Earn', icon: Earn },];
-
-// const TableSidebar = () => {
-//   return (
-//     <TableSidebarWrapper>
-//       <div className='sterling-logo'>
-//         <img src={SterlingImg} alt="sterling-logo" />
-//       </div>
-//       <div className='sidebar-item'>
-//         <ul>
-//           {sidebarItems.map((item, index) => (
-//             <SidebarItem key={index} title={item.title} icon={item.icon} />
-//             ))}
-//         </ul>
-//       </div>
-//     </TableSidebarWrapper>
-//   );
-// };
-
-// const SidebarItem = ({ title, icon }) => {
-//   return (
-//     <li>
-//       <div className='sidebar-container'>
-//         <div className="icon-container">
-//           <img src={icon} alt={title} />
-//         </div>
-//         <div>
-//           <a href='#'>
-//             <span className='sidebar-title'>{title}</span>
-//           </a>
-//         </div>
-//       </div>
-//     </li>
-//   );
-// };
-
-// export default TableSidebar
-
-
-// const TableSidebarWrapper = styled.section`
-//   .sterling-logo {
-//     width: 107px;
-//     height: 95px;
-//     margin-left: 19px;
-//   }
-
-//   .sidebar-container {
-//     justify-content: space-evenly;
-//     display: flex;
-//     align-items: center;
-//     padding: 0px;
-//     gap: 6px;
-//     width: 100px;
-//   }
-
-//   .icon-container {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     width: 32px;
-//     height: 32px;
-//     border-radius: 50%;
-//   }
-
-//   .sidebar-title {
-//     font-size: 16px;
-//     font-weight: bold;
-//     text-align: center;
-//   }
-
-//   .sidebar-item {
-//     margin: 20px;
-//     padding: 20px;
-//   }
-// `;

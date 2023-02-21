@@ -12,11 +12,12 @@ import Footer from "../components/Footer";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
+import Nav from "../components/nav";
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <Nav />
       <Banner />
       <Features />
       <Overview />
