@@ -21,10 +21,7 @@ const Nav = (props) => {
                 onClick={(e) => {
                   props.onClick(e);
                 }}
-              >
-                {" "}
-                apps{" "}
-              </span>
+              >apps </span>
             </div>
             <img
               src="https://instincthub.com/static/media/instincthub.87d965bf287cdcdc5874.png"
@@ -35,11 +32,10 @@ const Nav = (props) => {
             {/* <SearchField id="media" /> */}
           </div>
           <div className="create_settings">
-            <button className="add_box">LIBRARY</button>
+            <button className="add_box"> <span class="material-symbols-outlined g_icons"> add_box </span> <span className="text">LIBRARY</span></button>
             <div className="mt-5px">
               <span onClick={handleSettings} className="material-symbols-outlined">
-                {" "}
-                settings{" "}
+                settings
               </span>
             </div>
           </div>
@@ -53,6 +49,21 @@ export default Nav;
 
 
 const Header = styled.header`
+
+.g_icons{
+    margin-right: 10px;
+    position: relative;
+    top: 0px;
+    color: var(--DarkCyan) !important;
+}
+.create_settings .text{
+  display: inline-block;
+  color: var(--Gunmetal);
+  position: relative;
+  left: -5px;
+  top: -10px;
+  
+}
 
 @media (min-width: 364px) {
   .mt-5px{
@@ -136,10 +147,12 @@ const Header = styled.header`
     cursor: pointer;
   }
   .create_settings button {
+    margin: 0px;
     color: var(--Gunmetal);
     border: var(--borderDefault);
     border-radius: 0;
-    padding-left: 45px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
     margin-right: 30px;
     &:hover {
       box-shadow: var(--shadow);
