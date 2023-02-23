@@ -44,6 +44,7 @@ function TablePagination() {
                     <ActivityTableFrame>
                         <div>
                         <Tab />
+                        <div className="table-container">
                           <table>
                             <thead>
                               <tr className="table-header-item">
@@ -57,6 +58,7 @@ function TablePagination() {
                             </thead>
                             <tbody></tbody>
                           </table>
+                        </div>
                         </div>
                     </ActivityTableFrame>
                   </div>
@@ -77,7 +79,6 @@ export default TablePagination;
 
 
 const ActivityTableFrame = styled.section`  
-
     max-width: 1112px;
     margin-top: 20px;
     height: 889px;
@@ -101,12 +102,32 @@ const ActivityTableFrame = styled.section`
       color: #737070;
   }
 
-  .table-header-item {
-    font-size: 12px;
-    color: #737070;
-    font-family: 'Nunito';
-    font-weight: 600;
+  
+  @media (min-width: 275px) {
+    .table-header-item {
+      font-size: 10px;
+    }
   }
+  @media (min-width: 1024px) {
+      table-header-item {
+        font-size: 12px;
+        color: #737070;
+        font-family: 'Nunito';
+        font-weight: 600;
+      }
+  }
+
+  @media (min-width: 1200px) {
+    margin-left: 20px;
+  }
+ 
+
+  .table-container {
+    overflow: auto;
+    max-height: 200px;
+  }
+
+ 
 
   
 

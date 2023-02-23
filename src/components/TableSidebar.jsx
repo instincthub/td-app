@@ -80,6 +80,47 @@ export default TableSidebar
 
 const TableSidebarWrapper = styled.section`
    
+    position: relative;
+    left: 0%;
+    right: 82.15%;
+    top: 1.21%;
+    bottom: 25.91%;
+    margin-top: 100px;
+    background-color: #f2f2f2;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin-right: 22px;
+    min-width: 257px;
+    min-height: 1024px;
+    border-right: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
+
+
+    .sterling-logo {
+       position: relative;
+       width: 107px;
+       height: 95px;
+       left: 84px;
+       top: 0px;
+    }
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
 
    .active {
     color: gray;
@@ -88,15 +129,7 @@ const TableSidebarWrapper = styled.section`
     transition: 0.5s ease;
     background-color: #f2f2f2;
   }
-    margin-top: 80px;
-    background-color: #f2f2f2;
-    background: #FFFFFF;
-    border-radius: 5px;
-    margin-right: 22px;
-    width: 257px;
-    height: 1024px;
-    border-right: 1px solid #ddd;
-    border-bottom: 2px solid #ddd;
+   
         
 
     @media (max-width: 1200px) {
@@ -110,11 +143,12 @@ const TableSidebarWrapper = styled.section`
    
 
 
-  .sterling-logo {
-    width: 107px;
-    height: 95px;
-    margin: 20px 50px 0px 83px;
-  }
+  // .sterling-logo {
+  //   width: 107px;
+  //   height: 95px;
+  //   margin: 20px 50px 0px 83px;
+  // }
+
 
   .sidebar-container {
     justify-content: space-evenly;

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 // import SearchField from "./forms/SearchField";
-// import MenuDropdown from "./src/components/MenuDropdown";
 import MenuDropdown from "./MenuDropdown";
 
 
-const Nav = (props) => {
+const SecondaryNavbar = (props) => {
   const [isVisible, setIsVisible] = useState(false);
   const handleSettings = () => {
     setIsVisible(!isVisible);
@@ -45,16 +44,16 @@ const Nav = (props) => {
     </Header>
   );
 };
-export default Nav;
+export default SecondaryNavbar;
 
 
 const Header = styled.header`
 
 .g_icons{
-    margin-right: 10px;
-    position: relative;
-    top: 0px;
-    color: var(--DarkCyan) !important;
+  margin-right: 10px;
+  position: relative;
+  top: 0px;
+  color: var(--DarkCyan) !important;
 }
 .create_settings .text{
   display: inline-block;
@@ -65,34 +64,112 @@ const Header = styled.header`
   
 }
 
-@media (min-width: 364px) {
-  .mt-5px{
-    display: none;
+
+@media (min-width: 320px) {
+  .ff_part img {
+    margin-left: 101px;
+    // margin-left: 101px;
+    margin-top: 6px;
+    
   }
+}
+@media (max-width: 393px) {
+  .ff_part img {
+    // margin-left: 122px;
+    // margin-left: 101px;
+    margin-top: 6px;
+    
+  }
+}
+
+@media (min-width: 414px) {
+  .ff_part img {
+    margin-left: 169px !important;
+    margin-top: 6px;
+    
+  }
+}
+
+@media (min-width: 757px) {
+  .ff_part img {
+    width: 189px;
+    height: 24px;
+    margin-left: 12px !important;
+    margin-top: 6px;
+    
+  }
+}
+
+@media (min-width: 768px) {
+  .ff_part img {
+    width: 189px;
+    height: 24px;
+    margin-left: 12px !important;
+    margin-top: 6px;
+    
+  }
+  .ff_part {
+    display: flex !important;
+    justify-content: space-between;
+
+  }
+}
+
+@media (min-width: 1024px) {
+  .ff_part {
+    margin-top: 10px;
+  }
+  .mt-5px {
+    margin-top: -4px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 756px) {
+  .create_settings {
+    .mt-5px {
+      display: none;
+    }
+  }
+  .ff_part {
+    display: flex !important;
+    justify-content: space-between;
+
+  }
+  
 
   .ff_part img {
-    width: 174px;
+    width: 189px;
     height: 24px;
   }
   .container_padding nav {
     display: flex;
     justify-content: space-between;
-    // align-items: center;
-    // position: relative;
   }
   
 }
 
 
+
+
+
   .mt-5px {
-    margin-top: 6px;
     cursor: pointer;
   }
   nav {
     display: flex;
     justify-content: space-between;
-    // align-items: center;
-    // position: relative;
   }
   .container_padding {
     padding: 0 40px;
@@ -100,13 +177,16 @@ const Header = styled.header`
       padding: 0 20px;
     }
   }
-  @media (max-width: 888px) {
+
+
+  @media (max-width: 897px) {
     .create_settings {
       .add_box {
         display: none;
       }
     }
   }
+
   @media (max-width: 650px) {
     #media {
       display: none;

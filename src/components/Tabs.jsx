@@ -203,7 +203,12 @@ const TabsSearch = styled.div`
       border-radius: 4px 4px;
       transition: 0.5s ease;
       // background-color: #f2f2f2;
-  
-  
   }
+
+  @media (max-width: 414px) {
+    .tabs button {
+      font-size: 10px; 
+    }
+  }
+
 `;

@@ -1,17 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import Nav from '../components/nav';
 import BreadCrumb from '../components/BreadCrumb';
 import TableSidebar from '../components/TableSidebar';
+import SecondaryNavbar from '../components/SecondaryNavbar';
 
 const TechTable = () => {
   return (
     <TechDiversityWrapper>
-            <Nav />
+            <SecondaryNavbar />
       <section>
-        <div className='containerr'>
+        <div className='body-container'>
+          <div className='sidebar'>
             <TableSidebar />   
+          </div>
+          <div className='breadcrumb-and-table'>
             <BreadCrumb />
+          </div>
         </div>
       </section>
     </TechDiversityWrapper>
@@ -29,13 +33,19 @@ const TechDiversityWrapper = styled.div`
     
 
     @media (min-width: 1200px) {
-      .containerr {
+      .body-container {
+        margin: 0px 0px 0px auto;
         display: flex;
-        // justify-content: center;
         align-items: center;
       }
+      .sidebar {
+        margin: 20px 0px;
+      }
+      .breadcrumb-and-table {
+        margin: 20px 0px;
+
+      }
     }
-  
 `;
 
 

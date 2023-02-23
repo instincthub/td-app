@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import Banner from "../components/Banner";
 import Features from "../components/Features";
 import Overview from "../components/Overview";
@@ -12,12 +12,12 @@ import Footer from "../components/Footer";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
-import Nav from "../components/nav";
+import SecondaryNavbar from "../components/SecondaryNavbar";
 
 function App() {
   return (
     <div>
-      <Nav />
+      <SecondaryNavbar />
       <Banner />
       <Features />
       <Overview />
