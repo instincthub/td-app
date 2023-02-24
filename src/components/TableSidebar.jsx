@@ -104,24 +104,6 @@ const TableSidebarWrapper = styled.section`
        top: 0px;
     }
 
-
-
-
-
-
-
-
-
-
-    
-    
-
-
-
-
-
-
-
    .active {
     color: gray;
     border-left: 10px solid gray;
@@ -140,15 +122,6 @@ const TableSidebarWrapper = styled.section`
       height: 1024px;
     }
 
-   
-
-
-  // .sterling-logo {
-  //   width: 107px;
-  //   height: 95px;
-  //   margin: 20px 50px 0px 83px;
-  // }
-
 
   .sidebar-container {
     justify-content: space-evenly;
@@ -164,9 +137,6 @@ const TableSidebarWrapper = styled.section`
     align-items: center;
     margin: 20px 15px 0px 10px;
   }
- 
-   
-
   
   .img-style {
     font-size: 24px;

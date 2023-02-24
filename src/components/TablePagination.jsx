@@ -97,9 +97,22 @@ const ActivityTableFrame = styled.section`
       color: white;
   }
   
-  th, tfoot td {
+    th, tfoot td {
       background: rgba(216, 216, 216, 0.27);
       color: #737070;
+  }
+
+  .table-container {
+    overflow: auto;
+    max-height: 200px;
+    overflow: auto;
+    scrollbar-width: none; /* hide scrollbar in Firefox */
+    -ms-overflow-style: none; /* hide scrollbar in Edge and IE */
+    } 
+  }
+
+  .table-container::-webkit-scrollbar {
+    display: none; /* hide scrollbar in Chrome and Safari */
   }
 
   
@@ -107,6 +120,9 @@ const ActivityTableFrame = styled.section`
     .table-header-item {
       font-size: 10px;
     }
+    th, tfoot td {
+      font-size: 10px;
+  }
   }
   @media (min-width: 1024px) {
       table-header-item {
@@ -115,17 +131,22 @@ const ActivityTableFrame = styled.section`
         font-family: 'Nunito';
         font-weight: 600;
       }
+      th, tfoot td {
+        font-size: 14px;
+
+    }
   }
 
   @media (min-width: 1200px) {
     margin-left: 20px;
+
+    th, tfoot td {
+      font-size: 14px;
+    }
   }
  
 
-  .table-container {
-    overflow: auto;
-    max-height: 200px;
-  }
+ 
 
  
 

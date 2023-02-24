@@ -27,11 +27,6 @@ export default TechTable
 
 
 const TechDiversityWrapper = styled.div`
-
-
-
-    
-
     @media (min-width: 1200px) {
       .body-container {
         margin: 0px 0px 0px auto;

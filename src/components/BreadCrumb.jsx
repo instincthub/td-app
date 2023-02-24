@@ -198,7 +198,7 @@ const BreadCrumbWrapper = styled.section`
     }
 
 
-    @media (min-width: 768px) {
+    @media (min-width: 542px) {
       .header {
         width: 700px;
         margin-top: 100px;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-// import SearchField from "./forms/SearchField";
+import SearchField from "./SearchField";
 import MenuDropdown from "./MenuDropdown";
 
 
@@ -27,8 +27,9 @@ const SecondaryNavbar = (props) => {
               alt=""
               className="logo"
             />
+
             {/* Hello */}
-            {/* <SearchField id="media" /> */}
+            <SearchField id="media" />
           </div>
           <div className="create_settings">
             <button className="add_box"> <span class="material-symbols-outlined g_icons"> add_box </span> <span className="text">LIBRARY</span></button>
@@ -60,7 +61,7 @@ const Header = styled.header`
   color: var(--Gunmetal);
   position: relative;
   left: -5px;
-  top: -10px;
+  top: 0px;
   
 }
 
@@ -75,8 +76,6 @@ const Header = styled.header`
 }
 @media (max-width: 393px) {
   .ff_part img {
-    // margin-left: 122px;
-    // margin-left: 101px;
     margin-top: 6px;
     
   }
@@ -100,7 +99,8 @@ const Header = styled.header`
   }
 }
 
-@media (min-width: 768px) {
+// @media (min-width: 768px) {
+@media (min-width: 758px) {
   .ff_part img {
     width: 189px;
     height: 24px;
@@ -111,17 +111,25 @@ const Header = styled.header`
   .ff_part {
     display: flex !important;
     justify-content: space-between;
-
+  }
+  #media {
+    width: 458px;
+    height: 40px;
+    margin: 0px 45px;
   }
 }
 
 @media (min-width: 1024px) {
   .ff_part {
-    margin-top: 10px;
+    margin-top: 3px;
   }
   .mt-5px {
     margin-top: -4px;
   }
+   
+  
+}
+  
 }
 
 
@@ -234,6 +242,7 @@ const Header = styled.header`
     padding-left: 20px !important;
     padding-right: 20px !important;
     margin-right: 30px;
+    display: flex;
     &:hover {
       box-shadow: var(--shadow);
     }
