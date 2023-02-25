@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../components/Navbar";
+// import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import CampusLeadForm from "../../components/CampusLeadForm";
 import { ServerErr } from "../../components/ServerErr";
@@ -10,6 +10,7 @@ import "../../components/static/assets/scss/diversity.css";
 import "../../components/static/assets/scss/register.css";
 import "../../components/static/assets/scss/custom-select.css";
 import { HandleError } from "../../components/forms/HandleError";
+import SecondaryNavbar from "../../components/SecondaryNavbar";
 
 class CampusLeadSignup extends React.Component {
 
@@ -155,7 +156,8 @@ class CampusLeadSignup extends React.Component {
     let success_url = (items.message === 'Campus Lead details was added successfully.' ? '/community/signup/details/success' : null)
     return (
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
+        < SecondaryNavbar />
         <div className="form_content">
         {/* Server Error State */}
           <div className=''>

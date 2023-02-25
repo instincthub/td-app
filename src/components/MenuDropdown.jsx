@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 // import Profile from "../../assets/images/inBlue.jpg";
-import Profile from "./static/assets/images/assesment.png";
+import Profile from "./static/assets/images/sterlingLogo.png";
 
 const Container = styled.div`
 
@@ -15,16 +15,19 @@ const Container = styled.div`
   border: var(--borderDefault);
   .nameTruce {
     display: flex;
+    justify-content: space-evenly;
     padding: 15px;
     border-bottom: var(--borderDefault);
     .dp {
-      width: 55px;
-      height: 55px;
-      margin-right: 15px;
+      width: 63px;
+      height: 57px
+      margin-right: 25px;
       object-fit: cover;
-      border-radius: 50%;
       transform: scale(1);
       transition: 0.3s ease;
+      // height: 55px;
+      // width: 55px;
+      // border-radius: 50%;
       &:hover {
         transform: scale(1.08);
       }

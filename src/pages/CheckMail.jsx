@@ -1,15 +1,18 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Outlet, Link } from "react-router-dom";
 // import { Navbar, Banner, Features } from "./";
 import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
+import SecondaryNavbar from '../components/SecondaryNavbar';
+
 
 function CheckMail() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
+	  < SecondaryNavbar />
 		<div className="container">
 			<div className="m-b-50 mb-7">
 				<div class="mt-10">

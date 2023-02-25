@@ -17,6 +17,7 @@ import SecondaryNavbar from "../components/SecondaryNavbar";
 function App() {
   return (
     <div>
+      {/* <Navbar /> */}
       <SecondaryNavbar />
       <Banner />
       <Features />

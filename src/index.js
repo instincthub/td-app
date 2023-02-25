@@ -52,8 +52,7 @@ function Index() {
         <Route path="register" element={<Register2 />} />
         {/* <Route path="register2" element={<Register2 />} /> */}
         <Route path="register/verify" element={<CheckMail />} />
-        <Route path="register/detai
-        ls" element={<RegDetails />} />
+        <Route path="register/details" element={<RegDetails />} />
         <Route path="register/invalid-token" element={<InvalidToken />} />
         <Route path="quiz" element={<QuizInstruction />} />
         <Route path="quiz/quiztest" element={<QuizTest />} />
