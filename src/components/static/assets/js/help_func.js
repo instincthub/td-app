@@ -387,7 +387,10 @@ export const reqOptions = (method, data, bearer = null) => {
   // };
   let myHeaders = {};
   myHeaders[SK_KEY] = SK_VALUE;
+  // myHeaders("instincthub-sk-header", "22-072021kidbackendyste3333ifkIks304");
+  // myHeaders["instinchub-sk-heder" ] = "22-072021kidbackendyste3333ifkIks304"
 
+  console.log("bdjdfjdhjdf",myHeaders)
   if (bearer) myHeaders["Authorization"] = "Bearer " + getCookie("access");
 
   var request = {
@@ -434,6 +437,7 @@ export const fetchAPI = (
             if (setStatus) setStatus("success"); // Display message banner.
           } else if (status === 404) setStatus(status);
         }
+        
 
         if (process.env.NODE_ENV === "development") {
           console.log(reqOptions);
@@ -449,18 +453,25 @@ export const fetchAPI = (
             error: error.message,
           });
         } else {
+            setError(error)
+            // console.log(error)
             setError(error.message)
         }
         if (process.env.NODE_ENV === "development") {
           console.log(reqOptions);
           console.log(reqOptions);
-          console.log(error.message);
+          console.log(error);
+          console.log(status);
+          // console.log(error.message);
         }
-        Sentry.withScope(function (scope) {
-          scope.setLevel("warning");
-          // The exception has the event level set by the scope (info).
-          Sentry.captureException(error);
-        });
+
+        if (process.env.NODE_ENV === "production") {
+          Sentry.withScope(function (scope) {
+            scope.setLevel("warning");
+            // The exception has the event level set by the scope (info).
+            Sentry.captureException(error);
+          });
+        }
         return error.message;
       }
     );

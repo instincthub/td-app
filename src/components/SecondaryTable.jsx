@@ -7,21 +7,16 @@ import { reqOptions, fetchAPI, HOST_URL } from "../components/static/assets/js/h
 function SecondaryTable() {
 
       const [cohort, setCohort] = useState([])
+      const [status, setStatus] = useState()
+      const [error, setError] = useState()
 
       useEffect(()=>{
-        const requestOptions =  reqOptions("GET", null)        
-        fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
+        const requestOptions =  reqOptions("GET", null, true)        
+        fetchAPI(setCohort, "sandboxapi.instincthub.com/api/v1/assessment/cohort/", requestOptions, true, setStatus, setError )
       },[])
 
       console.log(cohort)
 
-      // Tried using the normal fetch method and the data displays. 
-
-      // fetch("https://sandboxapi.instincthub.com/api/v1/assessment/cohort/", requestOptions)
-      //   .then(response => response.text())
-      //   .then(result => console.log(result))
-      //   .catch(error => console.log('error', error));
-      //   setCohort()
 
   return (
     <>
