@@ -9,24 +9,13 @@ function SecondaryTable() {
       const [cohort, setCohort] = useState([])
 
       useEffect(()=>{
-        const requestOptions =  reqOptions("GET", null)
-        
+        const requestOptions =  reqOptions("GET", null)        
         fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
       },[])
 
       console.log(cohort)
 
       // Tried using the normal fetch method and the data displays. 
-
-      // var myHeaders = new Headers();
-      //   myHeaders.append("instincthub-sk-header", "22-072021kidbackendyste3333ifkIks304");
-      //   myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4NTI0NjkyLCJpYXQiOjE2Nzc2NjA2OTIsImp0aSI6IjcxNjQ5ZmIzZDVhOTRiZDFhOTI3M2NiNWJhZTk3ZTRkIiwidXNlcl9pZCI6MTUxfQ.0eZnnjYMVGfKiuyiH32SHnCVPZrrPKNrq8s2ndyqwSg");
-
-      // var requestOptions = {
-      //   method: 'GET',
-      //   headers: myHeaders,
-      //   redirect: 'follow'
-      // };
 
       // fetch("https://sandboxapi.instincthub.com/api/v1/assessment/cohort/", requestOptions)
       //   .then(response => response.text())
