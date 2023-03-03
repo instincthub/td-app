@@ -1,29 +1,38 @@
-// import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Tab from "./Tabs";
+import Tab from "./Tab";
+import { reqOptions, fetchAPI, HOST_URL } from "../components/static/assets/js/help_func";
 
-function TablePagination() {
-  // return (
-  //   <tr>
-  //     <td>
-  //       <div className="img-avatar">
-  //         <div className="user-name">
-  //           xAxAx
-  //         </div>
-  //       </div>
-  //     </td>
 
-  //     <td>xASxAs</td>
-  //     <td className="residence-address">AsxASx</td>
-  //     <td>
-  //       <div className="date-time">ASxXZ</div>
-  //       <div className="activity-time">xasx</div>
-  //     </td>
-  //     <td className="resume_data">
+function SecondaryTable() {
 
-  //     </td>
-  //   </tr>
-  // );
+      const [cohort, setCohort] = useState([])
+
+      useEffect(()=>{
+        const requestOptions =  reqOptions("GET", null)
+        
+        fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
+      },[])
+
+      console.log(cohort)
+
+      // Tried using the normal fetch method and the data displays. 
+
+      // var myHeaders = new Headers();
+      //   myHeaders.append("instincthub-sk-header", "22-072021kidbackendyste3333ifkIks304");
+      //   myHeaders.append("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4NTI0NjkyLCJpYXQiOjE2Nzc2NjA2OTIsImp0aSI6IjcxNjQ5ZmIzZDVhOTRiZDFhOTI3M2NiNWJhZTk3ZTRkIiwidXNlcl9pZCI6MTUxfQ.0eZnnjYMVGfKiuyiH32SHnCVPZrrPKNrq8s2ndyqwSg");
+
+      // var requestOptions = {
+      //   method: 'GET',
+      //   headers: myHeaders,
+      //   redirect: 'follow'
+      // };
+
+      // fetch("https://sandboxapi.instincthub.com/api/v1/assessment/cohort/", requestOptions)
+      //   .then(response => response.text())
+      //   .then(result => console.log(result))
+      //   .catch(error => console.log('error', error));
+      //   setCohort()
 
   return (
     <>
@@ -32,7 +41,7 @@ function TablePagination() {
           <div>
             <ActivityTableFrame>
               <div>
-                <Tab />
+                <Tab cohort={cohort} />
                 <div className="table-container">
                   <table>
                     <thead>
@@ -45,7 +54,16 @@ function TablePagination() {
                         <th>Duration</th>
                       </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+
+                    {cohort.map(data => (
+                      <tr key={data.id}>
+                        <td>{data.id}</td>
+                        <td>{data.title}</td>
+                      </tr>
+                    ))}
+
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -57,7 +75,7 @@ function TablePagination() {
   );
 }
 
-export default TablePagination;
+export default SecondaryTable;
 
 const ActivityTableFrame = styled.section`  
     // max-width: 1112px;
@@ -86,11 +104,15 @@ const ActivityTableFrame = styled.section`
   .table-container {
     overflow: auto;
     overflow: auto;
-max-width: 1200px;
-table{
-  width: 1100px;
-  margin-top: 40px;
-}
+    max-width: 1200px;
+    ::-webkit-scrollbar {
+      display: none;
+  }
+
+  table{
+    width: 1100px;
+    margin-top: 40px;
+  }
     } 
   }
 

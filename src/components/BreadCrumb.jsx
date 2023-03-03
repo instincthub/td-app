@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TablePagination from "./TablePagination";
+import SecondaryTable from "./SecondaryTable";
 // import SearchField from './forms/SearchField';
 
 const BreadCrumb = () => {
@@ -57,7 +57,7 @@ const BreadCrumb = () => {
             </div>
           </div>
         </section>
-        <TablePagination />
+        <SecondaryTable />
       </div>
     </BreadCrumbWrapper>
   );
@@ -72,7 +72,12 @@ const BreadCrumbWrapper = styled.section`
     max-width: 1118px;
     overflow: auto;
     padding: 20px 0;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    
   }
+
   .card-flex {
     width: 920px;
   }

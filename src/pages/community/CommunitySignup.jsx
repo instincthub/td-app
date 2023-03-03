@@ -1,6 +1,6 @@
 import React from 'react';
 import { DatePick } from "../../components/DatePick";
-// import Navbar from "../../components/Navbar";
+import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { fetchAPI, spinBtn, getCookie, cookiesEnabled, cookiesRequired, HOST_URL, reqOptions } from "../../components/static/assets/js/help_func";
 import {SubmitButton} from '../../components/SubmitButton'
@@ -11,7 +11,6 @@ import "../../components/static/assets/scss/staff.css";
 import "../../components/static/assets/scss/diversity.css";
 import "../../components/static/assets/scss/register.css";
 import { HandleError } from '../../components/forms/HandleError';
-import SecondaryNavbar from '../../components/SecondaryNavbar';
 
 
 class CommunitySignup extends React.Component {
@@ -65,8 +64,7 @@ class CommunitySignup extends React.Component {
       const {items, status} = this.state
       return (
         <div>
-          {/* <Navbar /> */}
-        <SecondaryNavbar />
+          <Navbar />
           <form 
             id='regForm'
             onSubmit={(e)=>{

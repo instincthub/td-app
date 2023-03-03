@@ -1,5 +1,5 @@
 import React from "react";
-// import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { SubmitButton } from "../components/SubmitButton";
 import { fetchAPI, spinBtn, setCookie, HOST_URL, reqOptions } from "../components/static/assets/js/help_func";
@@ -11,7 +11,6 @@ import "../components/static/assets/scss/custom-select.css";
 import { HandleError } from "../components/forms/HandleError";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import SecondaryNavbar from '../components/SecondaryNavbar';
 
 
 class Login extends React.Component {
@@ -82,9 +81,7 @@ class Login extends React.Component {
   render(){ 
     return (
       <Wrap>
-        {/* <Navbar /> */}
-        <SecondaryNavbar />
-
+        <Navbar />
             {/* Server Error State */}
             <div className="mt-10">
             <ServerErr/>

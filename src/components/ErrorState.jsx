@@ -1,14 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import Navbar from "./Navbar";
-import SecondaryNavbar from "./SecondaryNavbar";
+import Navbar from "./Navbar";
 
 const ErrorState = (props) => {
   return (
     <Container>
-      {/* <Navbar /> */}
-      <SecondaryNavbar />
+      <Navbar />
       <div className="status">
         <img src={props.img.default} alt="" />
         <h3>{props.title}</h3>

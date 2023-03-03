@@ -1,5 +1,5 @@
 import React from "react";
-// import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { getCookie } from "../components/static/assets/js/help_func";
 import { LoginRequired } from "../components/forms/LoginRequired";
@@ -7,7 +7,6 @@ import "../components/static/assets/scss/staff.css";
 import "../components/static/assets/scss/diversity.css";
 import "../components/static/assets/scss/register.css";
 import "../components/static/assets/scss/custom-select.css";
-import SecondaryNavbar from "../components/SecondaryNavbar";
 
 class LoginSuccess extends React.Component {
 
@@ -32,9 +31,7 @@ class LoginSuccess extends React.Component {
   render(){ 
     return (
       <div>
-        {/* <Navbar /> */}
-        <SecondaryNavbar />
-
+        <Navbar />
             <form id='regForm'>
                 <section className="container">
                     <div className="diversity_data register">
