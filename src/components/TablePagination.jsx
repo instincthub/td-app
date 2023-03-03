@@ -1,87 +1,68 @@
-
 // import React, { useState } from "react";
 import styled from "styled-components";
 import Tab from "./Tabs";
 
-
-
-
-
-
 function TablePagination() {
-  
+  // return (
+  //   <tr>
+  //     <td>
+  //       <div className="img-avatar">
+  //         <div className="user-name">
+  //           xAxAx
+  //         </div>
+  //       </div>
+  //     </td>
 
- 
-      // return (
-      //   <tr>
-      //     <td>
-      //       <div className="img-avatar">
-      //         <div className="user-name">
-      //           xAxAx
-      //         </div>
-      //       </div>
-      //     </td>
+  //     <td>xASxAs</td>
+  //     <td className="residence-address">AsxASx</td>
+  //     <td>
+  //       <div className="date-time">ASxXZ</div>
+  //       <div className="activity-time">xasx</div>
+  //     </td>
+  //     <td className="resume_data">
 
-      //     <td>xASxAs</td>
-      //     <td className="residence-address">AsxASx</td>
-      //     <td>
-      //       <div className="date-time">ASxXZ</div>
-      //       <div className="activity-time">xasx</div>
-      //     </td>
-      //     <td className="resume_data">
-          
-      //     </td>
-      //   </tr>
-      // );
+  //     </td>
+  //   </tr>
+  // );
 
-
-
-      return (
-        <>
-          <section>
-                <div>
-                  <div>
-                    <ActivityTableFrame>
-                        <div>
-                        <Tab />
-                        <div className="table-container">
-                          <table>
-                            <thead>
-                              <tr className="table-header-item">
-                                <th>Applicant</th>
-                                <th>Cohort</th>
-                                <th>School</th>
-                                <th>Course Choice</th>
-                                <th>Start date</th>
-                                <th>Duration</th>
-                              </tr>
-                            </thead>
-                            <tbody></tbody>
-                          </table>
-                        </div>
-                        </div>
-                    </ActivityTableFrame>
-                  </div>
+  return (
+    <>
+      <section>
+        <div>
+          <div>
+            <ActivityTableFrame>
+              <div>
+                <Tab />
+                <div className="table-container">
+                  <table>
+                    <thead>
+                      <tr className="table-header-item">
+                        <th>Applicant</th>
+                        <th>Cohort</th>
+                        <th>School</th>
+                        <th>Course Choice</th>
+                        <th>Start date</th>
+                        <th>Duration</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
-          </section>
-        </>
-      );
-    
-
-
-    };
+              </div>
+            </ActivityTableFrame>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
 
 export default TablePagination;
 
-
-
-
-
-
 const ActivityTableFrame = styled.section`  
-    max-width: 1112px;
+    // max-width: 1112px;
     margin-top: 20px;
-    height: 889px;
+    // height: 889px;
     background-color: #f2f2f2;
     border: 1px solid #ddd;
     padding: 16px;
@@ -104,16 +85,15 @@ const ActivityTableFrame = styled.section`
 
   .table-container {
     overflow: auto;
-    max-height: 200px;
     overflow: auto;
-    scrollbar-width: none; /* hide scrollbar in Firefox */
-    -ms-overflow-style: none; /* hide scrollbar in Edge and IE */
+max-width: 1200px;
+table{
+  width: 1100px;
+  margin-top: 40px;
+}
     } 
   }
 
-  .table-container::-webkit-scrollbar {
-    display: none; /* hide scrollbar in Chrome and Safari */
-  }
 
   
   @media (min-width: 275px) {
@@ -138,7 +118,7 @@ const ActivityTableFrame = styled.section`
   }
 
   @media (min-width: 1200px) {
-    margin-left: 20px;
+    // margin-left: 20px;
 
     th, tfoot td {
       font-size: 14px;
@@ -155,4 +135,3 @@ const ActivityTableFrame = styled.section`
    
 
 `;
-
