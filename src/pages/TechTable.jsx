@@ -36,9 +36,9 @@ const TechDiversityWrapper = styled.div`
       position: fixed;
     }
     .breadcrumb-and-table {
-      width: 75%;
+      width: 77%;
       position: absolute;
-      right: 0;
+      right: 25px;
     }
     .containe {
       margin-top: 0 !important;
