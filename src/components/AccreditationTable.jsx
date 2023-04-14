@@ -7,15 +7,14 @@ import Pagination from "./Pagination";
 import StaticTabs from "./StaticTabs";
 import { useSearchParams } from "react-router-dom";
 import TableforDownloads from "../Test/TableforDownloads";
+import Tabs from "./StaticTabs";
 // import EventCards from "../Pages/Events/EventCards";
 // import AddNewEvent from "./AddEvent";
 
-const AccreditationTable = () => {
+const AccreditationTable = ({students, setStudents, ...props}) => {
   const violationRef = useRef(null);
-  const [create, setCreate] = useState(false);
-  const [createData, setCreateData] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
   const [data, setData] = useState();
+  const [error, setError] = useState();
   const [searchValues, setSearchValues] = useState(false);
   const [tabsValues, setTabsValues] = useState(false);
   const [searchParams] = useSearchParams();
@@ -26,16 +25,11 @@ const AccreditationTable = () => {
   };
 
   useEffect(() => {
-    // console.log(data.results);
-
-    if (createData) {
-      setCreate(false);
-      if (data) {
-        data.results.push(createData);
-      }
+    if(students){
+      setData(students)
+      setStudents(null)
     }
-  }, [createData]);
-  console.log("Data from endpoint", data);
+  }, [data, students]);
 
   return (
     <div ref={violationRef}>
@@ -65,6 +59,7 @@ const AccreditationTable = () => {
                     <th>School</th>
                     <th>Course Choice</th>
                     <th>Start Date</th>
+                    <th>End Date</th>
                     <th>Duration</th>
                   </tr>
                 </thead>
@@ -72,7 +67,7 @@ const AccreditationTable = () => {
                   return ( */}
                 {/* <div> */}
                 {/* <TableforDownloads key={option.id} options={option} /> */}
-                <TableforDownloads />
+                <TableforDownloads students={data}/>
                 {/* </div> */}
                 {/* );
                 })} */}
@@ -85,12 +80,11 @@ const AccreditationTable = () => {
           <Pagination
             data={data}
             setData={setData}
+            setError={setError}
             limit={10}
             offset={searchParams.get("offset")}
-            goToViolation={goToViolation}
-            tabsValues={tabsValues}
-            searchValues={searchValues}
-            urlPath="/api/v1/assessment/cohort/"
+            urlPath="/api/v1/assessment/cohort_students/?"
+            noPermission={true}
           />
         </div>
       </AccreditationTableWrapper>

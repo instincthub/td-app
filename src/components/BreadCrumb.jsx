@@ -1,23 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import AccreditationTable from "./AccreditationTable";
 
-const BreadCrumb = () => {
+const BreadCrumb = (props) => {
+  const stats = {
+    total: props.cohortStats?.data.total_students,
+    total_in_24hr: props.cohortStats?.data.total_students_last_28_days,
+    meet_expectation: props.cohortStats?.data.total_students_meets_expectation,
+    meet_in_24hr: props.cohortStats?.data.total_students_meets_expectation_last_28_days,
+    uni: props.cohortStats?.data.total_university_applicants,
+    uni_in_24hr: props.cohortStats?.data.total_university_applicants_last_28_days,
+  }
+
   return (
     <BreadCrumbWrapper>
       <div className="containe">
         <div className="header">
           <div className="tech-diversity-text">
             <h5>Tech Diversity Accreditation</h5>
-          </div>
-          <div className="search-field">
-            <input
-              type="text"
-              id="filter"
-              placeholder="Search applicant name"
-              class="search-icon"
-            />
-            {/* <SearchField /> */}
           </div>
         </div>
         <section className="overflown">
@@ -26,9 +26,15 @@ const BreadCrumb = () => {
               <div class="container-contents">
                 <h3>Enrollment</h3>
                 <p>Current Students</p>
-                <span className="number">400,000</span>
+                <span className="number">{ stats.total }</span>
                 <p>
-                  <span className="stats">+18</span> in the last 28 days.
+                  {
+                    (stats.total_in_24hr) ?
+                     <><span className="stats">+{ stats.total_in_24hr }</span> in the last 28 days.</>
+                    :
+                      'No new enrolment in the last 28 days.'
+
+                  }
                 </p>
               </div>
             </div>
@@ -37,9 +43,15 @@ const BreadCrumb = () => {
               <div class="container-contents">
                 <h3>Assesment</h3>
                 <p>Students who met expectations</p>
-                <span className="number"> 800 </span>
+                <span className="number"> { stats.meet_expectation } </span>
                 <p>
-                  <span className="stats">+18</span> in the last 28 days.
+                  {
+                    (stats.meet_in_24hr) ?
+                     <><span className="stats">+{ stats.meet_in_24hr }</span> in the last 28 days.</>
+                    :
+                      'No new enrolment in the last 28 days.'
+
+                  }
                 </p>
               </div>
             </div>
@@ -48,15 +60,21 @@ const BreadCrumb = () => {
               <div class="container-contents">
                 <h3>Schools</h3>
                 <p>Universities of applicants</p>
-                <span className="number">10,000</span>
+                <span className="number">{ stats.uni }</span>
                 <p>
-                  <span className="stats">+400</span> in the last 28 days.
+                  {
+                    (stats.uni_in_24hr) ?
+                     <><span className="stats">+{ stats.uni_in_24hr }</span> in the last 28 days.</>
+                    :
+                      'No new enrolment in the last 28 days.'
+
+                  }
                 </p>
               </div>
             </div>
           </div>
         </section>
-        <AccreditationTable />
+        <AccreditationTable students={props.students} setStudents={props.setStudents} cohort={props.cohort}/>
       </div>
     </BreadCrumbWrapper>
   );
@@ -83,7 +101,6 @@ const BreadCrumbWrapper = styled.section`
     margin-top: 120px;    
     padding: 0px 20px;
     @media (min-width: 768px) {
-      max-width: 1500px;
       margin: 0 auto;
       margin-top: 120px;
     }
@@ -161,15 +178,6 @@ const BreadCrumbWrapper = styled.section`
           padding: 6px 18px;
         }
 
-        .search-field input {
-          display: none;
-        }
-
-        // .card-flex {
-        //   overflow: visible !important;
-    
-        // }
-
         
       .container-contents p {
           font-size: 14px;
@@ -203,18 +211,6 @@ const BreadCrumbWrapper = styled.section`
    
     @media (min-width: 1440px) {
       padding: 0px;
-    }
-
-
-    @media (min-width: 542px) {
-   
-      .search-field input {
-        display: none;
-        width: 743px;
-      }
-      // .card-container {
-      //   width: 356px;
-      // }
     }
 
 

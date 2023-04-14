@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import SearchField from "./SearchField";
 import MenuDropdown from "./MenuDropdown";
+import Images from "./Images";
+import { Link } from "react-router-dom";
 
 
 const SecondaryNavbar = (props) => {
@@ -23,7 +25,7 @@ const SecondaryNavbar = (props) => {
               >apps </span>
             </div>
             <img
-              src="https://instincthub.com/static/media/instincthub.87d965bf287cdcdc5874.png"
+              src={Images.logo}
               alt=""
               className="logo"
             />
@@ -31,12 +33,15 @@ const SecondaryNavbar = (props) => {
             {/* Hello */}
             <SearchField id="media" />
           </div>
+          
+          
           <div className="create_settings">
             <button className="add_box"> <span class="material-symbols-outlined g_icons"> add_box </span> <span className="text">LIBRARY</span></button>
             <div className="mt-5px">
               <span onClick={handleSettings} className="material-symbols-outlined">
                 settings
               </span>
+              
             </div>
           </div>
           {isVisible && <MenuDropdown />}

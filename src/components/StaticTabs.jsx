@@ -4,16 +4,20 @@ import { Link } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 import { reqOptions, fetchAPI, HOST_URL } from "./static/assets/js/help_func";
+import SearchInputUpdateParams from "./forms/SearchInputUpdateParams";
 
 function Tabs(props) {
+  const [cohorts, setCohorts] = useState(null)
   const [searchParams] = useSearchParams();
-  const requestOptions = reqOptions("get", null);
 
   useEffect(() => {
-    // eslint-disable-next-line
-  }, [searchParams.get("cat")]);
+    if(!cohorts){
+      const requestOptions =  reqOptions("GET", null)
+      fetchAPI(setCohorts, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true);
+    }
+  })
 
-  if (props.categories) {
+  if (cohorts && cohorts.results) {
     return (
       <TabsSearch>
         <div className="tabs">
@@ -30,28 +34,31 @@ function Tabs(props) {
             <button>All</button>
           </Link>
 
-          {props.categories.map((option) => {
+          {cohorts.results.map((option) => {
             return (
               <div
                 className={option >= 1 ? "m_none tab_none" : ""}
                 key={option}
               >
                 <Link
-                  to={"?cat=" + option}
+                  to={"?cat=" + option.id}
                   className={
-                    searchParams.get("cat") === option ? "tab active" : "tab"
+                    searchParams.get("cat") === `${option.id}` ? "tab active" : "tab"
                   }
                   onClick={(e) => {
-                    props.setTabsValues(option);
+                    props.setTabsValues(option.id);
                     // tabActive(e.target)
                   }}
                   key={option.id}
                 >
-                  <button data-id={option}>{option}</button>
+                  <button data-id={option.id}>{option.title}</button>
                 </Link>
               </div>
             );
           })}
+          <div className="search-field">
+            <SearchInputUpdateParams />
+          </div>
         </div>
       </TabsSearch>
     );
@@ -107,6 +114,9 @@ const TabsSearch = styled.section`
         color: #00838f;
       }
     }
+    .search-field{
+      width: 400px;
+    }
   }
   .normal_tab.add_tape {
     border-bottom: 2px solid yellow;
@@ -115,6 +125,14 @@ const TabsSearch = styled.section`
     display: flex;
     justify-content: space-between;
     height: 35px;
+
+    .search-field{
+      margin-left: 30px;
+      input{
+        background-color: #f4f4f4 ;
+        border: none;
+      }
+    }
   }
   @media (max-width: 500px) {
     .m_none {

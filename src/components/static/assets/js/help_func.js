@@ -390,7 +390,6 @@ export const reqOptions = (method, data, bearer = null) => {
   // myHeaders("instincthub-sk-header", "22-072021kidbackendyste3333ifkIks304");
   // myHeaders["instinchub-sk-heder" ] = "22-072021kidbackendyste3333ifkIks304"
 
-  console.log("bdjdfjdhjdf",myHeaders)
   if (bearer) myHeaders["Authorization"] = "Bearer " + getCookie("access");
 
   var request = {

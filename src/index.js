@@ -59,7 +59,7 @@ function Index() {
         <Route path="quiz/quiztest/results" element={<QuizResults />} />
         <Route path="login" element={<Login />} />
         <Route path="login/success" element={<LoginSuccess />} />
-        <Route path="tech-diversity-accreditation" element={<TechTable />} />
+        <Route path="accreditation" element={<TechTable />} />
 
         {/* Community Support */}
         <Route path="/community/signup/" element={<CommunitySignup />} />

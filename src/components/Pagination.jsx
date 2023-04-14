@@ -1,76 +1,56 @@
 import { React, useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSearchParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-// import {
-//   reqOptions,
-//   fetchAPI,
-//   HOST_URL,
-//   checkUrl,
-// } from "../assets/js/help_func";
 import {
   reqOptions,
   fetchAPI,
   HOST_URL,
   checkUrl,
 } from "./static/assets/js/help_func";
+// import { useRouter } from "next/router";
+import { Link, useLocation } from "react-router-dom";
 
 function Pagination(props) {
-  const [searchParams] = useSearchParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const cat = queryParams.get('cat');
+  const offset = queryParams.get('offset');
+  const user = queryParams.get('user');
+  const search = queryParams.get('search');
 
   const [limit] = useState(10);
   const [pages, setPages] = useState();
 
+  const [status, setStatus] = useState(0);
   const [offsetFrom, setOffsetFrom] = useState(0);
   const [offsetTo, setOffsetTo] = useState(5);
   const [rangeLimit] = useState(5);
 
-  // const requestOptions = reqOptions("get", null, true);
-  var myHeaders = new Headers();
-  myHeaders.append(
-    "instincthub-sk-header",
-    "22-072021kidbackendyste3333ifkIks304"
-  );
-  myHeaders.append(
-    "Authorization",
-    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4NTI0NjkyLCJpYXQiOjE2Nzc2NjA2OTIsImp0aSI6IjcxNjQ5ZmIzZDVhOTRiZDFhOTI3M2NiNWJhZTk3ZTRkIiwidXNlcl9pZCI6MTUxfQ.0eZnnjYMVGfKiuyiH32SHnCVPZrrPKNrq8s2ndyqwSg"
-  );
+  const searchParams = (search) ? `&search=${search}` : '';
+  const userParams = (user) ? `&staff=${user}` : '';
+  const tabParams = (cat) ? `&cat=${cat}` : ''
+  const offsetsParams = (offset) ? `&offset=${offset}`: '';
 
-  var requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
-  };
+  const requestOptions = reqOptions("get", null, props.noPermission ? false : true);
+  const nextOffset = new URLSearchParams(props.data ? props.data.next : "").get( "offset" );
 
-  console.log("Header", requestOptions);
+  const previousOffset = new URLSearchParams( props.data ? props.data.previous : "" ).get("offset");
 
-  const nextOffset = new URLSearchParams(props.data ? props.data.next : "").get(
-    "offset"
-  );
-  const previousOffset = new URLSearchParams(
-    props.data ? props.data.previous : ""
-  ).get("offset");
-  let offset_params = Number(searchParams.get("offset")) / props.limit;
+  let offset_params = Number(offset) / props.limit;
 
   useEffect(() => {
-    let tabs =
-      props.tabsValues && props.tabsValues !== "all" ? props.tabsValues : "";
-    let search = props.searchValues ? props.searchValues : "";
-    console.log(search);
-    console.log(HOST_URL());
 
     // Fetch data whenever there is new search, tab and pagination
-    if (offset_params || props.tabsValues || props.searchValues) {
+    if (offset_params || tabParams || offsetsParams || searchParams || userParams) {
+
       fetchAPI(
         props.setData,
         HOST_URL() +
-          `${props.urlPath}&cat=${tabs}&search=${search}&limit=${
-            props.limit
-          }&offset=${searchParams.get("offset")}`,
+          `${props.urlPath}${tabParams}${searchParams}&limit=${
+            props.limit + offsetsParams + userParams}`,
         requestOptions,
         true,
         false,
-        false
+        props.setError
       );
 
       if (offset_params >= rangeLimit) {
@@ -80,33 +60,29 @@ function Pagination(props) {
         setOffsetFrom(0);
         setOffsetTo(5);
       }
-    } else
+    } else if(!props.data){
       fetchAPI(
         props.setData,
-        HOST_URL() + `${props.urlPath}&limit=` + props.limit,
+        HOST_URL + `${props.urlPath}&limit=` + props.limit,
         requestOptions,
-        true
+        true,
+        setStatus
       );
+    }
 
     // Round up and create array.
-    if (props.data)
+    if (props.data && props.data.count)
       setPages([...Array(Math.ceil(props.data.count / props.limit)).keys()]);
 
     // eslint-disable-next-line
-  }, [searchParams.get("offset"), props.tabsValues, props.searchValues]);
-
-  console.log(pages);
+  }, [offset, tabParams, userParams, searchParams, status]);
 
   if (pages) {
-    console.log("Inside", props.data);
     return (
       <PaginationUl
         className="pagination_buttons"
         role="navigation"
         aria-label="Pagination"
-        onClick={() => {
-          props.goToViolation(); // scroll to top
-        }}
       >
         {/* Previous Btn */}
         <div className="pag_nav_wrapper">

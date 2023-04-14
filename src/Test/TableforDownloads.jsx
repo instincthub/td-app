@@ -1,11 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import ReactTimeAgo from "react-time-ago";
 import styled from "styled-components";
-import { HOST_URL } from "../components/static/assets/js/help_func";
-// import { HOST_URL } from "../../assets/js/help_func";
-// import { CopyLink } from "../../components/CopyLink";
-// import EditEachDownload from "../../components/EditEachDownload";
-// import DeleteConfirmationModal from "../../components/message/DeleteModal";
 
 function timeAgo(timestamp) {
   // Calculate the difference between the current time and the given timestamp
@@ -31,17 +25,23 @@ function timeAgo(timestamp) {
   }
 }
 
-const TableforDownloads = (props) => {
+const TableforDownloads = ({ students }) => {
   return (
     <tbody>
-      <tr>
-        <td className="actual_content">Maryanne Onwuemene</td>
-        <td>TDN 3.1</td>
-        <td>University of Benin</td>
-        <td>User Interface and Experience Design (UI/UX) - Beginner</td>
-        <td>Monday 1st March 2023</td>
-        <td>1 month</td>
-      </tr>
+      {
+        (students && students.results) &&
+        students.results.map((option, index)=>{
+        return <tr key={index}>
+          <td className="actual_content">{ `${option.user.first_name} ${option.user.last_name}` }</td>
+          <td>{ option.cohort['title'] }</td>
+          <td>{ option.school }</td>
+          <td>{ (option.course_choice.length) ? option.course_choice[0].title : '-' }</td>
+          <td> <ReactTimeAgo date={ (option.cohort.length) && option.cohort[0].from_date } /></td>
+          <td> <ReactTimeAgo date={ (option.cohort.length) && option.cohort[0].to_date } /></td>
+          <td>3 months</td>
+        </tr>
+        })
+      }
     </tbody>
   );
 };
