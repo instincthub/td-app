@@ -159,16 +159,16 @@ function Tab( { cohort } ) {
                
                   <h5 className='cohorts'>Cohorts</h5>
                  <div className="tabs">
-                <Link>
+                <Link to="#">
                      <button className={activeTab === 'tab1' ? 'active' : ''} onClick={() => handleTabClick('tab1')}>All</button>
                 </Link>                
-                    <Link>
+                    <Link to="#">
                      <button className={activeTab === 'tab2' ? 'active' : ''} onClick={() => handleTabClick('tab2')}>Cohort 1</button>
                     </Link>
-                    <Link>
+                    <Link to="#">
                      <button className={activeTab === 'tab3' ? 'active' : ''} onClick={() => handleTabClick('tab3')}>Cohort 2</button>
                     </Link>
-                    <Link>
+                    <Link to="#">
                      <button className={activeTab === 'tab4' ? 'active' : ''} onClick={() => handleTabClick('tab4')}>Cohort 3</button>
                     </Link>
                  </div>     
