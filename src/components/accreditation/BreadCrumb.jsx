@@ -128,7 +128,6 @@ const BreadCrumbWrapper = styled.section`
       color: #000000;
       font-size: 25px;
       color: #000000;
-      white-space: nowrap;
     }
     
     .number {

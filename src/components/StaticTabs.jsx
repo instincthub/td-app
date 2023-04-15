@@ -109,9 +109,9 @@ const TabsSearch = styled.section`
 			padding: 5px 10px;
 			text-align: center;
 			margin-right: 15px;
-			color: var(--Gunmetal);
 			text-decoration: none;
 			button {
+				color: var(--Gunmetal);
 				margin: 0;
 				padding: 0 !important;
 				padding: 15px;
