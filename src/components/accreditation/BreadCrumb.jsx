@@ -35,8 +35,10 @@ const BreadCrumb = (props) => {
 											<span className="stats">+{stats.total_in_24hr}</span> in
 											the last 28 days.
 										</>
-									) : (
+									) : stats.total_in_24hr === 0 ? (
 										"No new enrolment in the last 28 days."
+									) : (
+										"Loading..."
 									)}
 								</p>
 							</div>
@@ -53,8 +55,10 @@ const BreadCrumb = (props) => {
 											<span className="stats">+{stats.meet_in_24hr}</span> in
 											the last 28 days.
 										</>
-									) : (
+									) : stats.meet_in_24hr === 0 ? (
 										"No new enrolment in the last 28 days."
+									) : (
+										"Loading..."
 									)}
 								</p>
 							</div>
@@ -71,8 +75,10 @@ const BreadCrumb = (props) => {
 											<span className="stats">+{stats.uni_in_24hr}</span> in the
 											last 28 days.
 										</>
-									) : (
+									) : stats.uni_in_24hr === 0 ? (
 										"No new enrolment in the last 28 days."
+									) : (
+										"Loading..."
 									)}
 								</p>
 							</div>
