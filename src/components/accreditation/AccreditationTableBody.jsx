@@ -1,31 +1,7 @@
 import ReactTimeAgo from "react-time-ago";
 import styled from "styled-components";
 
-function timeAgo(timestamp) {
-  // Calculate the difference between the current time and the given timestamp
-  const diffInMilliseconds = Date.now() - new Date(timestamp).getTime();
-
-  // Convert the difference to seconds
-  const diffInSeconds = diffInMilliseconds / 1000;
-
-  // Calculate the number of minutes, hours, and days
-  const minutes = Math.floor(diffInSeconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-
-  // Return the time ago in a human-readable format
-  if (days > 0) {
-    return `${days} days ago`;
-  } else if (hours > 0) {
-    return `${hours} hrs ago`;
-  } else if (minutes > 0) {
-    return `${minutes} minutes ago`;
-  } else {
-    return `${Math.floor(diffInSeconds)} seconds ago`;
-  }
-}
-
-const TableforDownloads = ({ students }) => {
+const AccreditationTableBody = ({ students }) => {
   return (
     <tbody>
       {
@@ -46,7 +22,7 @@ const TableforDownloads = ({ students }) => {
   );
 };
 
-export default TableforDownloads;
+export default AccreditationTableBody;
 
 let HighValueBody = styled.div`
   position: relative;

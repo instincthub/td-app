@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import BreadCrumb from "../components/BreadCrumb";
-import TableSidebar from "../components/TableSidebar";
-import SecondaryNavbar from "../components/SecondaryNavbar";
+import BreadCrumb from "../components/accreditation/BreadCrumb";
 import { fetchAPI, HOST_URL, getCookie, reqOptions } from "../components/static/assets/js/help_func";
 import Navbar from "../components/Navbar";
+import { cohortData, statsData, studentsData } from "../components/accreditation/AccDummyData";
+// import TableSidebar from "../components/TableSidebar";
+// import SecondaryNavbar from "../components/SecondaryNavbar";
 
 
-const TechTable = () => {
-  const [cohort, setCohort] = useState()
-  const [cohortStats, setCohortStats] = useState()
-  const [students, setStudents] = useState()
+const Accreditation = () => {
+  const [cohort, setCohort] = useState(cohortData)
+  const [cohortStats, setCohortStats] = useState(statsData)
+  const [students, setStudents] = useState(studentsData)
 
   useState(()=>{
     const requestOptions =  reqOptions("GET", null)
     
-    fetchAPI(setCohortStats, HOST_URL()+"/api/v1/assessment/cohort_analytics/", requestOptions, true)
-    fetchAPI(setStudents, HOST_URL()+"/api/v1/assessment/cohort_students/", requestOptions, true)
-    fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
+    // fetchAPI(setCohortStats, HOST_URL()+"/api/v1/assessment/cohort_analytics/", requestOptions, true)
+    // fetchAPI(setStudents, HOST_URL()+"/api/v1/assessment/cohort_students/", requestOptions, true)
+    // fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/cohort/", requestOptions, true)
   })
 
   return (
@@ -37,7 +38,7 @@ const TechTable = () => {
   );
 };
 
-export default TechTable;
+export default Accreditation;
 
 const TechDiversityWrapper = styled.div`
   @media (min-width: 1200px) {

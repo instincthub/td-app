@@ -1,13 +1,13 @@
 import { React, useEffect, useState, useRef } from "react";
-// import AllLeads from "../Pages/Leads/LeadsCards";
 import styled from "styled-components";
-import Pagination from "./Pagination";
+import Pagination from "../Pagination";
+import StaticTabs from "../StaticTabs";
+import { useSearchParams } from "react-router-dom";
+import AccreditationTableBody from "./AccreditationTableBody";
+import Tabs from "../StaticTabs";
+// import AllLeads from "../Pages/Leads/LeadsCards";
 // import StaticTabs from "./StaticTabs";
 // import SearchField from "./forms/SearchField";
-import StaticTabs from "./StaticTabs";
-import { useSearchParams } from "react-router-dom";
-import TableforDownloads from "../Test/TableforDownloads";
-import Tabs from "./StaticTabs";
 // import EventCards from "../Pages/Events/EventCards";
 // import AddNewEvent from "./AddEvent";
 
@@ -44,11 +44,8 @@ const AccreditationTable = ({students, setStudents, ...props}) => {
                 setTabsValues={setTabsValues}
                 categories={["Cohort1", "Cohort2", "Cohort3"]}
               />
-              {/* <h6></h6> */}
-              {/* <SearchField setSearchValues={setSearchValues} /> */}
             </div>
           </div>
-          {/* {data ? ( */}
           <section className="vindict_scroll">
             <div className="scrollable_table">
               <table>
@@ -63,18 +60,12 @@ const AccreditationTable = ({students, setStudents, ...props}) => {
                     <th>Duration</th>
                   </tr>
                 </thead>
-                {/* {data.results.map((option) => {
-                  return ( */}
-                {/* <div> */}
-                {/* <TableforDownloads key={option.id} options={option} /> */}
-                <TableforDownloads students={data}/>
-                {/* </div> */}
-                {/* );
-                })} */}
+
+                {/* Table body */}
+                <AccreditationTableBody students={data}/>
               </table>
             </div>
           </section>
-          {/* // ) : ( // "" // )} */}
         </div>
         <div className="overflow-auto">
           <Pagination

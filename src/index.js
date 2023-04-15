@@ -35,7 +35,7 @@ import { BasicTable } from "./pages/BasicTable";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import ru from "javascript-time-ago/locale/ru.json";
-import TechTable from "../src/pages/TechTable";
+import Accreditation from "./pages/Accreditation";
 
 TimeAgo.addDefaultLocale(en);
 TimeAgo.addLocale(ru);
@@ -59,7 +59,7 @@ function Index() {
         <Route path="quiz/quiztest/results" element={<QuizResults />} />
         <Route path="login" element={<Login />} />
         <Route path="login/success" element={<LoginSuccess />} />
-        <Route path="accreditation" element={<TechTable />} />
+        <Route path="accreditation" element={<Accreditation />} />
 
         {/* Community Support */}
         <Route path="/community/signup/" element={<CommunitySignup />} />
