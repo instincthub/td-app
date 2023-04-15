@@ -99,7 +99,7 @@ const BreadCrumbWrapper = styled.section`
 }
 
     margin-top: 120px;    
-    padding: 0px 20px;
+    
     @media (min-width: 768px) {
       margin: 0 auto;
       margin-top: 120px;
