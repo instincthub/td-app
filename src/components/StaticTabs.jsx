@@ -106,10 +106,11 @@ const TabsSearch = styled.section`
 			display: flex;
 			justify-content: center;
 			padding: 0;
-			// min-width: 100px;
 			padding: 5px 10px;
 			text-align: center;
 			margin-right: 15px;
+			color: var(--Gunmetal);
+			text-decoration: none;
 			button {
 				margin: 0;
 				padding: 0 !important;

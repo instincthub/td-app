@@ -3,7 +3,16 @@ import styled from "styled-components";
 import AccreditationTable from "./AccreditationTable";
 
 const BreadCrumb = (props) => {
-	const stats = {};
+	const stats = {
+		total: props.cohortStats?.data.total_students,
+		total_in_24hr: props.cohortStats?.data.total_students_last_28_days,
+		meet_expectation: props.cohortStats?.data.total_students_meets_expectation,
+		meet_in_24hr:
+			props.cohortStats?.data.total_students_meets_expectation_last_28_days,
+		uni: props.cohortStats?.data.total_university_applicants,
+		uni_in_24hr:
+			props.cohortStats?.data.total_university_applicants_last_28_days,
+	};
 
 	return (
 		<BreadCrumbWrapper>
@@ -19,16 +28,12 @@ const BreadCrumb = (props) => {
 							<div class="container-contents">
 								<h3>Enrollment</h3>
 								<p>Current Students</p>
-								<span className="number">
-									{props.cohortStats?.data.total_students}
-								</span>
+								<span className="number">{stats.total}</span>
 								<p>
-									{props.cohortStats?.data.total_students_last_28_days ? (
+									{stats.total_in_24hr ? (
 										<>
-											<span className="stats">
-												+{props.cohortStats?.data.total_students_last_28_days}
-											</span>{" "}
-											in the last 28 days.
+											<span className="stats">+{stats.total_in_24hr}</span> in
+											the last 28 days.
 										</>
 									) : (
 										"No new enrolment in the last 28 days."
@@ -41,24 +46,12 @@ const BreadCrumb = (props) => {
 							<div class="container-contents">
 								<h3>Assesment</h3>
 								<p>Students who met expectations</p>
-								<span className="number">
-									{" "}
-									{
-										props.cohortStats?.data.total_students_meets_expectation
-									}{" "}
-								</span>
+								<span className="number"> {stats.meet_expectation} </span>
 								<p>
-									{props.cohortStats?.data
-										.total_students_meets_expectation_last_28_days ? (
+									{stats.meet_in_24hr ? (
 										<>
-											<span className="stats">
-												+
-												{
-													props.cohortStats?.data
-														.total_students_meets_expectation_last_28_days
-												}
-											</span>{" "}
-											in the last 28 days.
+											<span className="stats">+{stats.meet_in_24hr}</span> in
+											the last 28 days.
 										</>
 									) : (
 										"No new enrolment in the last 28 days."
@@ -71,21 +64,12 @@ const BreadCrumb = (props) => {
 							<div class="container-contents">
 								<h3>Schools</h3>
 								<p>Universities of applicants</p>
-								<span className="number">
-									{props.cohortStats?.data.total_university_applicants}
-								</span>
+								<span className="number">{stats.uni}</span>
 								<p>
-									{props.cohortStats?.data
-										.total_university_applicants_last_28_days ? (
+									{stats.uni_in_24hr ? (
 										<>
-											<span className="stats">
-												+
-												{
-													props.cohortStats?.data
-														.total_university_applicants_last_28_days
-												}
-											</span>{" "}
-											in the last 28 days.
+											<span className="stats">+{stats.uni_in_24hr}</span> in the
+											last 28 days.
 										</>
 									) : (
 										"No new enrolment in the last 28 days."
