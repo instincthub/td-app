@@ -10,7 +10,7 @@ const AccreditationTableBody = ({ students }) => {
 					return (
 						<tr key={index}>
 							<td className="actual_content">{`${option.user.first_name} ${option.user.last_name}`}</td>
-							<td>{option.cohort["title"] ? option.cohort["title"] : "-"}</td>
+							<td>{option.cohort?.length ? option.cohort[0].title : "-"}</td>
 							<td>{option.school ? option.school : "-"}</td>
 							<td>
 								{option.course_choice.length
