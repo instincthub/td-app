@@ -3,6 +3,7 @@ import styled from "styled-components";
 import AccreditationTable from "./AccreditationTable";
 
 const BreadCrumb = (props) => {
+	const currentYear = new Date().getFullYear();
 	const stats = {
 		total: props.cohortStats?.data.total_students,
 		total_in_24hr: props.cohortStats?.data.total_students_last_28_days,
@@ -12,6 +13,7 @@ const BreadCrumb = (props) => {
 		uni: props.cohortStats?.data.total_university_applicants,
 		uni_in_24hr:
 			props.cohortStats?.data.total_university_applicants_last_28_days,
+		current_year: new Date().getFullYear(),
 	};
 
 	return (
@@ -19,7 +21,7 @@ const BreadCrumb = (props) => {
 			<div className="containe">
 				<div className="header">
 					<div className="tech-diversity-text">
-						<h5>Tech Diversity Accreditation</h5>
+						<h5> {stats.current_year} Tech Diversity Accreditation</h5>
 					</div>
 				</div>
 				<section className="overflown">
