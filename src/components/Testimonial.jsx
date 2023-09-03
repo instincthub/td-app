@@ -23,7 +23,7 @@ const Testimonial = () => {
 		const requestOptions = reqOptions("GET", null);
 		fetchAPI(
 			setItems,
-			HOST_URL() + "/api/v1/assessment/skills/testimonies/",
+			HOST_URL() + "/api/v1/assessments/skills/testimonies/",
 			requestOptions,
 			true
 		);

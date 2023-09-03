@@ -44,7 +44,7 @@ function QuizTest() {
 		if (data.length === 0) {
 			const requestOptions = reqOptions("GET", null, true);
 			let new_path =
-				HOST_URL() + `/api/v1/assessment/skills/quiztest/${url_path}/`;
+				HOST_URL() + `/api/v1/assessments/skills/quiztest/${url_path}/`;
 			fetchAPI(setData, new_path, requestOptions, true, setStatus);
 		}
 

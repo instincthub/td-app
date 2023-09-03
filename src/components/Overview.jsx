@@ -15,13 +15,13 @@ function Overview() {
 
 		fetchAPI(
 			setCourseChoice,
-			HOST_URL() + "/api/v1/assessment/skills/course_choice/",
+			HOST_URL() + "/api/v1/assessments/skills/course_choice/",
 			requestOptions,
 			true
 		);
 		fetchAPI(
 			setCohort,
-			HOST_URL() + "/api/v1/assessment/skills/cohort/",
+			HOST_URL() + "/api/v1/assessments/skills/cohort/",
 			requestOptions,
 			true
 		);

@@ -1,6 +1,6 @@
 export const studentsData = {
 	count: 1323,
-	next: "https://api.instincthub.com/api/v1/assessment/skills/cohort_students/?limit=10&offset=10",
+	next: "https://api.instincthub.com/api/v1/assessments/skills/cohort_students/?limit=10&offset=10",
 	previous: null,
 	results: [
 		{

@@ -74,7 +74,7 @@ const AccreditationTable = ({ students, setStudents, ...props }) => {
 						setError={setError}
 						limit={10}
 						offset={searchParams.get("offset")}
-						urlPath="/api/v1/assessment/skills/cohort_students/?"
+						urlPath="/api/v1/assessments/skills/cohort_students/?"
 						noPermission={true}
 					/>
 				</div>

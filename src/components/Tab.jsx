@@ -15,12 +15,12 @@
 //     // useEffect(()=>{
 //     //     const requestOptions =  reqOptions("GET", null)
 
-//     //     fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/skills/cohort/", requestOptions, true)
+//     //     fetchAPI(setCohort, HOST_URL()+"/api/v1/assessments/skills/cohort/", requestOptions, true)
 //     //   },[searchParams.get("cat")])
 
 //     useEffect(()=>{
 //         if (!categories) {// Category List
-//             fetchAPI(setCohort, HOST_URL()+"/api/v1/assessment/skills/cohort/", requestOptions, true);
+//             fetchAPI(setCohort, HOST_URL()+"/api/v1/assessments/skills/cohort/", requestOptions, true);
 //         }
 //     // eslint-disable-next-line
 //     },[searchParams.get("cat")])

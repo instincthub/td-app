@@ -45,7 +45,7 @@ function QuizInstruction() {
 			const requestOptions = reqOptions("GET", null, true);
 			fetchAPI(
 				setData,
-				HOST_URL() + "/api/v1/assessment/skills/instructions/" + q_param,
+				HOST_URL() + "/api/v1/assessments/skills/instructions/" + q_param,
 				requestOptions,
 				true,
 				setStatus

@@ -49,7 +49,7 @@ function QuizTest() {
 
 		fetAPI(
 			setData,
-			HOST_URL() + "/assessment/skills/quiztest/1",
+			HOST_URL() + "/assessments/skills/quiztest/1",
 			requestOptions,
 			true
 		);
@@ -161,7 +161,7 @@ function QuizTest() {
 
 						fetAPI(
 							setData,
-							HOST_URL() + "/assessment/skills/answer/",
+							HOST_URL() + "/assessments/skills/answer/",
 							requestOptions,
 							true
 						);

@@ -34,7 +34,7 @@ class RegTracker extends React.Component {
 		const requestOptions = reqOptions("GET", null);
 		fetchAPI(
 			this,
-			HOST_URL + "/api/v1/assessment/skills/reg_tracker/",
+			HOST_URL + "/api/v1/assessments/skills/reg_tracker/",
 			requestOptions
 		);
 	}

@@ -35,7 +35,7 @@ function QuizResults() {
 
 		fetchAPI(
 			setData,
-			`${HOST_URL()}/api/v1/assessment/skills/answer/results/${u_id}/${assessment_id}/${counts}/`,
+			`${HOST_URL()}/api/v1/assessments/skills/answer/results/${u_id}/${assessment_id}/${counts}/`,
 			requestOptions,
 			true,
 			setStatus,

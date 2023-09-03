@@ -16,7 +16,7 @@ function SecondaryTable() {
 		const requestOptions = reqOptions("GET", null, true);
 		fetchAPI(
 			setCohort,
-			"sandboxapi.instincthub.com/api/v1/assessment/skills/cohort/",
+			"sandboxapi.instincthub.com/api/v1/assessments/skills/cohort/",
 			requestOptions,
 			true,
 			setStatus,

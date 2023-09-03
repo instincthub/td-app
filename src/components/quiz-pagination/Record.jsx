@@ -46,7 +46,7 @@ const Records = ({ data, dataArray, ...props }) => {
 
 		fetchAPI(
 			props.setSubmitAnswer,
-			HOST_URL() + "/api/v1/assessment/skills/answer/",
+			HOST_URL() + "/api/v1/assessments/skills/answer/",
 			requestOptions,
 			true,
 			props.setStatus

@@ -17,13 +17,13 @@ export const BasicTable = () => {
 
 	const [items, setItems] = useState(null);
 	// const data =useMemo( () => items, [])
-	// const dd = FetchReturnData('/assessment/skills/reg_tracker/', 'GET')
+	// const dd = FetchReturnData('/assessments/skills/reg_tracker/', 'GET')
 	// console.log(dd)
 	useEffect(() => {
 		const requestOptions = reqOptions("GET", null);
 		fetchAPI(
 			setItems,
-			HOST_URL() + "/pai/v1/assessment/skills/reg_tracker/",
+			HOST_URL() + "/pai/v1/assessments/skills/reg_tracker/",
 			requestOptions,
 			true
 		);

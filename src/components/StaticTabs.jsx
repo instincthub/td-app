@@ -16,7 +16,7 @@ function Tabs(props) {
 			const requestOptions = reqOptions("GET", null);
 			fetchAPI(
 				setCohorts,
-				HOST_URL() + "/api/v1/assessment/skills/cohort/",
+				HOST_URL() + "/api/v1/assessments/skills/cohort/",
 				requestOptions,
 				true
 			);

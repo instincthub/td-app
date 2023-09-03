@@ -15,7 +15,7 @@ const FAQ = () => {
 		const requestOptions = reqOptions("GET", null);
 		fetchAPI(
 			setItems,
-			HOST_URL() + "/api/v1/assessment/skills/faqs/",
+			HOST_URL() + "/api/v1/assessments/skills/faqs/",
 			requestOptions,
 			true
 		);
