@@ -1,62 +1,68 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Tab from "./Tab";
-import { reqOptions, fetchAPI, HOST_URL } from "../components/static/assets/js/help_func";
-
+import {
+	reqOptions,
+	fetchAPI,
+	HOST_URL,
+} from "../components/static/assets/js/help_func";
 
 function SecondaryTable() {
+	const [cohort, setCohort] = useState([]);
+	const [status, setStatus] = useState();
+	const [error, setError] = useState();
 
-      const [cohort, setCohort] = useState([])
-      const [status, setStatus] = useState()
-      const [error, setError] = useState()
+	useEffect(() => {
+		const requestOptions = reqOptions("GET", null, true);
+		fetchAPI(
+			setCohort,
+			"sandboxapi.instincthub.com/api/v1/assessment/skills/cohort/",
+			requestOptions,
+			true,
+			setStatus,
+			setError
+		);
+	}, []);
 
-      useEffect(()=>{
-        const requestOptions =  reqOptions("GET", null, true)        
-        fetchAPI(setCohort, "sandboxapi.instincthub.com/api/v1/assessment/cohort/", requestOptions, true, setStatus, setError )
-      },[])
+	console.log(cohort);
 
-      console.log(cohort)
-
-
-  return (
-    <>
-      <section>
-        <div>
-          <div>
-            <ActivityTableFrame>
-              <div>
-                <Tab cohort={cohort} />
-                <div className="table-container">
-                  <table>
-                    <thead>
-                      <tr className="table-header-item">
-                        <th>Applicant</th>
-                        <th>Cohort</th>
-                        <th>School</th>
-                        <th>Course Choice</th>
-                        <th>Start date</th>
-                        <th>Duration</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                    {cohort.map(data => (
-                      <tr key={data.id}>
-                        <td>{data.id}</td>
-                        <td>{data.title}</td>
-                      </tr>
-                    ))}
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </ActivityTableFrame>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+	return (
+		<>
+			<section>
+				<div>
+					<div>
+						<ActivityTableFrame>
+							<div>
+								<Tab cohort={cohort} />
+								<div className="table-container">
+									<table>
+										<thead>
+											<tr className="table-header-item">
+												<th>Applicant</th>
+												<th>Cohort</th>
+												<th>School</th>
+												<th>Course Choice</th>
+												<th>Start date</th>
+												<th>Duration</th>
+											</tr>
+										</thead>
+										<tbody>
+											{cohort.map((data) => (
+												<tr key={data.id}>
+													<td>{data.id}</td>
+													<td>{data.title}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</ActivityTableFrame>
+					</div>
+				</div>
+			</section>
+		</>
+	);
 }
 
 export default SecondaryTable;

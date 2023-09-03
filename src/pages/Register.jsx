@@ -57,13 +57,13 @@ const Register = () => {
 
 		fetchAPI(
 			setCourseChoice,
-			HOST_URL() + "/api/v1/assessment/course_choice/",
+			HOST_URL() + "/api/v1/assessment/skills/course_choice/",
 			requestOptions,
 			true
 		);
 		fetchAPI(
 			setCohort,
-			HOST_URL() + "/api/v1/assessment/cohort/?data=NOW",
+			HOST_URL() + "/api/v1/assessment/skills/cohort/?data=NOW",
 			requestOptions,
 			true
 		);

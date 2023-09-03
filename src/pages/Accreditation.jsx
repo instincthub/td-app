@@ -25,19 +25,19 @@ const Accreditation = () => {
 
 		fetchAPI(
 			setCohortStats,
-			HOST_URL() + "/api/v1/assessment/cohort_analytics/",
+			HOST_URL() + "/api/v1/assessment/skills/cohort_analytics/",
 			requestOptions,
 			true
 		);
 		fetchAPI(
 			setStudents,
-			HOST_URL() + "/api/v1/assessment/cohort_students/",
+			HOST_URL() + "/api/v1/assessment/skills/cohort_students/",
 			requestOptions,
 			true
 		);
 		fetchAPI(
 			setCohort,
-			HOST_URL() + "/api/v1/assessment/cohort/",
+			HOST_URL() + "/api/v1/assessment/skills/cohort/",
 			requestOptions,
 			true
 		);
