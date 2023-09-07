@@ -19,14 +19,14 @@ const AccreditationTableBody = ({ students }) => {
 							</td>
 							<td>
 								{option.cohort.length ? (
-									<ReactTimeAgo date={option.cohort[0].from_date} />
+									<ReactTimeAgo date={option.cohort[0].start_date} />
 								) : (
 									"-"
 								)}
 							</td>
 							<td>
 								{option.cohort.length ? (
-									<ReactTimeAgo date={option.cohort[0].to_date} />
+									<ReactTimeAgo date={option.cohort[0].end_date} />
 								) : (
 									"-"
 								)}

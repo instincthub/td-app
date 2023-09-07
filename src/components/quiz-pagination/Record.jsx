@@ -97,7 +97,7 @@ const Records = ({ data, dataArray, ...props }) => {
 
 				<div>
 					<div id="altcontainer" className="notranslate">
-						{data.q_option.map((item, index) => (
+						{data.options.map((item, index) => (
 							<div key={index}>
 								{index === 1 ? (
 									<input

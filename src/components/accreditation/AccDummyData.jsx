@@ -374,14 +374,14 @@ export const cohortData = {
 		{
 			id: 3,
 			title: "TDN 3.2",
-			from_date: "2023-09-01",
+			start_date: "2023-09-01",
 			to_date: "2023-11-30",
 			timestamp: "2023-01-11T05:09:16.613193+01:00",
 		},
 		{
 			id: 2,
 			title: "TDN 3.1",
-			from_date: "2023-06-01",
+			start_date: "2023-06-01",
 			to_date: "2023-08-31",
 			timestamp: "2023-01-11T05:08:14.608055+01:00",
 		},

@@ -25,7 +25,7 @@ function QuizTest() {
 	let params = new URL(document.location).searchParams;
 
 	// To hold the actual data
-	const [data, setData] = useState([]);
+	const [data, setData] = useState({});
 	const [status, setStatus] = useState("loading");
 	const [url_path] = useState(params.get("slug"));
 	const [submitAnswer, setSubmitAnswer] = useState([]);
@@ -41,15 +41,24 @@ function QuizTest() {
 	const answerData = {};
 
 	useEffect(() => {
-		if (data.length === 0) {
+		const getAssessment = async () => {
 			const requestOptions = reqOptions("GET", null, true);
 			let new_path =
 				HOST_URL() + `/api/v1/assessments/skills/quiztest/${url_path}/`;
-			fetchAPI(setData, new_path, requestOptions, true, setStatus);
-		}
+			const response = await fetch(new_path, requestOptions);
+			console.log(response.status);
+			if (response.status === 200) {
+				const req = await response.json();
+				setData(req);
+				setShuffledArray(req.questions.sort(() => Math.random() - 0.5));
+			}
+		};
+		getAssessment();
 
 		// eslint-disable-next-line
-	}, [data, duration, current_records]);
+	}, []);
+
+	console.log(data);
 	if (
 		localStorage.getItem("current_page") !== null &&
 		localStorage.getItem("current_page") > currentPage
@@ -58,14 +67,16 @@ function QuizTest() {
 	}
 
 	// Shuffle Objects
-	const shuffleArray = (array) => {
-		return array.sort(() => Math.random() - 0.5);
-	};
+	// const shuffleArray = (array) => {
+	// 	return array.sort(() => Math.random() - 0.5);
+	// };
 
-	if (data["a_assessment"] && !shuffledArray) {
-		// const dataArray = Object.entries(data['a_assessment']).map(([key, value]) => [key, value]);
-		setShuffledArray(shuffleArray(data["a_assessment"]));
-	}
+	// if (data["assessments"] && !shuffledArray) {
+	// 	// const dataArray = Object.entries(data['assessments']).map(([key, value]) => [key, value]);
+	// 	setShuffledArray(shuffleArray(data["assessments"]));
+	// }
+
+	// console.log(shuffledArray);
 
 	const assessment = shuffledArray;
 	// const indexOfLastRecord = currentPage * recordsPerPage;
@@ -73,7 +84,7 @@ function QuizTest() {
 	const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
 	let nPages = null;
-
+	console.log(assessment);
 	if (assessment) {
 		// get pagination if data object
 		// current_records = assessment.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage); // single object
@@ -91,6 +102,8 @@ function QuizTest() {
 			}
 		}
 	}
+
+	console.log(nPages, current_records, current_records.pk);
 
 	if (nPages && current_records && current_records.pk) {
 		return (

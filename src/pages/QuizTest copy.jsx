@@ -53,7 +53,7 @@ function QuizTest() {
 			requestOptions,
 			true
 		);
-		setAssessment(data["a_assessment"]);
+		setAssessment(data["assessments"]);
 		console.log();
 
 		if (
