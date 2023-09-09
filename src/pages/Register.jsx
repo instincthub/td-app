@@ -39,6 +39,31 @@ import { PageLoading } from "../components/forms/PageLoading";
 import { LoginRequired } from "../components/forms/LoginRequired";
 
 const Register = () => {
+	return (
+		<div className="container">
+			<div
+				style={{
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "center",
+					height: "90vh",
+				}}
+			>
+				<div className="reg_closed">
+					<br />
+					<br />
+					<h3>Registration has been closed.</h3>
+					<p>
+						Registration for this programme has been closed as we are currently
+						in session.
+					</p>
+					<p>We appreciate your interest!</p>
+					<br />
+					<br />
+				</div>
+			</div>
+		</div>
+	);
 	const [items, setItems] = useState();
 	const [status, setStatus] = useState(null);
 	const [error, setError] = useState(null);
