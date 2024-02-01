@@ -37,26 +37,27 @@ function Overview() {
 					<h2 itemProp="overview">Overview</h2>
 					<div itemProp="description">
 						<p>
-							According to the Nigeria Bureau of Statistics (NBS),{" "}
-							<strong>33.3%</strong> of Nigerians are unemployed. With over{" "}
-							<strong>200 million</strong> population,{" "}
-							<strong>66.2 million</strong> Nigerians are out of a job.
+							As per the Nigeria Bureau of Statistics (NBS), unemployment
+							affects 40.1% of Nigerians. Given the nation's population of over
+							200 million, this translates to approximately 80.2 million
+							individuals without employment.
 						</p>
 						<p>
-							Tech Diversity by{" "}
+							In response to this, Tech Diversity by{" "}
 							<a href="https://instincthub.com" target="blank">
 								<strong className="instincthub_link">InstinctHub</strong>
 							</a>{" "}
-							is structured to train 100,000 individuals each year and place 20%
-							into direct jobs, which will create wealth for families locked out
-							of employment opportunities.
+							has been designed to annually train 100,000 individuals, with the
+							aim of securing direct employment for 20% of them. This initiative
+							is expected to generate wealth for families who have been excluded
+							from employment opportunities.
+						</p>
+						<p>
+							For this year, we have planned three cohorts, each lasting 12
+							weeks. Participants will have the opportunity to choose from any
+							of the tracks listed below.
 						</p>
 
-						<p>
-							We have scheduled 3 cohorts for this year, each cohort will last
-							for 12 weeks. Participants will have the privilege to pick any of
-							the listed tracks below.
-						</p>
 						{courseChoice ? (
 							<ol>
 								<h3>Courses</h3>

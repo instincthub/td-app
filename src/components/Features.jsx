@@ -13,7 +13,7 @@ function Features() {
               <h3 itemProp="benefit tittle">Universities in Nigeria</h3>
             </div>
             <div className="numbers" itemProp="description">
-              <p>800+</p>
+              <p>3k+</p>
               <h3 itemProp="benefit tittle">University students enrolled with InstinctHub</h3>
             </div>
             <div className="numbers" itemProp="description">
