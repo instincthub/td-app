@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 // import sterling from "./static/assets/images/sterling.jpg";
-import people from "./static/assets/images/grid_style.jpg";
-import tdnImg from "./static/assets/images/happy-african-american-couple-students-hugging-cl-2023-11-27-05-00-38-utc.jpeg";
+import tdnImg from "./static/assets/images/happy-african-american-couple-students-hugging-cl.jpeg";
 import { showVideo } from "./static/assets/js/nav";
 import styled from "styled-components";
 
